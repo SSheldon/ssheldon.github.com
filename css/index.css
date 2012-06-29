@@ -3,6 +3,20 @@ a img
   border: none;
 }
 
+body
+{
+  text-align: center;
+  background-color: rgb(234, 238, 234);
+}
+
+ul.profiles
+{
+  display: inline-block;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: rgb(138, 152, 117);
+}
+
 ul.profiles li
 {
   display: inline-block;
