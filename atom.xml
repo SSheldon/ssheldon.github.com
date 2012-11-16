@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[sasheldon.com/blog]]></title>
-  <link href="http://sasheldon.com/blog/atom.xml" rel="self"/>
-  <link href="http://sasheldon.com/blog/"/>
-  <updated>2012-11-16T00:37:05-06:00</updated>
-  <id>http://sasheldon.com/blog/</id>
+  <title><![CDATA[sasheldon.com]]></title>
+  <link href="http://sasheldon.com/atom.xml" rel="self"/>
+  <link href="http://sasheldon.com/"/>
+  <updated>2012-11-16T17:04:05-06:00</updated>
+  <id>http://sasheldon.com/</id>
   <author>
     <name><![CDATA[Steven Sheldon]]></name>
     

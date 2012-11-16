@@ -2,14 +2,22 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://sasheldon.com/blog/2012/11/15/octopress/</loc>
-        <lastmod>2012-11-15T22:33:47-06:00</lastmod>
+        <lastmod>2012-11-16T17:03:59-06:00</lastmod>
+    </url>
+    <url>
+        <loc>http://sasheldon.com/404.html</loc>
+        <lastmod>2012-11-16T17:03:59-06:00</lastmod>
     </url>
     <url>
         <loc>http://sasheldon.com/blog/archives/</loc>
-        <lastmod>2012-11-16T00:30:42-06:00</lastmod>
+        <lastmod>2012-11-16T17:03:59-06:00</lastmod>
     </url>
     <url>
         <loc>http://sasheldon.com/blog/</loc>
-        <lastmod>2012-11-16T00:34:19-06:00</lastmod>
+        <lastmod>2012-11-16T17:03:59-06:00</lastmod>
+    </url>
+    <url>
+        <loc>http://sasheldon.com/</loc>
+        <lastmod>2012-11-16T17:03:59-06:00</lastmod>
     </url>
 </urlset>
