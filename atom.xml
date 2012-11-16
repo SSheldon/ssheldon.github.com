@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[My Octopress Blog]]></title>
+  <link href="http://sasheldon.com/blog/atom.xml" rel="self"/>
+  <link href="http://sasheldon.com/blog/"/>
+  <updated>2012-11-15T22:42:25-06:00</updated>
+  <id>http://sasheldon.com/blog/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress]]></title>
+    <link href="http://sasheldon.com/blog/blog/2012/11/15/octopress/"/>
+    <updated>2012-11-15T22:14:00-06:00</updated>
+    <id>http://sasheldon.com/blog/blog/2012/11/15/octopress</id>
+    <content type="html"><![CDATA[<p>I really like git; if I could keep everything under version control, I would.
+I&#8217;ve started writing all my papers in LaTeX instead of Word, not only because
+it&#8217;s cleaner and can provide more control, but because then I can version
+control them. Hell, I&#8217;ve even started keeping my Borderlands 2 game saves
+backed up in a git repository.</p>
+
+<p>Imagine my delight, then, when I discovered <a href="http://octopress.org/">Octopress</a>.
+Octopress is a framework that makes it really easy to generate a blog just from
+a set of markdown files that can be hosted on
+<a href="http://pages.github.com/">GitHub pages</a>. I&#8217;ve already been using GitHub to
+host my personal website, and using it to host a blog would be pretty swell.</p>
+
+<p>I&#8217;ve worked through the documentation to get a blog up and running; after all,
+I have homework to be working on right now, so I need to find something else to
+do. Nevermind the fact that I never actually put in the effort to blog or can
+come up with interesting topics; if nothing else, this was just an exercise to
+test out Octopress and to become more familiar with the features of GitHub
+pages.</p>
+]]></content>
+  </entry>
+  
+</feed>
