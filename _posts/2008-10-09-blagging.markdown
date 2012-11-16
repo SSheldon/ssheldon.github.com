@@ -1,0 +1,12 @@
+---
+comments: true
+date: 2008-10-09 17:02:57
+layout: post
+slug: blagging
+title: Blagging
+wordpress_id: 73
+categories:
+- From the Internets
+---
+
+Everyone loves [xkcd](http://xkcd.com/). Unfortunately, xkcd's comic feed and blog feed are two seperate entities. Because of this, I was not aware of an absolutely hilarious story that was posted on the blog. [Read it. Now.](http://blag.xkcd.com/2008/09/23/federal-reserve-skateboard-a-short-story/) Runnan ought to really like it...

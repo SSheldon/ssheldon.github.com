@@ -1,0 +1,30 @@
+---
+comments: true
+date: 2010-10-13 22:14:56
+layout: post
+slug: ie9
+title: IE9
+wordpress_id: 367
+---
+
+From everything I've heard, Internet Explorer 9 is, performance-wise, a huge step up from Internet Explorer 8. From my experience with it, I'd believe that, and overall it is a much less obtrusive web browser than IE8 and is a pleasure to use. However, in the grand quest to trim down the web browser, I believe some missteps were made.
+
+
+
+	
+  * The command bar was consolidated into the three simple buttons now found in the corner of the web browser, but the button that showed RSS feeds found on the page did not go with. Now, unfortunately, besides combing a page to find links to an RSS feed, the only way to subscribe to feeds is to pull the command bar back up. Since most of its functionality is duplicated elsewhere, it isn't worth having this toolbar visible constantly, so having to fiddle around every time you want to see if a website has an RSS feed is an annoying task. Additionally, this means that you won't just notice a feed anymore, but you'll have to be looking for it actively.
+
+	
+  * In IE8, websites could have their own search engines that would show up in the search box for you to use or install. Now this feature appears to be entirely absent; the only easy way to add new search engines is to go to the IE plugin website and add them from there. This means that only search engines found at the plugin site can be added, and even if you know a website has a search plugin, it is unnecessarily difficult to add it since you must go sort through the plugin website. Again, this prevents people from stumbling upon useful features and means that only those actively searching for them will find them.
+
+	
+  * Why isn't the title of the page I'm looking at shown at the top of the window? There is a huge amount of wasted space there, and glancing to the top of the screen would be much more convenient than hovering over the tab. I suppose it was a design choice to not include in the frame for the entire browser something specific to just one tab, but I think this is an example of design getting in the way of functionality.
+
+	
+  * Speaking of [design](http://blogs.msdn.com/b/ie/archive/2010/09/20/user-experiences-sites-in-the-spotlight.aspx) inhibiting functionality: I guess I'm one of those power users who has more than 4 tabs open at a time. Please, for our sake, let us move the tabs onto a separate line from the address bar. The extra vertical space isn't worth it! I can't see the URL or much more than the icon for each of my tabs. Here, choice is king; let us choose.
+
+	
+  * The "Popular Sites" tab is pretty awful. Sites you visited recently are given more weight, so if for one day you visit a site multiple times it will bump out a site you actually visit often. The ability to pin sites to this tab would be very useful and could allow it to replace the favorites bar.
+
+
+Even with these nuisances, IE9 is a great improvement over previous versions. The performance and compatibility upgrades are worth the upgrade, but if these problems aren't fixed it will only give upgraders grievances with an otherwise excellent web browser.

@@ -1,0 +1,16 @@
+---
+comments: true
+date: 2008-04-09 21:29:26
+layout: post
+slug: new-music-11
+title: New Music
+wordpress_id: 207
+categories:
+- New Music
+---
+
+
+
+  * "[The Final Countdown](http://en.wikipedia.org/wiki/The_Final_Countdown_(song))" by [Europe](http://en.wikipedia.org/wiki/Europe_(band)) from the album "[The Final Countdown](http://en.wikipedia.org/wiki/The_Final_Countdown_(album))" 
+
+  * "Over the Hills and Far Away" by [Nightwish](http://en.wikipedia.org/wiki/Nightwish) from the album "[Over the Hills and Far Away](http://en.wikipedia.org/wiki/Over_the_Hills_and_Far_Away_(album))"

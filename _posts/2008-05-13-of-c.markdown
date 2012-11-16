@@ -1,0 +1,10 @@
+---
+comments: true
+date: 2008-05-13 21:41:16
+layout: post
+slug: of-c
+title: Of C#
+wordpress_id: 147
+---
+
+Well, I'm officially in. With [Microsoft Visual C# 2008 Express Edition](http://www.microsoft.com/express/vcsharp/) on my laptop and [_Learn to Program with C#_ by John Smiley](http://www.johnsmiley.com/mybooks/LULU/LTPCSHARP/LULU572336.htm) at hand, I slowly and perilously forge onward. I can make a "Hello, World!" program on the console without having to copy any code, which I suppose is an achievement.

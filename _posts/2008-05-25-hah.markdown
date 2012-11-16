@@ -1,0 +1,12 @@
+---
+comments: true
+date: 2008-05-25 15:01:08
+layout: post
+slug: hah
+title: Hah
+wordpress_id: 134
+categories:
+- From the Internets
+---
+
+[He had it coming](http://biz.yahoo.com/ap/080522/identity_fraud_flap.html). I always thought that guy seemed like an ass, anyways.

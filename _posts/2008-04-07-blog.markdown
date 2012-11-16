@@ -1,0 +1,10 @@
+---
+comments: true
+date: 2008-04-07 15:51:55
+layout: post
+slug: blog
+title: Blog?
+wordpress_id: 218
+---
+
+Well Runnan, I took a page out of your book and made a blog. Don't expect much from it. I'm deciding whether to host the blog on Live Spaces or Yahoo! 360. I'm hungy.

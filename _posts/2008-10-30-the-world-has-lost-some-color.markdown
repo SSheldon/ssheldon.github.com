@@ -1,0 +1,143 @@
+---
+comments: true
+date: 2008-10-30 21:18:40
+layout: post
+slug: the-world-has-lost-some-color
+title: The World Has Lost Some Color...
+wordpress_id: 55
+categories:
+- From the Internets
+---
+
+As you may or may not be aware, my dear blogging compatriot Red has left the blogosphere. Not only has she stopped blogging, but she has deleted here entire blog! This is a sad day indeed. Her contributions were great and numerous and will be sorely missed. While it can still be found, I'd like to re-post one of my favorite of Red's creations; here is her series of stories:
+
+
+
+
+  
+_**Sketch of a Dissimilar Day**_
+
+
+
+
+She put on her four-pocket dress and stockinged herself and tied up her feet in black shoes and secured her hair up in a bow and tied a scarf around her, and breakfasted and took tea (as usual, with a lump of sugar and some vanilla), and put together her book sack and packed herself a handsome luncheon, and sang to the birds at her window, and, upon locking the front door, smiled pleasantly to herself upon receiving the cool autumn breeze and mystical grey that surrounded her, and nodded a good day to all the leaves that swam along her eye-path. All of these things she did as she would on any good day. But, upon reaching the second crosswalk to her usual destination, she laid aside all of her treasures of routine and took the cross-street, not stopping even when her friend inquired as to where she was headed, nor when others of her acquaintance waved to her in morningtide, nor when her own shadow hesitated as to whether or not it should follow or wait for its master to change her mind. But she did not, and her shadow skipped back to its place of honor, and everyone granted her the description of bearing an air of confidence, for she had no hesitation and yet was going quite against what was normally enacted each morning at seven. And although she herself carried in her chest a bit of regret, a bit of longing to go run back with her friends who had waved and those who had walked with her, and to laugh with them and share their morning, she did quite in fact have confidence inside of herself because of everything that would be to come. And because when you are on your way into something new and unknown, and have no previous notions on which to create conclusions for forthcoming experiences, the only thing you can do is sink into your steady footrhythm and take consolation in knowing you are well prepared and well dressed, and you have something with you to eat.
+
+
+
+
+ 
+
+
+
+
+Also, bearing confidence, no one will bother to find you suspicious; they will, on the contrary, find you to be quite in the right place at the right time, and may even doubt themselves for a moment or two. That is part of getting the trick right. So when she boarded the little silver train, she was quite confident, and it remained for the rest of the passengers to be dubious. Her character, they must have reasoned, is paradigmatic–and it is actually my own that needs reconsideration. Yet at the same time she did not fret about upsetting anyone by making them doubt themselves. As a girl in a four-pocket dress, swinging her legs slowly to the jazz song in her ear as she ate a wealthy red apple, she proved to be more of a consolation than a disturbance. For everyone else, it was a weary rainy workday, with no room for unnecessary criticism; and besides, everyone likes fairytales.
+
+
+
+
+ 
+
+
+
+
+**_Of Punctuality, Italian Dictators, Remorse, and That Ever-Present Thing Called "Hope"_**
+
+
+
+
+She arrived in Chicago promptly and marched downstreet to catch the prochain train. She had taken a mild chance in buying her ticket for an early train because she did not sit well with idle time. It all worked well, however, for after the first train had arrived promptly, she, too, was prompt, and the incoming train was prompt, so there was just the right amount of time for everything. Trains run on time, she thought happily to herself, and sat down in a vacant seat in her appointed car. She was unaccompanied for her journey, which made her happier still. She pulled out the collapsible dining table and took her luncheon. After that, she was left entirely to her thoughts. She stood up momentarily to replace the circulation in her feet and brush the crumbs from her dress, and, upon doing so, observed that the entire car was empty. With this information, she took the liberty of vacating her seat and walking quietly up and down the aisles, occasionally pausing to watch everything that the world was made of flurry by.
+
+
+
+
+ 
+
+
+
+
+At first, she spent a small amount of time being sad and a little bit unsure. Although these aren’t wonderful thoughts to indulge in, they are sometimes necessary to pay attention to and dispel. She thought of what she might be doing at the current hour had she not decided to leave it all. Although her schooling had, on the whole, been a good amount of wasted time, there were many redemptions that came with it. She enjoyed seeing her friends for a moment or two, and figuring problems on wide sheets of white paper, and perhaps inventing some aria of musical lyricism for an hour or two. And, she took comfort in the atmosphere–of being in a community that she was under no obligation to speak with but could upon her whim. She realized it was one thing to be alone while surrounded with hundreds of similar students, and quite another to be surrounded by nothing but faceless things. Still, the system she had been thrust into was no longer effectual (although it could be argued it was never effectual to begin with), and it was time for her to lay those things upon her high shelf and only take them down as trinkets with which to remember her past. Although it would be a few weeks before she could be properly mollified, it was still some comfort to assure herself by appealing to logos: both sides of the journey held good and bad things, but it could be agreed that a great many more good things would come of her new life than the ones she had enjoyed for the past three years. She could no longer bear the thought of things stagnating, and here she had realized her chance of lifting herself from that bog which had so previously threatened her.
+
+
+
+
+ 
+
+
+
+
+When, at last, the little train had become quite tired of its trek and slowed into a crumbled station, she got out with her things and watched as it crawled on to its graveyard, leaving her quite alone. It was only mid-afternoon, but clouds amassing on the horizon urged the streetlights to keep the lonely day company. They shone bravely as the only source that was available. No neon, no halogen, flourescents, incandescents, no houses, buildings, cars. She was in quite a different place now to be sure.
+
+
+
+
+ 
+
+
+
+
+**_What Used to Be_**
+
+
+
+
+Being unplanned was also part of her plan. She had not invested a moment in surveying the land which she currently found herself, and by no mistake or oversight. When, all at once, you are presented with an interesting puzzle, it is a great preoccupation of the mind to try and solve it.
+
+
+
+
+ 
+
+
+
+
+These were the puzzles that presented themselves: she needed, most immediately, a place to stay, although a light supper beforehand would not be unappreciated. Furthermore, she needed a means of obtaining things such as clothing and food. She had with her a certain sum of money and a certain mass of food, but these things are not exactly indefatigable. But luck comes to those with simplistic needs and a great keen and noble interest in winning those prizes.
+
+
+
+
+ 
+
+
+
+
+The fog in the town she found herself, which, in great and proper novels is always described to be “rolling”, was surely rolling over great masses of nothing. Once it had sifted, sifted its way through buildings and cars and weaves of people. In fact, although the pocket-dress girl did not know it, it had barely even had a chance to sift, for the place she stepped her feet had once been stepped by daily crowds. It is only logical, for trains don’t stop at every cottage-path. They stopped because every good person had some inner desire to leave their steps in this place, where grandness and wild adventure lived. But I shall not reveal the grandness nor adventure just yet, for you dear reader may rather prefer to discover that yourself. All of that had disappeared some years ago and left only the train stop, for reasons I again will leave for later.
+
+
+
+
+ 
+
+
+
+
+It was amidst this rolling fog and great emptiness that was once full that she discovered quite by a great stroke of luck, a wonderful thing forgotten by time. It was great and grey on the exterior, made up of weathered boards coming apart here and there allowing for aeration. It was hard, as she approached it, and, indeed, even as she stood directly en face de the building, to determine its purpose. And so, it was with great resolve and great curiosity that she pushed aside its wide door and stepped inside.
+
+
+
+
+ 
+
+
+
+
+R.I.P., [Less Gravity](http://lessgravity.wordpress.com/)...
+
+
+
+
+ 
+
+
+
+
+P.S.: If you're in the mood for a mind-fuck, here are Runnan's stories in response: [An Image Burned in Charcoal](http://ponspk.blogspot.com/2008/10/so-httplessgravity.html) and [In the Spirit of or in spite of Culinary Excellency](http://ponspk.blogspot.com/2008/10/in-spirit-of-or-in-spite-of-culinary.html).
+
+
+
+
+ 
+
+
+
+
+**Update:** Red made a new blog! Don't ask me why she didn't just keep the old one... You can find it at [http://lessgravity.blogspot.com/](http://lessgravity.blogspot.com/). Also, if you enjoyed the stories from above, there was a forth part posted: [Lullaby](http://lessgravity.blogspot.com/2008/11/lullaby.html).

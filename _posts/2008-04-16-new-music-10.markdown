@@ -1,0 +1,14 @@
+---
+comments: true
+date: 2008-04-16 18:11:05
+layout: post
+slug: new-music-10
+title: New Music
+wordpress_id: 205
+categories:
+- New Music
+---
+
+
+
+  * "Saints of Los Angeles" by [Mötley Crüe](http://en.wikipedia.org/wiki/M%C3%B6tley_Cr%C3%BCe) from the ablum "[Saints of Los Angeles](http://en.wikipedia.org/wiki/Saints_of_Los_Angeles)"

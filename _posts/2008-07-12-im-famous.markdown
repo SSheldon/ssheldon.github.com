@@ -1,0 +1,43 @@
+---
+comments: true
+date: 2008-07-12 22:41:52
+layout: post
+slug: im-famous
+title: I'm Famous
+wordpress_id: 83
+---
+
+So I haven't blogged in quite a while, eh? Nothing interesting going on. I've just been frittering away time. Anyways, one thing I've spent a lot of time on is my [Zune Minesweeper](http://www.codeplex.com/zuneminesweeper). Since version 2 it's had more than 300 downloads </brag>. Every once in a while I google "Zune Minesweeper" and see what I find. Recently I found out that they talked about me on [the "This Week on Channel 9" show from June 11th](http://channel9.msdn.com/shows/This+Week+On+Channel+9/This-Week-on-C9-Imagine-Cup-hosted-services-C-40-and-ASPNET-tips/). If you don't know, here's a little bit [from Wikipedia](http://en.wikipedia.org/wiki/Channel_9_(discussion_forum)) about [Channel 9](http://channel9.msdn.com/): 
+
+
+> 
+
+> 
+> _"Channel 9 is a Microsoft community site used to promote conversations among Microsoft's customers targeted at Microsoft Windows users and developers. Channel 9 features video channels, podcasts and screencasts including interviews with Microsoft developers about their products, discussion, and a wiki, which has been adopted by various Microsoft teams as a way to aggregate feedback and respond to issues."_
+
+
+
+
+Anyways, here's the part where I show up: 
+
+
+      [youtube=http://www.youtube.com/watch?v=oovJyuKjrLk&hl;=en&fs;=1&rel;=0&color1;=0x2b405b&color2;=0x6b8ab6] 
+
+
+P.S.: In other news, [I now have a YouTube account](http://www.youtube.com/user/CouchPotato66). 
+
+
+P.P.S.: There's [a post about Zune Minesweeper at Coding4Fun](http://blogs.msdn.com/coding4fun/archive/2008/07/11/8718875.aspx). 
+
+
+P.P.P.S.: [Red talked about me](http://lessgravity.wordpress.com/2008/08/15/old-school-goes-high-tech/), too!
+
+
+> 
+
+> 
+> _"You can’t go wrong with the classics. Pacman, Pong, and Tetris have acheived immortality. And, of course, so has Minesweeper._
+
+> 
+> _Now, with the port created by Couch Potato, you can enjoy Minesweeper every time you turn on your Zune. Recently celebrating its 1,000th download and receiving acclaim from Channel 9, it’s a good time to [download](http://www.codeplex.com/ZuneMinesweeper)."_  
+

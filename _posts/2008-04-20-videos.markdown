@@ -1,0 +1,18 @@
+---
+comments: true
+date: 2008-04-20 20:16:12
+layout: post
+slug: videos
+title: Videos
+wordpress_id: 175
+categories:
+- From the Internets
+---
+
+  [youtube=http://www.youtube.com/watch?v=LHY8NKj3RKs&hl;=en] 
+
+
+  [youtube=http://www.youtube.com/watch?v=KicJSFEgB_U&hl;=en] 
+
+
+Download: [http://www.bungie.net/forums/posts.aspx?h3fileid=30365968](http://www.bungie.net/forums/posts.aspx?h3fileid=30365968)

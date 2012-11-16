@@ -1,0 +1,14 @@
+---
+comments: true
+date: 2008-05-10 11:28:50
+layout: post
+slug: new-music-7
+title: New Music
+wordpress_id: 155
+categories:
+- New Music
+---
+
+
+
+  * "[All Summer Long](http://en.wikipedia.org/wiki/All_Summer_Long_(Kid_Rock))" by [Kid Rock](http://en.wikipedia.org/wiki/Kid_Rock) from the album "[Rock N Roll Jesus](http://en.wikipedia.org/wiki/Rock_N_Roll_Jesus)"

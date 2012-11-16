@@ -1,0 +1,14 @@
+---
+comments: true
+date: 2008-05-11 15:01:20
+layout: post
+slug: new-music-6
+title: New Music
+wordpress_id: 149
+categories:
+- New Music
+---
+
+
+
+  * "[45](http://en.wikipedia.org/wiki/45_(song))" by [Shinedown](http://en.wikipedia.org/wiki/Shinedown) from the album "[Leave a Whisper](http://en.wikipedia.org/wiki/Leave_a_Whisper)"

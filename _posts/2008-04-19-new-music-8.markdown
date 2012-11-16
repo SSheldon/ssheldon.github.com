@@ -1,0 +1,14 @@
+---
+comments: true
+date: 2008-04-19 21:23:12
+layout: post
+slug: new-music-8
+title: New Music
+wordpress_id: 181
+categories:
+- New Music
+---
+
+
+
+  * "[Renegade](http://en.wikipedia.org/wiki/Renegade_(song))" by [Styx](http://en.wikipedia.org/wiki/Styx_(band)) from the album "[Pieces of Eight](http://en.wikipedia.org/wiki/Pieces_of_Eight_(album))"

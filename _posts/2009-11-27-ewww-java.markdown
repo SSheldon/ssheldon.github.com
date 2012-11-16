@@ -1,0 +1,99 @@
+---
+comments: true
+date: 2009-11-27 14:38:21
+layout: post
+slug: ewww-java
+title: Ewww... Java
+wordpress_id: 5
+---
+
+
+
+
+Java is frustrating! AP Comp Sci should be taught in C#. Much easier! Here is a method to find the most frequently occuring values in an integer array. I know it's probably horribly inefficient, but it's just to demonstrate the differences between Java and C#. First, in Java:
+
+
+
+
+
+
+    
+    public static int[] Mode(int[] nums)
+    {
+        Hashtable<Integer, Integer> freqs = new Hashtable<Integer, Integer>();
+        for (int i : nums)
+        {
+            if (freqs.containsKey(i)) freqs.put(i, freqs.get(i) + 1);
+            else freqs.put(i, 1);
+        }
+        int maxCount = 0;
+        for (int i : freqs.values())
+            maxCount = Math.max(maxCount, i);
+        ArrayList<Integer> modes = new ArrayList<Integer>();
+        for (Integer i : freqs.keySet())
+            if (freqs.get(i) == maxCount && !modes.contains(i)) modes.add(i);
+        int[] modesArray = new int[modes.size()];
+        for (int i = 0; i < modesArray.length; i++)
+            modesArray[i] = modes.get(i).intValue();
+        return modesArray;
+    }
+
+
+
+
+
+
+
+And now, in C#:
+
+
+
+
+
+
+    
+    public static int[] Mode(int[] nums)
+    {
+        Dictionary<int, int> freqs = new Dictionary<int, int>();
+        foreach (int i in nums)
+        {
+            if (freqs.ContainsKey(i)) freqs[i]++;
+            else freqs.Add(i, 1);
+        }
+        int maxCount = freqs.Values.Max();
+        List<int> modes = new List<int>();
+        foreach (int i in freqs.Keys)
+            if (freqs[i] == maxCount && !modes.Contains(i)) modes.Add(i);
+        return modes.ToArray();
+    }
+
+
+
+
+
+
+
+Isn't that much prettier? I thought you'd agree. Also, with the crazy power of LINQ you could write this method with one line of code:
+
+
+
+
+
+
+    
+    public static int[] Mode(int[] array)
+    {
+        return array.Where(i => array.Count(j => j == i) ==
+            array.Max(j => array.Count(k => k == j))).Distinct().ToArray();
+    }
+
+
+
+
+RIDICULOUS! I know, right?
+
+
+
+
+
+

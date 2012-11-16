@@ -1,0 +1,10 @@
+---
+comments: true
+date: 2008-04-29 23:19:59
+layout: post
+slug: audacity
+title: Audacity
+wordpress_id: 184
+---
+
+We used [Audacity](http://audacity.sourceforge.net/) in Spanish today. It's a pretty sweet program. Runnan and I discussed using it and [Skype](http://www.skype.com/) to record a podcast. How awesome would that be? I think I need to go download it.
