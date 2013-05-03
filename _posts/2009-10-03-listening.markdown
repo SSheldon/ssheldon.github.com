@@ -17,4 +17,4 @@ wordpress_id: 9
 
 
 
-[![](http://sasheldon.files.wordpress.com/2009/10/toplisteners.png?w=300)](http://sasheldon.files.wordpress.com/2009/10/toplisteners.png?w=300)
+[{% img /images/blog/toplisteners.png 300 %}](/images/blog/toplisteners.png)

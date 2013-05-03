@@ -9,7 +9,7 @@ categories:
 - From the Internets
 ---
 
-[![](http://sasheldon.files.wordpress.com/2009/04/jefferson.jpg?w=257)](http://sasheldon.files.wordpress.com/2009/04/jefferson.jpg?w=257)
+[{% img /images/blog/jefferson.jpg 257 %}](/images/blog/jefferson.jpg)
 
 
 

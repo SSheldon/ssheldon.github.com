@@ -9,7 +9,7 @@ categories:
 - Podcast
 ---
 
-[![](http://sasheldon.files.wordpress.com/2008/04/41.jpg)](http://sasheldon.files.wordpress.com/2008/04/41.jpg)
+[{% img /images/blog/41.jpg %}](/images/blog/41.jpg)
 
 
 

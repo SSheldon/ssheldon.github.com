@@ -38,7 +38,7 @@ Runnan: rowboar?
 
 
 
-[![](http://sasheldon.files.wordpress.com/2008/12/rowboar1.jpg)](http://sasheldon.files.wordpress.com/2008/12/rowboar1.jpg)
+[{% img /images/blog/rowboar1.jpg %}](/images/blog/rowboar1.jpg)
 
 
 

@@ -15,7 +15,8 @@ Cripes, it's really cold outside. I love this weather! I rode my bike because I 
 
 
 
-[![](http://sasheldon.files.wordpress.com/2008/04/gas_prices.jpg?w=207)](http://sasheldon.files.wordpress.com/2008/04/gas_prices.jpg) [![](http://sasheldon.files.wordpress.com/2008/04/gas_prices_512_512.jpg?w=300)](http://sasheldon.files.wordpress.com/2008/04/gas_prices_512_512.jpg)
+[{% img /images/blog/gas_prices.jpg 207 %}](/images/blog/gas_prices.jpg)
+[{% img /images/blog/gas_prices_512_512.jpg 300 %}](/images/blog/gas_prices_512_512.jpg)
 
 
 

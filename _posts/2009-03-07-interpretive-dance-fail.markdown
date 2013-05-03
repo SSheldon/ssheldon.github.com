@@ -20,6 +20,6 @@ At [Marius' eagle party last year](http://couchpotato99.spaces.live.com/blog/cns
 
 Yeah. You're just seeing this now because I finally have a decent way to convert videos. Still no good way to edit 'em, though. Windows Movie Maker really sucks. Also, apologies for the video quality. It's a cell phone, ya know? Anyways, with this new conversion software, I am also capable of this:
 
-[![](http://sasheldon.files.wordpress.com/2009/03/0510081747a.gif)](http://sasheldon.files.wordpress.com/2009/03/0510081747a.gif)
+[{% img /images/blog/0510081747a.gif %}](/images/blog/0510081747a.gif)
 
 

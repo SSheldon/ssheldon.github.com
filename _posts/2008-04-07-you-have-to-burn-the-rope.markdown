@@ -9,7 +9,7 @@ categories:
 - From the Internets
 ---
 
-  [![](http://sasheldon.files.wordpress.com/2008/04/youhavetoburntherope.jpg?w=300)](http://sasheldon.files.wordpress.com/2008/04/youhavetoburntherope.jpg?w=300)[](http://byfiles.storage.live.com/y1poWzJgWbUw18GA1F8AvMAhZJltHdqEyb98oR_OBoJd5-_6lLkkIc2XsGP-NHvcZ4rTaBuTXcshPA)  
+[{% img /images/blog/youhavetoburntherope.jpg 300 %}](/images/blog/youhavetoburntherope.jpg)
 
 
 [http://www.mazapan.se/games/BurnTheRope.php](http://www.mazapan.se/games/BurnTheRope.php) 

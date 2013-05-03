@@ -7,7 +7,7 @@ title: Themes 'n such
 wordpress_id: 103
 ---
 
-[](http://www.flickr.com/photos/couchpotato99/2531815021/) [![](http://sasheldon.files.wordpress.com/2008/05/mac1.jpg)](http://sasheldon.files.wordpress.com/2008/05/mac1.jpg)
+[{% img /images/blog/mac1.jpg %}](/images/blog/mac1.jpg)
 
 
 

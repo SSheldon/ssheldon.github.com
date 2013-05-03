@@ -7,7 +7,7 @@ title: Legendary Map Pack ViDoc
 wordpress_id: 202
 ---
 
-[![](http://sasheldon.files.wordpress.com/2008/04/h3_blackout01.jpg?w=300)](http://sasheldon.files.wordpress.com/2008/04/h3_blackout01.jpg?w=300)  
+[{% img /images/blog/h3_blackout01.jpg 300 %}](/images/blog/h3_blackout01.jpg)
 
 
 Some sweet new footage of the Legendary Map pack, [straight from Bungie themselves](http://www.bungie.net/News/content.aspx?type=topnews&cid=13509). If you aren't excied, what's wrong with you? Read [this article](http://www.bungie.net/News/content.aspx?type=topnews&cid=13475). And watch [this other trailer](http://www.bungie.net/News/content.aspx?type=topnews&cid=13469). 

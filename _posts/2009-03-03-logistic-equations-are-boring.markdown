@@ -17,4 +17,4 @@ Well, they are. Especially when you figure this out:
 
 
 
-[![](http://sasheldon.files.wordpress.com/2009/03/logisticequations.png?w=300)](http://sasheldon.files.wordpress.com/2009/03/logisticequations.png?w=300)
+[{% img /images/blog/logisticequations.png 300 %}](/images/blog/logisticequations.png)

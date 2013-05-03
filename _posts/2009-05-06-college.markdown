@@ -12,7 +12,7 @@ categories:
 
 
 
-[![](http://sasheldon.files.wordpress.com/2009/05/email.jpg)](http://sasheldon.files.wordpress.com/2009/05/email.jpg)
+[{% img /images/blog/email.jpg %}](/images/blog/email.jpg)
 
 
 GTFO of my inbox. (Also, Texas Christian University, no, I won't go to your college.)

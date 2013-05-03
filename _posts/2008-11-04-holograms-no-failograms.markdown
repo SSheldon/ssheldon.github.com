@@ -26,4 +26,4 @@ Needless to say, the "holograms" were an embarassing epic fail.
 
 In other news, this mess of a presidential election [is finally over](http://xkcd.com/500/). (Congrats on the 500th comic, xkcd!) Congratulations to the new president-elect, [Barack Obama](http://en.wikipedia.org/wiki/Barack_Obama). At the risk of losing my impartiality, Obama has a sweet logo. I think I will show it here.
 
-[![](http://sasheldon.files.wordpress.com/2008/11/obama.jpg)](http://sasheldon.files.wordpress.com/2008/11/obama.jpg)
+[{% img /images/blog/obama.jpg %}](/images/blog/obama.jpg)

@@ -18,6 +18,6 @@ So, as I attempted to log onto Wikipedia today, I was prompted to complete a [ca
 
 
 
-[![](http://sasheldon.files.wordpress.com/2008/12/wikinuendo1.png)](http://sasheldon.files.wordpress.com/2008/12/wikinuendo1.png)
+[{% img /images/blog/wikinuendo1.png %}](/images/blog/wikinuendo1.png)
 
 

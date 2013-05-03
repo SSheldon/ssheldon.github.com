@@ -9,7 +9,7 @@ categories:
 - From the Internets
 ---
 
-[![](http://sasheldon.files.wordpress.com/2009/01/ballmer-eats-zune.jpg?w=300)](http://sasheldon.files.wordpress.com/2009/01/ballmer-eats-zune.jpg?w=300)
+[{% img /images/blog/ballmer-eats-zune.jpg 300 %}](/images/blog/ballmer-eats-zune.jpg)
 
 
 

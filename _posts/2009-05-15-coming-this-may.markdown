@@ -7,4 +7,4 @@ title: Coming this May...
 wordpress_id: 18
 ---
 
-[![](http://sasheldon.files.wordpress.com/2009/05/playbill.png?w=232)](http://sasheldon.files.wordpress.com/2009/05/playbill.png?w=232)
+[{% img /images/blog/playbill.png 232 %}](/images/blog/playbill.png)

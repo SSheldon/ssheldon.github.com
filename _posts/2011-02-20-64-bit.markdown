@@ -11,11 +11,11 @@ I tried to get something running on a friend's computer recently, but it wasn't
 
 Across the board, support for 64-bit versions of programs can be pretty poor. I wanted to try running IE9 solely in 64-bit, which meant some tweaking and reinstallations of plugins and frameworks was in order. Even if it doesn't auto-update, Oracle at least has a fully featured [version of the Java runtime for 64-bit](http://java.com/en/download/windows_ie-64bit.jsp). I downloaded [Flash Player "Square"](http://labs.adobe.com/downloads/flashplayer10_square.html), the 64-bit beta version of flash player for IE9; Square used to be the only version of Flash Player available for IE9, but the 32-bit IE9 portion was apparently finalized and became a part of Flash Player 10.2 while the 64-bit portion continues to be a preview. Still, a preview is better than Silverlight's 64-bit offering:
 
-[![](http://sasheldon.files.wordpress.com/2011/02/silverlight64.png)](http://sasheldon.files.wordpress.com/2011/02/silverlight64.png)
+[{% img /images/blog/silverlight64.png %}](/images/blog/silverlight64.png)
 
 After all this work though, there's still one major problem:
 
-[![](http://sasheldon.files.wordpress.com/2011/02/ie9-64.png)](http://sasheldon.files.wordpress.com/2011/02/ie9-64.png)
+[{% img /images/blog/ie9-64.png %}](/images/blog/ie9-64.png)
 
 Which means that anytime I click a link, or try to open one of my pinned sites, it opens in the 32-bit version of Internet Explorer, which can't even use the 64-bit plugins I've installed. Without a way to overcome this, the entire exercise becomes pointless. Perhaps there is a hacky way to change the default browser to IE9 64-bit, but it's not worth it if even Silverlight can't be bothered to support 64-bit browsers. Microsoft's Eric Lawrence has [this](http://blogs.msdn.com/b/ieinternals/archive/2009/05/29/q-a-64-bit-internet-explorer.aspx) to say about IE9 64-bit:
 

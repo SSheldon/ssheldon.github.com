@@ -17,4 +17,4 @@ I keep forgetting to post this. So here it is!
 
 
 
-[![](http://sasheldon.files.wordpress.com/2009/09/mememarker.png?w=226)](http://sasheldon.files.wordpress.com/2009/09/mememarker.png?w=226)
+[{% img /images/blog/mememarker.png 226 %}](/images/blog/mememarker.png)

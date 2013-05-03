@@ -17,7 +17,7 @@ So, lots of the details have been spilt on [Halo 3: Recon](http://en.wikipedia.
 
 
 
-[![](http://sasheldon.files.wordpress.com/2008/10/recon.jpg)](http://sasheldon.files.wordpress.com/2008/10/recon.jpg)
+[{% img /images/blog/recon.jpg %}](/images/blog/recon.jpg)
 
 
 

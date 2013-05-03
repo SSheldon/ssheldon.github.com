@@ -12,7 +12,7 @@ categories:
 
 
 
-![](http://sasheldon.files.wordpress.com/2008/05/hal.jpg)[](http://byfiles.storage.live.com/y1poWzJgWbUw19hiuvcEA4q9z7ENgBGrgd7Lv4w-bPyjq6-ZTkYV9Sk-FMTAsIVxxkfYjXJnxsoAIA)
+[{% img /images/blog/hal.jpg %}](/images/blog/hal.jpg)
 
 
 

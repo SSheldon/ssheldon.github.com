@@ -17,4 +17,4 @@ I'm having a grand old time wasting my life away on video games this summer. You
 
 
 
-[![](http://sasheldon.files.wordpress.com/2009/08/20k.png?w=199)](http://sasheldon.files.wordpress.com/2009/08/20k.png?w=199)
+[{% img /images/blog/20k.png 199 %}](/images/blog/20k.png)

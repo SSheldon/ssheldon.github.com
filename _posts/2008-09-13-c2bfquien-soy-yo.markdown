@@ -43,7 +43,7 @@ Sé tocar la flauta, y me interesan videojuegos y música. Me gusta la comida p
 
 
 
-[![](http://sasheldon.files.wordpress.com/2008/09/codeexample.png?w=300)](http://sasheldon.files.wordpress.com/2008/09/codeexample.png?w=300)
+[{% img /images/blog/codeexample.png 300 %}](/images/blog/codeexample.png)
 
 
 

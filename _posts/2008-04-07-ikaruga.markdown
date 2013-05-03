@@ -7,7 +7,7 @@ title: Ikaruga
 wordpress_id: 201
 ---
 
-[![](http://sasheldon.files.wordpress.com/2008/04/ikaruga.jpg?w=300)](http://sasheldon.files.wordpress.com/2008/04/ikaruga.jpg?w=300) 
+[{% img /images/blog/ikaruga.jpg 300 %}](/images/blog/ikaruga.jpg)
 
 
  

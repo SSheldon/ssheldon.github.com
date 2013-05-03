@@ -9,7 +9,7 @@ categories:
 - Podcast
 ---
 
-[![](http://sasheldon.files.wordpress.com/2008/05/8.jpg?w=300)](http://sasheldon.files.wordpress.com/2008/05/8.jpg?w=300)
+[{% img /images/blog/8.jpg 300 %}](/images/blog/8.jpg)
 
 
 Well, who'd'a thunk? We made a second podcast! Nobody listened to the first one, but we have fun making them. Anyways, this one is full of rambling on various topics, including GTA4 and legislation surrounding it, Prom and school politics, and of course, the ever present issue of politics. Give it a listen and remember to subscribe to our feed!
