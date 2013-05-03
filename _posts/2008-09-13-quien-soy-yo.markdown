@@ -2,7 +2,7 @@
 comments: true
 date: 2008-09-13 15:07:41
 layout: post
-slug: '%c2%bfquien-soy-yo'
+slug: 'quien-soy-yo'
 title: ¿Quién soy yo?
 wordpress_id: 80
 categories:
