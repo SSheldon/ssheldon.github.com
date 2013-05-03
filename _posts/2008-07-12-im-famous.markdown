@@ -21,7 +21,7 @@ So I haven't blogged in quite a while, eh? Nothing interesting going on. I've ju
 Anyways, here's the part where I show up: 
 
 
-      [youtube=http://www.youtube.com/watch?v=oovJyuKjrLk&hl;=en&fs;=1&rel;=0&color1;=0x2b405b&color2;=0x6b8ab6] 
+{% youtube oovJyuKjrLk %}
 
 
 P.S.: In other news, [I now have a YouTube account](http://www.youtube.com/user/CouchPotato66). 

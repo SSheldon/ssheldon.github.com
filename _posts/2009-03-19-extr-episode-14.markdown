@@ -19,4 +19,4 @@ So, we finally finished. Here is [extr@](http://en.wikipedia.org/wiki/Extr@)'s f
 
 
 
-[youtube=http://www.youtube.com/watch?v=VTbQJtTOEu8&hl;=en&fs;=1&color1;=0x2b405b&color2;=0x6b8ab6]
+{% youtube VTbQJtTOEu8 %}

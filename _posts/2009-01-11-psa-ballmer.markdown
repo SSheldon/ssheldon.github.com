@@ -39,7 +39,7 @@ Ballmer is also the star of quite a few YouTube videos. Here is a selection of t
 
 
 
-   [youtube=http://www.youtube.com/watch?v=wvsboPUjrGc&hl=en&fs=1&color1=0x2b405b&color2=0x6b8ab6] 
+{% youtube wvsboPUjrGc %}
 
 
 
@@ -49,7 +49,7 @@ Ballmer is also the star of quite a few YouTube videos. Here is a selection of t
 
 
 
-   [youtube=http://www.youtube.com/watch?v=8To-6VIJZRE&hl=en&fs=1&color1=0x2b405b&color2=0x6b8ab6] 
+{% youtube 8To-6VIJZRE %}
 
 
 
@@ -59,7 +59,7 @@ Ballmer is also the star of quite a few YouTube videos. Here is a selection of t
 
 
 
-   [youtube=http://www.youtube.com/watch?v=_-8IufkbuD0&hl=en&fs=1&color1=0x2b405b&color2=0x6b8ab6] 
+{% youtube _-8IufkbuD0 %}
 
 
 

@@ -19,4 +19,4 @@ categories:
 
 
 
- [youtube=http://www.youtube.com/watch?v=20Of_mna-Rs&hl;=en] 
+{% youtube 20Of_mna-Rs %}

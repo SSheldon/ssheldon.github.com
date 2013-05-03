@@ -9,7 +9,7 @@ categories:
 - From the Internets
 ---
 
- [youtube=http://www.youtube.com/watch?v=Jag7oTemldY&hl;=en&fs;=1&rel;=0&color1;=0x2b405b&color2;=0x6b8ab6] 
+{% youtube Jag7oTemldY %}
 
 
 

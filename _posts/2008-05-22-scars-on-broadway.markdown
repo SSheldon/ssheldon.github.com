@@ -19,4 +19,4 @@ So I'm driving today and I heard a song on the radio, but they didn't say who it
 
 
 
-[youtube=http://www.youtube.com/watch?v=qdOU5creejw&hl;=en]
+{% youtube qdOU5creejw %}

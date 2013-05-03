@@ -19,7 +19,7 @@ I realized there is one thing that no one in our blogosphere covers: Sports! To 
 
 
 
- [youtube=http://www.youtube.com/watch?v=ikeCcQg6sf4&hl;=en&fs;=1&rel;=0&color1;=0x2b405b&color2;=0x6b8ab6] 
+{% youtube ikeCcQg6sf4 %}
 
 
 

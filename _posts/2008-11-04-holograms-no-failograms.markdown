@@ -18,7 +18,7 @@ So, as you probably know, [there was an election going on today](http://en.wikip
 
 
 
-[youtube=http://www.youtube.com/watch?v=P0lNaKYAwsE&hl=en&fs=1&color1=0x2b405b&color2=0x6b8ab6]
+{% youtube P0lNaKYAwsE %}
 
 _"Help me _[_Wolf Blitzer_](http://en.wikipedia.org/wiki/Wolf_Blitzer)_, you're my only hope..."_
 

@@ -19,4 +19,4 @@ Well, it's finally done. If you'll excuse me, I'm exhausted, have only done 25% 
 
 
 
-[youtube=http://www.youtube.com/watch?v=4PNz9WcE1OI&hl;=en&fs;=1&rel;=0&color1;=0x2b405b&color2;=0x6b8ab6]
+{% youtube 4PNz9WcE1OI %}

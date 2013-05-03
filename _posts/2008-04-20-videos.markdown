@@ -9,10 +9,10 @@ categories:
 - From the Internets
 ---
 
-  [youtube=http://www.youtube.com/watch?v=LHY8NKj3RKs&hl;=en] 
+{% youtube LHY8NKj3RKs %}
 
 
-  [youtube=http://www.youtube.com/watch?v=KicJSFEgB_U&hl;=en] 
+{% youtube KicJSFEgB_U %}
 
 
 Download: [http://www.bungie.net/forums/posts.aspx?h3fileid=30365968](http://www.bungie.net/forums/posts.aspx?h3fileid=30365968)

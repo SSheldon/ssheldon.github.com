@@ -17,12 +17,12 @@ Marius stumbled across this terribly amusing website, [Geekologie](http://www.ge
 
 
 
- [youtube=http://www.youtube.com/watch?v=qymxCMz3Uzo] 
+{% youtube qymxCMz3Uzo %}
 
 
 
 
- [youtube=http://www.youtube.com/watch?v=dsU3B0W3TMs]
+{% youtube dsU3B0W3TMs %}
 
 
-[youtube=http://www.youtube.com/watch?v=B1O2jcfOylU]
+{% youtube B1O2jcfOylU %}

@@ -14,4 +14,4 @@ Shame on you all.
 
 
 
-[youtube=http://www.youtube.com/watch?v=7oLHOpTTuOE&hl;=en]
+{% youtube 7oLHOpTTuOE %}

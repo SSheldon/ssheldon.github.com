@@ -17,7 +17,7 @@ This is awesome on so many levels.
 
 
 
-[youtube=http://www.youtube.com/watch?v=wvAnQqVJ3XQ&hl;=en&fs;=1]
+{% youtube wvAnQqVJ3XQ %}
 
 
 

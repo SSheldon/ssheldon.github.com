@@ -18,5 +18,6 @@ Bungie rocks. So hard. Halo 3 came out almost 2 years ago, and yet they just rec
 
 
 
- [youtube=http://www.youtube.com/watch?v=7gYsK1NFXqE&hl;=en&fs;=1&color1;=0x2b405b&color2;=0x6b8ab6]   
+{% youtube 7gYsK1NFXqE %}
+
 [Download](http://www.bungie.net/Online/Halo3UserContentDetails.aspx?h3fileid=30828609)

@@ -24,4 +24,4 @@ On [an area talk radio show](http://en.wikipedia.org/wiki/WGN_(AM)), there was [
 
 
 
-[youtube=http://www.youtube.com/watch?v=pQ0xySe0uRw&hl;=en&fs;=1&rel;=0&color1;=0x2b405b&color2;=0x6b8ab6]
+{% youtube pQ0xySe0uRw %}
