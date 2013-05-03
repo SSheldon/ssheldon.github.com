@@ -7,7 +7,7 @@ title: Interpretive Dance Fail!
 wordpress_id: 29
 ---
 
-At [Marius' eagle party last year](http://couchpotato99.spaces.live.com/blog/cns!BF9CFC6F077AD90A!367.entry), fun and games were enjoyed. One amusing spectacle was seen when... well, it's hard to describe. Just watch for yourself:
+At [Marius' eagle party last year]({% post_url 2008-05-10-marius-eagle-extraordinaire %}), fun and games were enjoyed. One amusing spectacle was seen when... well, it's hard to describe. Just watch for yourself:
 
 {% youtube O49Vp2TIBjw %}
 
