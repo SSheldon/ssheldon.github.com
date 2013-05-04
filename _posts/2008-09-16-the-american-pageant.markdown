@@ -7,18 +7,11 @@ title: The American Pageant
 wordpress_id: 78
 ---
 
-Our AP US History book uses incredibly silly language; here're some of my favorites. 
+Our AP US History book uses incredibly silly language; here're some of my favorites.
 
+### Chapter 7
 
-**_Chapter 7_**  
-
-
-
-
-  * "A silent crowd watched approvingly as salty tea was brewed for the fish." 
-
-  * "... he soon taught his men that bayonets were not for broiling beefsteaks over open fires."
-
-
+* "A silent crowd watched approvingly as salty tea was brewed for the fish."
+* "... he soon taught his men that bayonets were not for broiling beefsteaks over open fires."
 
 Marvelous, no? I could make this into a regular segment!

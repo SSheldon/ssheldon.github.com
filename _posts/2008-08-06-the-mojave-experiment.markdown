@@ -11,12 +11,4 @@ categories:
 
 [The "Mojave Experiment"](http://www.mojaveexperiment.com/)[](http://xp-vista-update.net/?id=31863829103)
 
-
-
-
- 
-
-
-
-
-So sure, [maybe it wasn't the most impartial and scientific experiment](http://en.wikipedia.org/wiki/Mojave_experiment), but it is awfully funny.
+So sure, [maybe it wasn't the most impartial and scientific experiment](http://en.wikipedia.org/wiki/Mojave_experiment), but it is awfully funny.

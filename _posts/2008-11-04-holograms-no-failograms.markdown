@@ -9,14 +9,7 @@ categories:
 - From the Internets
 ---
 
-
-
-
 So, as you probably know, [there was an election going on today](http://en.wikipedia.org/wiki/United_States_presidential_election,_2008). I spent the evening at Mike's watching CNN's coverage. Over the course of the night I was exposed to something truly fascinating: [holograms](http://news.yahoo.com/s/ynews/pl_ynews/ynews_pl132)!
-
-
-
-
 
 {% youtube P0lNaKYAwsE %}
 

@@ -9,8 +9,5 @@ categories:
 - New Music
 ---
 
-
-
-  * "[Before Tomorrow Comes](http://en.wikipedia.org/wiki/Before_Tomorrow_Comes)" by [Alter Bridge](http://en.wikipedia.org/wiki/Alter_Bridge) from the album "[Blackbird](http://en.wikipedia.org/wiki/Blackbird_(album))"
-
-  * "Down and Out" by [Tantric](http://en.wikipedia.org/wiki/Tantric_(band)) from the album "[The End Begins](http://en.wikipedia.org/wiki/The_End_Begins)"
+* "[Before Tomorrow Comes](http://en.wikipedia.org/wiki/Before_Tomorrow_Comes)" by [Alter Bridge](http://en.wikipedia.org/wiki/Alter_Bridge) from the album "[Blackbird](http://en.wikipedia.org/wiki/Blackbird_(album%29)"
+* "Down and Out" by [Tantric](http://en.wikipedia.org/wiki/Tantric_(band%29) from the album "[The End Begins](http://en.wikipedia.org/wiki/The_End_Begins)"

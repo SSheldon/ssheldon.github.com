@@ -9,15 +9,7 @@ wordpress_id: 98
 
 So I saw [WALL-E](http://en.wikipedia.org/wiki/WALL-E) with my family tonight. I was expecting to be let down, and it did it's best not to beat my expectations. It's about a [pathologically-hoarding](http://en.wikipedia.org/wiki/Compulsive_hoarding), sentient, trash-[compacting](http://en.wikipedia.org/wiki/Compactor) robot on the [post-apocalyptic](http://en.wikipedia.org/wiki/Apocalyptic_and_post-apocalyptic_fiction), trash-covered, [Big-Brother-like](http://en.wikipedia.org/wiki/Authoritarian_personality)-[megacorporation](http://en.wikipedia.org/wiki/Megacorporation)-controlled Earth. Oh, and [Hal](http://en.wikipedia.org/wiki/HAL_9000) makes an appearance... except he's disguised as a steering wheel. The movie was full of illogical things, such as:
 
-
-
-
-
-
-  * Big N' Large programmed their robots to be "able to feel emotions" (I still can't come up with a word for that...). Why would they do this? It would be such a waste of the computer's processing power. If you do this, you end up with problems like robots resisting to comply out of an interest to stay alive, robots wasting time examining things out of curiosity, and robots interacting with one another. A corporation this inefficient would never be able to become a megacorporation. 
-
-  * On numerous occasions, robots are seen typing. Why? Why would you have information be converted from digital data into mechanical information only to have it be converted back into digital data? Why not simply have the robot interface directly with the computer and relay the information digitally? Again, a company like this could never become a megacorporation.
-
-  * Why did the ship need a plant to be able to find earth? Nonsense. How would that even work?
-
-  * How could you find a lone plant? If one plant can grow, can't others? Also, the plant was found in a fridge. How do you get sunlight in a fridge? Or water?
+* Big N' Large programmed their robots to be "able to feel emotions" (I still can't come up with a word for that...). Why would they do this? It would be such a waste of the computer's processing power. If you do this, you end up with problems like robots resisting to comply out of an interest to stay alive, robots wasting time examining things out of curiosity, and robots interacting with one another. A corporation this inefficient would never be able to become a megacorporation.
+* On numerous occasions, robots are seen typing. Why? Why would you have information be converted from digital data into mechanical information only to have it be converted back into digital data? Why not simply have the robot interface directly with the computer and relay the information digitally? Again, a company like this could never become a megacorporation.
+* Why did the ship need a plant to be able to find earth? Nonsense. How would that even work?
+* How could you find a lone plant? If one plant can grow, can't others? Also, the plant was found in a fridge. How do you get sunlight in a fridge? Or water?

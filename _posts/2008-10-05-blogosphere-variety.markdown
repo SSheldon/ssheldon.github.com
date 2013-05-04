@@ -11,22 +11,6 @@ categories:
 
 I realized there is one thing that no one in our blogosphere covers: Sports! To toss something in that void (that admittedly no one wants to be filled), here's a video about hockey!
 
-
-
-
- 
-
-
-
-
 {% youtube ikeCcQg6sf4 %}
-
-
-
-
- 
-
-
-
 
 In other news: Canadian and sport fan viewership is up 300%!

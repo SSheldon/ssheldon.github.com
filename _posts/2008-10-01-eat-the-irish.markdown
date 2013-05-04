@@ -9,22 +9,6 @@ wordpress_id: 77
 
 What's for dinner?
 
-
-
-
- 
-
-
-
-
 Oh, ham again.
-
-
-
-
- 
-
-
-
 
 O'Hammigan?
