@@ -9,12 +9,4 @@ wordpress_id: 31
 
 Well, they are. Especially when you figure this out:
 
-
-
-
- 
-
-
-
-
 [{% img /images/blog/logisticequations.png 300 %}](/images/blog/logisticequations.png)

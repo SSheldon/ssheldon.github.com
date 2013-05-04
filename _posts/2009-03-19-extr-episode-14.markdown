@@ -11,12 +11,4 @@ categories:
 
 So, we finally finished. Here is [extr@](http://en.wikipedia.org/wiki/Extr@)'s fourteenth episode, as envisioned by my group.
 
-
-
-
- 
-
-
-
-
 {% youtube VTbQJtTOEu8 %}

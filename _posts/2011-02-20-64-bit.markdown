@@ -7,9 +7,9 @@ title: 64-bit
 wordpress_id: 381
 ---
 
-I tried to get something running on a friend's computer recently, but it wasn't working since his Java runtime wasn't up to date; curious, I went to see why his auto-updates weren't running. It turns out that the 64-bit version of the Java runtime doesn't automatically update; apparently this would mess up automatic updates when one has both 32-bit and 64-bit versions installed.
+I tried to get something running on a friend's computer recently, but it wasn't working since his Java runtime wasn't up to date; curious, I went to see why his auto-updates weren't running. It turns out that the 64-bit version of the Java runtime doesn't automatically update; apparently this would mess up automatic updates when one has both 32-bit and 64-bit versions installed.
 
-Across the board, support for 64-bit versions of programs can be pretty poor. I wanted to try running IE9 solely in 64-bit, which meant some tweaking and reinstallations of plugins and frameworks was in order. Even if it doesn't auto-update, Oracle at least has a fully featured [version of the Java runtime for 64-bit](http://java.com/en/download/windows_ie-64bit.jsp). I downloaded [Flash Player "Square"](http://labs.adobe.com/downloads/flashplayer10_square.html), the 64-bit beta version of flash player for IE9; Square used to be the only version of Flash Player available for IE9, but the 32-bit IE9 portion was apparently finalized and became a part of Flash Player 10.2 while the 64-bit portion continues to be a preview. Still, a preview is better than Silverlight's 64-bit offering:
+Across the board, support for 64-bit versions of programs can be pretty poor. I wanted to try running IE9 solely in 64-bit, which meant some tweaking and reinstallations of plugins and frameworks was in order. Even if it doesn't auto-update, Oracle at least has a fully featured [version of the Java runtime for 64-bit](http://java.com/en/download/windows_ie-64bit.jsp). I downloaded [Flash Player "Square"](http://labs.adobe.com/downloads/flashplayer10_square.html), the 64-bit beta version of flash player for IE9; Square used to be the only version of Flash Player available for IE9, but the 32-bit IE9 portion was apparently finalized and became a part of Flash Player 10.2 while the 64-bit portion continues to be a preview. Still, a preview is better than Silverlight's 64-bit offering:
 
 [{% img /images/blog/silverlight64.png %}](/images/blog/silverlight64.png)
 
@@ -17,20 +17,16 @@ After all this work though, there's still one major problem:
 
 [{% img /images/blog/ie9-64.png %}](/images/blog/ie9-64.png)
 
-Which means that anytime I click a link, or try to open one of my pinned sites, it opens in the 32-bit version of Internet Explorer, which can't even use the 64-bit plugins I've installed. Without a way to overcome this, the entire exercise becomes pointless. Perhaps there is a hacky way to change the default browser to IE9 64-bit, but it's not worth it if even Silverlight can't be bothered to support 64-bit browsers. Microsoft's Eric Lawrence has [this](http://blogs.msdn.com/b/ieinternals/archive/2009/05/29/q-a-64-bit-internet-explorer.aspx) to say about IE9 64-bit:
+Which means that anytime I click a link, or try to open one of my pinned sites, it opens in the 32-bit version of Internet Explorer, which can't even use the 64-bit plugins I've installed. Without a way to overcome this, the entire exercise becomes pointless. Perhaps there is a hacky way to change the default browser to IE9 64-bit, but it's not worth it if even Silverlight can't be bothered to support 64-bit browsers. Microsoft's Eric Lawrence has [this](http://blogs.msdn.com/b/ieinternals/archive/2009/05/29/q-a-64-bit-internet-explorer.aspx) to say about IE9 64-bit:
 
+> **Q: Why isn't 64bit IE the default browser? Why can't I set the 64bit version of IE as the default browser?**
 
-> **Q: Why isn't 64bit IE the default browser? Why can't I set the 64bit version of IE as the default browser?**
+> A: This was an explicit choice made by the IE team, which may change at some point in the future. The problem is that users might inadvertently get "stuck" using the 64bit version and not realize it. This might cause some problems.
 
-A: This was an explicit choice made by the IE team, which may change at some point in the future. The problem is that users might inadvertently get "stuck" using the 64bit version and not realize it. This might cause some problems.
+I can envision such a scenario, where your average computer user's default browser gets changed and chaos ensues. Still... it's frustrating. If I can find the plugins and do the troubleshooting, I want to be able to make the 64-bit version my default browser! In the same article, Eric Lawrence reveals another example of poor support for 64-bit:
 
+> However, 32bit IE9 also includes a Just In Time (JIT) script compiler which converts script into machine code before running it. There is no JIT compiler for 64bit IE. So, for benchmarks like SunSpider (and script-heavy sites) 32bit IE9 runs script up to 4 times as fast as 64bit IE9.
 
-I can envision such a scenario, where your average computer user's default browser gets changed and chaos ensues. Still... it's frustrating. If I can find the plugins and do the troubleshooting, I want to be able to make the 64-bit version my default browser! In the same article, Eric Lawrence reveals another example of poor support for 64-bit:
+IE9 64-bit also doesn't support InPrivate browsing, but if you bemoan the lack of support for 64-bit browsers you'll often get responses telling you running 64-bit isn't worth the hassle. But that's not the point, is it? There ARE advantages to using 64-bit when it is done properly; [FavBrowser.com's speed benchmarks comparing IE9 32-bit and 64-bit](http://www.favbrowser.com/internet-explorer-9-32-bit-x86-vs-ie9-64-bit-x64/) show 64-bit out-performing the 32-bit version handily in Flash Player performance. Even if these improvements are negligible, that doesn't mean that we should take the easy way out and simply not support 64-bit browsers. If we ever move onto 128-bit operating systems, will we still be running our internet browsers in 32-bit emulators? Why not upgrade to 64-bit programs, just to be on the bleeding edge, simply [because we can](http://en.wikiquote.org/wiki/George_Mallory#Sourced)?
 
-
-> However, 32bit IE9 also includes a Just In Time (JIT) script compiler which converts script into machine code before running it. There is no JIT compiler for 64bit IE. So, for benchmarks like SunSpider (and script-heavy sites) 32bit IE9 runs script up to 4 times as fast as 64bit IE9.
-
-
-IE9 64-bit also doesn't support InPrivate browsing, but if you bemoan the lack of support for 64-bit browsers you'll often get responses telling you running 64-bit isn't worth the hassle. But that's not the point, is it? There ARE advantages to using 64-bit when it is done properly; [FavBrowser.com's speed benchmarks comparing IE9 32-bit and 64-bit](http://www.favbrowser.com/internet-explorer-9-32-bit-x86-vs-ie9-64-bit-x64/) show 64-bit out-performing the 32-bit version handily in Flash Player performance. Even if these improvements are negligible, that doesn't mean that we should take the easy way out and simply not support 64-bit browsers. If we ever move onto 128-bit operating systems, will we still be running our internet browsers in 32-bit emulators? Why not upgrade to 64-bit programs, just to be on the bleeding edge, simply [because we can](http://en.wikiquote.org/wiki/George_Mallory#Sourced)?
-
-[This post written from within IE9 64-bit. Now to reinstall all my 32-bit plugins and uninstall the superfluous 64-bit versions...]
+[This post written from within IE9 64-bit. Now to reinstall all my 32-bit plugins and uninstall the superfluous 64-bit versions...]

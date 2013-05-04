@@ -11,12 +11,4 @@ categories:
 
 Well, it's finally done. If you'll excuse me, I'm exhausted, have only done 25% of my Physics notes, and have a broken laptop.
 
-
-
-
- 
-
-
-
-
 {% youtube 4PNz9WcE1OI %}

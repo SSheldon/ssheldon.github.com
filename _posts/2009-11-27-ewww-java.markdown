@@ -7,17 +7,8 @@ title: Ewww... Java
 wordpress_id: 5
 ---
 
-
-
-
 Java is frustrating! AP Comp Sci should be taught in C#. Much easier! Here is a method to find the most frequently occuring values in an integer array. I know it's probably horribly inefficient, but it's just to demonstrate the differences between Java and C#. First, in Java:
 
-
-
-
-
-
-    
     public static int[] Mode(int[] nums)
     {
         Hashtable<Integer, Integer> freqs = new Hashtable<Integer, Integer>();
@@ -39,19 +30,8 @@ Java is frustrating! AP Comp Sci should be taught in C#. Much easier! Here is a 
     }
 
 
-
-
-
-
-
 And now, in C#:
 
-
-
-
-
-
-    
     public static int[] Mode(int[] nums)
     {
         Dictionary<int, int> freqs = new Dictionary<int, int>();
@@ -67,33 +47,12 @@ And now, in C#:
         return modes.ToArray();
     }
 
+Isn't that much prettier? I thought you'd agree. Also, with the crazy power of LINQ you could write this method with one line of code:
 
-
-
-
-
-
-Isn't that much prettier? I thought you'd agree. Also, with the crazy power of LINQ you could write this method with one line of code:
-
-
-
-
-
-
-    
     public static int[] Mode(int[] array)
     {
         return array.Where(i => array.Count(j => j == i) ==
             array.Max(j => array.Count(k => k == j))).Distinct().ToArray();
     }
 
-
-
-
 RIDICULOUS! I know, right?
-
-
-
-
-
-

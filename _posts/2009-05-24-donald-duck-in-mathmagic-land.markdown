@@ -9,9 +9,6 @@ categories:
 - From the Internets
 ---
 
-  [http://www.youtube.com/p/52431581AD2E6975&hl=en&fs=1](http://www.youtube.com/p/52431581AD2E6975&hl=en&fs=1)
-
-
-
+[http://www.youtube.com/playlist?list=52431581AD2E6975](http://www.youtube.com/playlist?list=52431581AD2E6975)
 
 I love YouTube. If you've never seen this, now's the time.

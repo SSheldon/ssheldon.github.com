@@ -9,12 +9,4 @@ wordpress_id: 14
 
 I'm having a grand old time wasting my life away on video games this summer. You want proof? You've got it.
 
-
-
-
- 
-
-
-
-
 [{% img /images/blog/20k.png 199 %}](/images/blog/20k.png)

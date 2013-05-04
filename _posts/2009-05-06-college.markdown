@@ -9,12 +9,6 @@ categories:
 - From the Internets
 ---
 
-
-
-
 [{% img /images/blog/email.jpg %}](/images/blog/email.jpg)
 
-
 GTFO of my inbox. (Also, Texas Christian University, no, I won't go to your college.)
-
-

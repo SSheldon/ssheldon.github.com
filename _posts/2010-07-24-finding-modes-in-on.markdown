@@ -7,8 +7,8 @@ title: Finding Modes in O(n)
 wordpress_id: 4
 ---
 
-Runnan and I have been [analyzing algorithms for finding modes](http://ponspk.blogspot.com/2010/07/finding-modes.html). I'll throw in my best one:
-    
+Runnan and I have been [analyzing algorithms for finding modes](http://ponspk.blogspot.com/2010/07/finding-modes.html). I'll throw in my best one:
+
     public static List<int> Mode(int[] array)
     {
         Dictionary<int, int> freqs = new Dictionary<int, int>();
@@ -35,8 +35,5 @@ Runnan and I have been [analyzing algorithms for finding modes](http://ponspk.b
         }
         return mode;
     }
-
-
-
 
 It appears to be O(n). Plotting time vs. list size shows linear growth with R2=.9999.
