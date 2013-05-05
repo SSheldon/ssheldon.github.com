@@ -7,9 +7,9 @@ title: Rescindication
 wordpress_id: 40
 ---
 
-The world was not happy [when I declared that it didn't hate me when it comes to school](http://sasheldon.wordpress.com/2009/01/05/semester-2-schedule/). It decided to kick me.
+The world was not happy [when I declared that it didn't hate me when it comes to school]({% post_url 2009-01-05-semester-2-schedule %}). It decided to kick me.
 
-We just did auditions for band. I got a 76, [lower than my last score](http://sasheldon.wordpress.com/2008/09/25/auditions/), and low enough to put 10 flutes in front of me. Looks like I won't be in Wind Ensemble next year. Hooray for 4 years in Symphonic Band!
+We just did auditions for band. I got a 76, [lower than my last score]({% post_url 2008-09-25-auditions %}), and low enough to put 10 flutes in front of me. Looks like I won't be in Wind Ensemble next year. Hooray for 4 years in Symphonic Band!
 
 We got back the results from the US History test we just took. It was a perfect storm, what with my recent inabilty to stay awake while reading the history book and the fact that I read all of the sections before break. Blegh. I didn't do well on the multiple choice (usually my strong point) and didn't even finish my Essay question, so the results from that won't be pretty either. If my grade drops in that class, I will be distraught.
 

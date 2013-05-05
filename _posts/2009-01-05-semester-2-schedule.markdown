@@ -7,7 +7,7 @@ title: Semester 2 Schedule
 wordpress_id: 41
 ---
 
-So, here's the schedule for 08-09 semester two. Anything in common? Hmmm, [it looks kind of familiar](http://ponspk.blogspot.com/2008/12/second-semester-schedule.html)... Not much different from [last semester](http://sasheldon.wordpress.com/2008/07/31/semester-1-schedule/), either. 
+So, here's the schedule for 08-09 semester two. Anything in common? Hmmm, [it looks kind of familiar](http://ponspk.blogspot.com/2008/12/second-semester-schedule.html)... Not much different from [last semester]({% post_url 2008-07-31-semester-1-schedule %}), either.
 
 
 

@@ -22,12 +22,12 @@ So, we went to South Dakota. We saw lots of rocks. I guess it was fun. It was a 
 
 Anyways, here's a round-up of the events:
 
-  * [June 13: The Beginning](http://sasheldon.wordpress.com/2008/06/13/vacation-the-beginning/)
-  * [June 14: More Driving](http://sasheldon.wordpress.com/2008/06/15/vacation-day-one/)
-  * [June 15: Black Hills Memorials](http://sasheldon.wordpress.com/2008/06/15/vacation-day-2/)
-  * [June 16: Exploring the Black Hills](http://sasheldon.wordpress.com/2008/06/16/vacation-day-3/)
-  * [June 17: Exploring the White Hills](http://sasheldon.wordpress.com/2008/06/18/vacation-exploring-the-white-hills/)
-  * [June 18: Spearfish Canyon](http://sasheldon.wordpress.com/2008/06/18/vacation-spearfish-canyon/)
-  * [June 19: Devils Tower](http://sasheldon.wordpress.com/2008/06/20/vacation-the-devils-tower/)
-  * [June 20: Biking](http://sasheldon.wordpress.com/2008/06/20/vacation-biking/)
-  * [June 21: The Return](http://sasheldon.wordpress.com/2008/06/22/vacation-the-return/)
+  * [June 13: The Beginning]({% post_url 2008-06-13-vacation-the-beginning %})
+  * [June 14: More Driving]({% post_url 2008-06-15-vacation-day-one %})
+  * [June 15: Black Hills Memorials]({% post_url 2008-06-15-vacation-day-2 %})
+  * [June 16: Exploring the Black Hills]({% post_url 2008-06-16-vacation-day-3 %})
+  * [June 17: Exploring the White Hills]({% post_url 2008-06-18-vacation-exploring-the-white-hills %})
+  * [June 18: Spearfish Canyon]({% post_url 2008-06-18-vacation-spearfish-canyon %})
+  * [June 19: Devils Tower]({% post_url 2008-06-20-vacation-the-devils-tower %})
+  * [June 20: Biking]({% post_url 2008-06-20-vacation-biking %})
+  * [June 21: The Return]({% post_url 2008-06-22-vacation-the-return %})

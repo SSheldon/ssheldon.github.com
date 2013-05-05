@@ -7,4 +7,4 @@ title: Eat the Irish, Part II
 wordpress_id: 35
 ---
 
-We just read the most delightful essay in English, [A Modest Proposal](http://en.wikisource.org/wiki/A_Modest_Proposal). It reminded me of [something](http://sasheldon.wordpress.com/2008/10/01/eat-the-irish/).
+We just read the most delightful essay in English, [A Modest Proposal](http://en.wikisource.org/wiki/A_Modest_Proposal). It reminded me of [something]({% post_url 2008-10-01-eat-the-irish %}).
