@@ -11,7 +11,4 @@ categories:
 
 Shame on you all.
 
-
-
-
 {% youtube 7oLHOpTTuOE %}

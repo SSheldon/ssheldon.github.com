@@ -9,44 +9,12 @@ categories:
 - New Music
 ---
 
-_**"**_[_**Undertow**_](http://en.wikipedia.org/wiki/Undertow_(Tool_album))_**" by **_[_**Tool**_](http://en.wikipedia.org/wiki/Tool_(band))
+### "[Undertow](http://en.wikipedia.org/wiki/Undertow_(Tool_album%29)" by [Tool](http://en.wikipedia.org/wiki/Tool_(band%29)
 
+### "[Ænima](http://en.wikipedia.org/wiki/%C3%86nima)" by Tool
 
+### "[Lateralus](http://en.wikipedia.org/wiki/Lateralus)" by Tool
 
-
- 
-
-
-
-
-_**"**_[_**Ænima**_](http://en.wikipedia.org/wiki/%C3%86nima)_**" by Tool**_
-
-
-
-
-**__** 
-
-
-
-
-_**"**_[_**Lateralus**_](http://en.wikipedia.org/wiki/Lateralus)_**" by Tool**_
-
-
-
-
-**__** 
-
-
-
-
-_**"**_[_**10,000 Days**_](http://en.wikipedia.org/wiki/10,000_Days)_**" by Tool**_
-
-
-
-
-**__** 
-
-
-
+### "[10,000 Days](http://en.wikipedia.org/wiki/10,000_Days)" by Tool
 
 I don't know what to think of tool. They're definitely not a bad band, but I just can't seem to get in to their music. Everything seems so vast and mysterious. That probably has something to do with the 8 minute songs. Oh well.

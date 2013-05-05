@@ -9,6 +9,4 @@ categories:
 - New Music
 ---
 
-
-
-  * "[45](http://en.wikipedia.org/wiki/45_(song))" by [Shinedown](http://en.wikipedia.org/wiki/Shinedown) from the album "[Leave a Whisper](http://en.wikipedia.org/wiki/Leave_a_Whisper)"
+  * "[45](http://en.wikipedia.org/wiki/45_(song%29)" by [Shinedown](http://en.wikipedia.org/wiki/Shinedown) from the album "[Leave a Whisper](http://en.wikipedia.org/wiki/Leave_a_Whisper)"

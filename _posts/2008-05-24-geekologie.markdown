@@ -9,20 +9,8 @@ wordpress_id: 136
 
 Marius stumbled across this terribly amusing website, [Geekologie](http://www.geekologie.com/). Here're some of the funnier things I saw during my exploring:
 
-
-
-
- 
-
-
-
-
 {% youtube qymxCMz3Uzo %}
 
-
-
-
 {% youtube dsU3B0W3TMs %}
-
 
 {% youtube B1O2jcfOylU %}

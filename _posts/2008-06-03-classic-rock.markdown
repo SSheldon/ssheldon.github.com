@@ -7,4 +7,4 @@ title: Classic rock
 wordpress_id: 123
 ---
 
-There's nothing quite like driving down a quiet road at dusk of a summer day with the windows down listening to classic rock and your thoughts. It's a beautiful experience.
+There's nothing quite like driving down a quiet road at dusk of a summer day with the windows down listening to classic rock and your thoughts. It's a beautiful experience.
