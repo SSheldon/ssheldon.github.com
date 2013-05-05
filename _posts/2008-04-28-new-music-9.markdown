@@ -9,8 +9,5 @@ categories:
 - New Music
 ---
 
-
-
   * "[Cum on Feel the Noize](http://en.wikipedia.org/wiki/Cum_on_Feel_the_Noize)" by [Quiet Riot](http://en.wikipedia.org/wiki/Quiet_Riot) from the album "[Metal Health](http://en.wikipedia.org/wiki/Metal_Health)" 
-
-  * "[The Way](http://en.wikipedia.org/wiki/The_Way_(song))" by [Fastball](http://en.wikipedia.org/wiki/Fastball_(band)) from the album "[All the Pain Money Can Buy](http://en.wikipedia.org/wiki/All_the_Pain_Money_Can_Buy)"
+  * "[The Way](http://en.wikipedia.org/wiki/The_Way_(song%29)" by [Fastball](http://en.wikipedia.org/wiki/Fastball_(band%29) from the album "[All the Pain Money Can Buy](http://en.wikipedia.org/wiki/All_the_Pain_Money_Can_Buy)"

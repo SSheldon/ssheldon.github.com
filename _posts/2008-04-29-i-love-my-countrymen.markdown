@@ -9,29 +9,8 @@ categories:
 - From the Internets
 ---
 
-
-
-
 Some people are so blindingly stupid. The horrifying part? They realize this, accept it, and don't care. How can someone be so ignorant? Oh, yeah, that's right, you're here for laughs:
 
-
-
-
-
-
-
-    [dailymotion id=x3lmny]
-
-
-
-
-
-
+{% dailymotion x3lmny %}
 
 Oh, and also, her 5th grader is a dick.
-
-
-
-
-
-

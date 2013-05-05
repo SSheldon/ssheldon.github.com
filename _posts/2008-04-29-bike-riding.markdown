@@ -7,16 +7,7 @@ title: Bike Riding?
 wordpress_id: 187
 ---
 
-
-
-
 Cripes, it's really cold outside. I love this weather! I rode my bike because I am absent minded and had to go pick up another copy of One Flew Over the Cuckoo's nest and my parents didn't want me using gas. It's wonderful weather, but still awfully cold for these kind of activities in the attire I was robed in. The blowing wind just sucks the very essence of life itself from your hands. In honor of ridiculous gas prices, I will regurgitate 2 pictures you have doubtlessly seen:
-
-
-
 
 [{% img /images/blog/gas_prices.jpg 207 %}](/images/blog/gas_prices.jpg)
 [{% img /images/blog/gas_prices_512_512.jpg 300 %}](/images/blog/gas_prices_512_512.jpg)
-
-
-

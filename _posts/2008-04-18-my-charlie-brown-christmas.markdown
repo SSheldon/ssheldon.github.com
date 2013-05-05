@@ -9,14 +9,6 @@ categories:
 - From the Internets
 ---
 
-[This](http://en.wikipedia.org/wiki/Scrubs_(TV_series)#My_Charlie_Brown_Christmas) would be more appropriate if it were Christmas. Unfortunately, it's not and I don't care. Enjoy:
-
-
-
-
- 
-
-
-
+[This](http://en.wikipedia.org/wiki/Scrubs_(TV_series%29#My_Charlie_Brown_Christmas) would be more appropriate if it were Christmas. Unfortunately, it's not and I don't care. Enjoy:
 
 {% youtube 20Of_mna-Rs %}

@@ -9,6 +9,4 @@ categories:
 - New Music
 ---
 
-
-
-  * "[Renegade](http://en.wikipedia.org/wiki/Renegade_(song))" by [Styx](http://en.wikipedia.org/wiki/Styx_(band)) from the album "[Pieces of Eight](http://en.wikipedia.org/wiki/Pieces_of_Eight_(album))"
+  * "[Renegade](http://en.wikipedia.org/wiki/Renegade_(song%29)" by [Styx](http://en.wikipedia.org/wiki/Styx_(band%29) from the album "[Pieces of Eight](http://en.wikipedia.org/wiki/Pieces_of_Eight_(album%29)"
