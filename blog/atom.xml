@@ -4,7 +4,7 @@
   <title><![CDATA[sasheldon.com]]></title>
   <link href="http://sasheldon.com/blog/atom.xml" rel="self"/>
   <link href="http://sasheldon.com/"/>
-  <updated>2013-07-09T00:40:42-05:00</updated>
+  <updated>2013-08-18T15:28:40-07:00</updated>
   <id>http://sasheldon.com/</id>
   <author>
     <name><![CDATA[Steven Sheldon]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Waiting for Octopress 2.0's Successor]]></title>
     <link href="http://sasheldon.com/blog/2013/07/07/waiting-for-octopress-2-successor/"/>
-    <updated>2013-07-07T02:24:00-05:00</updated>
+    <updated>2013-07-07T02:24:00-07:00</updated>
     <id>http://sasheldon.com/blog/2013/07/07/waiting-for-octopress-2-successor</id>
     <content type="html"><![CDATA[<p>The next version of <a href="http://octopress.org/">Octopress</a> is packed full of
 <a href="https://gist.github.com/imathis/e9c2ee2406e93c4269e8">awesome improvements</a>.
@@ -123,13 +123,24 @@ its development <a href="https://github.com/imathis/octopress/tree/2.1">on GitHu
 <p>Regardless of Octopress&#8217; history of imprecise estimates, I have great faith in
 its developers to deliver such an ambitious update. I&rsquo;ll keep an eye out on
 Twitter for an announcement that Octopress 3.0 has finally been perfected!</p>
+
+<hr />
+
+<p><strong>Update (Aug 18, 2013):</strong>
+By the end of July, there was still &ldquo;a ways to go&rdquo; on Octopress 3.0, but
+version 2.1 of Octopress was resurrected as a smaller, incremental upgrade on
+the way to Octopress 3.0.</p>
+
+<div class='embed tweet'><blockquote class="twitter-tweet"><p><a href="https://twitter.com/atlgeek007">@atlgeek007</a> we still have a ways to go. Right now I’m working on 2.1 which adds support for Jekyll 1.0 and uses Guard for watching files.</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/361299670313615360">July 28, 2013</a></blockquote>
+<script async src="http://sasheldon.com//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopress]]></title>
     <link href="http://sasheldon.com/blog/2012/11/15/octopress/"/>
-    <updated>2012-11-15T22:14:00-06:00</updated>
+    <updated>2012-11-15T22:14:00-08:00</updated>
     <id>http://sasheldon.com/blog/2012/11/15/octopress</id>
     <content type="html"><![CDATA[<p>I really like git; if I could keep everything under version control, I would.
 I&rsquo;ve started writing all my papers in LaTeX instead of Word, not only because
