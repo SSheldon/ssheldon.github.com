@@ -2,6 +2,7 @@
 layout: post
 title: "Waiting for Octopress 2.0's Successor"
 date: 2013-07-07 02:24
+updated: 2013-08-18 15:24
 comments: true
 categories:
 ---
@@ -88,3 +89,12 @@ its development [on GitHub](https://github.com/imathis/octopress/tree/2.1).
 Regardless of Octopress' history of imprecise estimates, I have great faith in
 its developers to deliver such an ambitious update. I'll keep an eye out on
 Twitter for an announcement that Octopress 3.0 has finally been perfected!
+
+----
+
+**Update (Aug 18, 2013):**
+By the end of July, there was still "a ways to go" on Octopress 3.0, but
+version 2.1 of Octopress was resurrected as a smaller, incremental upgrade on
+the way to Octopress 3.0.
+
+{% tweet 361299670313615360 %}
