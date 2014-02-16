@@ -4,7 +4,7 @@
   <title><![CDATA[sasheldon.com]]></title>
   <link href="http://sasheldon.com/atom.xml" rel="self"/>
   <link href="http://sasheldon.com/"/>
-  <updated>2013-12-14T13:48:37-08:00</updated>
+  <updated>2014-02-15T17:11:51-08:00</updated>
   <id>http://sasheldon.com/</id>
   <author>
     <name><![CDATA[Steven Sheldon]]></name>
@@ -279,7 +279,7 @@ later in the month.</p>
 <p>Although an April release had been missed, by late May it seemed that there
 would be a 3.0 release candidate available within a &ldquo;month or so&rdquo;.</p>
 
-<div class='embed tweet'><blockquote class="twitter-tweet"><p><a href="https://twitter.com/salout_de">@salout_de</a> We’re currently working through getting some core functionality working, but I’ll be announcing an RC in the next month or so.</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/339044122801360896">May 27, 2013</a></blockquote>
+<div class='embed tweet'><blockquote class="twitter-tweet"><p>@salout_de We’re currently working through getting some core functionality working, but I’ll be announcing an RC in the next month or so.</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/339044122801360896">May 27, 2013</a></blockquote>
 <script async src="http://sasheldon.com//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
 
 
@@ -309,6 +309,35 @@ the way to Octopress 3.0.</p>
 <div class='embed tweet'><blockquote class="twitter-tweet"><p><a href="https://twitter.com/atlgeek007">@atlgeek007</a> we still have a ways to go. Right now I’m working on 2.1 which adds support for Jekyll 1.0 and uses Guard for watching files.</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/361299670313615360">July 28, 2013</a></blockquote>
 <script async src="http://sasheldon.com//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
 
+
+<hr />
+
+<p><strong>Update (Feb 15, 2014):</strong>
+In September, Octopress 3.0 still wasn&rsquo;t ready for release, but it seemed
+mature enough that a blog post was promised detailing the roadmap leading up
+to its release.</p>
+
+<div class='embed tweet'><blockquote class="twitter-tweet"><p><a href="https://twitter.com/brian_pearce">@brian_pearce</a> We’ve finally nailed it down. Blog post coming soon after <a href="https://twitter.com/imathis">@imathis</a> gets back from BlendConf.</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/375377966727192576">September 4, 2013</a></blockquote>
+<script async src="http://sasheldon.com//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+
+
+<p>Despite it originally being anticipated that this blog post would be published
+<a href="https://twitter.com/octopress/statuses/381781655385812992">within a week</a>,
+by mid October there were still details to be ironed out.</p>
+
+<div class='embed tweet'><blockquote class="twitter-tweet"><p><a href="https://twitter.com/breerly">@breerly</a> There’s a draft. Still ironing out some details. :)</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/392425128442994688">October 21, 2013</a></blockquote>
+<script async src="http://sasheldon.com//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+
+
+<p>By the new year, it appeared that version 3.0 was still &ldquo;a couple of months&rdquo;
+away from being released.</p>
+
+<div class='embed tweet'><blockquote class="twitter-tweet"><p><a href="https://twitter.com/kartikluke">@kartikluke</a> The update is coming with Octopress 3.0 (which is probably a couple of months out) you should be able to migrate content easily.</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/420592959672029184">January 7, 2014</a></blockquote>
+<script async src="http://sasheldon.com//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+
+
+<p>It also appears that the previously proposed version 2.1 was abandoned,
+so no new version is slated before Octopress 3.0.</p>
 ]]></content>
   </entry>
   
