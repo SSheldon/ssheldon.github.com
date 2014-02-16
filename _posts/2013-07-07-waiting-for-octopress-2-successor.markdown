@@ -2,7 +2,7 @@
 layout: post
 title: "Waiting for Octopress 2.0's Successor"
 date: 2013-07-07 02:24
-updated: 2013-08-18 15:24
+updated: 2014-02-15 17:08
 comments: true
 categories:
 ---
@@ -98,3 +98,26 @@ version 2.1 of Octopress was resurrected as a smaller, incremental upgrade on
 the way to Octopress 3.0.
 
 {% tweet 361299670313615360 %}
+
+----
+
+**Update (Feb 15, 2014):**
+In September, Octopress 3.0 still wasn't ready for release, but it seemed
+mature enough that a blog post was promised detailing the roadmap leading up
+to its release.
+
+{% tweet 375377966727192576 %}
+
+Despite it originally being anticipated that this blog post would be published
+[within a week](https://twitter.com/octopress/statuses/381781655385812992),
+by mid October there were still details to be ironed out.
+
+{% tweet 392425128442994688 %}
+
+By the new year, it appeared that version 3.0 was still "a couple of months"
+away from being released.
+
+{% tweet 420592959672029184 %}
+
+It also appears that the previously proposed version 2.1 was abandoned,
+so no new version is slated before Octopress 3.0.
