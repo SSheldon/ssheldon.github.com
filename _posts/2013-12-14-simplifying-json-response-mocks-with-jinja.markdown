@@ -38,11 +38,13 @@ However, developers in different locations require that the phone number have a
 local area code. In this situation, we could simply change the mock to be:
 
 ``` js+jinja
+{% raw %}
 {
     "first_name": "John",
     "last_name": "Smith",
     "phone_number": "{{ area_code }} 555-1234"
 }
+{% endraw %}
 ```
 
 Now, we only need to process the mocks through Jinja with the area code in
@@ -58,6 +60,7 @@ not in other cases. We can accomplish this simply in Jinja with an
 [if block](http://jinja.pocoo.org/docs/templates/#if):
 
 ``` js+jinja
+{% raw %}
 {
     "first_name": "John",
     {% if last_names_included %}
@@ -65,6 +68,7 @@ not in other cases. We can accomplish this simply in Jinja with an
     {% endif %}
     "phone_number": "415 555-1234"
 }
+{% endraw %}
 ```
 
 If this mock is rendered with `last_names_included=True` in the context,
@@ -81,7 +85,7 @@ mocks if we can define an object once and reference it in many places.
 Perhaps multiple responses from our example API include addresses in a common
 format. We can provide an example address in its own file:
 
-``` js address.json
+``` js
 {
     "street_address": "21 2nd Street",
     "city": "New York",
@@ -95,13 +99,15 @@ example address or creating an entirely new address, we can simply include our
 address in the mock with
 [Jinja's include tag](http://jinja.pocoo.org/docs/templates/#include):
 
-``` js+jinja person.json
+``` js+jinja
+{% raw %}
 {
     "first_name": "John",
     "last_name": "Smith",
     "address": {% include 'address.json' %},
     "phone_number": "415 555-1234"
 }
+{% endraw %}
 ```
 
 The include tag does not only let us avoid duplicating data; if each object is
@@ -136,11 +142,13 @@ response mocks. This allows us to write an `extend_json`
 [macro](http://jinja.pocoo.org/docs/templates/#macros):
 
 ``` jinja
+{% raw %}
 {% macro include_json(path) %}{% include path %}{% endmacro %}
 
 {% macro extend_json(base_path) %}
     {{ json_update(include_json(base_path), caller()) }}
 {% endmacro %}
+{% endraw %}
 ```
 
 This macro will be called with the JSON updates as its body so that they are
@@ -151,7 +159,7 @@ to the `json_update` function.
 To see this macro in action, let's consider our Person object with an age
 parameter:
 
-``` js person.json
+``` js
 {
     "first_name": "John",
     "last_name": "Smith",
@@ -162,12 +170,14 @@ parameter:
 
 To create another Person object with a different age, we only have to do this:
 
-``` js+jinja senior.json
+``` js+jinja
+{% raw %}
 {% call extend_json('person.json') %}
 {
     "age": 70
 }
 {% endcall %}
+{% endraw %}
 ```
 
 It's useful to note that the `extend_json` macro must be available in this
