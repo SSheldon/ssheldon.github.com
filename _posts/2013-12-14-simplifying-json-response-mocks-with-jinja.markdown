@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Simplifying JSON response mocks with Jinja"
+title: "Simplifying JSON Response Mocks With Jinja"
 date: 2013-12-14 13:43:01 -0800
 comments: true
 categories: 
