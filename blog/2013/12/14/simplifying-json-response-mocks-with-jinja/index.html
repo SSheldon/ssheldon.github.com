@@ -84,7 +84,7 @@ tool. They not only provide examples for the users of your API, but they &hellip
   
 
 
-<time datetime="2013-12-14T13:43:01-08:00"  class="updated" >Dec 14<span>th</span>, 2013</time>
+<time datetime="2013-12-14T21:43:01Z"  class="updated" >Dec 14, 2013</time>
         
       </p>
     
@@ -103,7 +103,6 @@ process, it allows some really useful functionality!</p>
 
 <!-- more -->
 
-
 <h3>Variables</h3>
 
 <p>One of the first advantages of processing response mocks with Jinja is that
@@ -111,27 +110,23 @@ we can use <a href="http://jinja.pocoo.org/docs/templates/#variables">variables<
 generating them.
 For example, let&rsquo;s consider an API that can respond with information about a
 person. One of our mock responses is a Person object, like so:</p>
-
-<p><figure class='code'><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div></pre></td><td class='main  js'><pre><div class='line'><span class="p">{</span>
-</div><div class='line'>    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
-</div><div class='line'>    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
-</div><div class='line'>    <span class="s2">&quot;phone_number&quot;</span><span class="o">:</span> <span class="s2">&quot;415 555-1234&quot;</span>
-</div><div class='line'><span class="p">}</span>
-</div></pre></td></tr></table></div></figure></p>
-
+<div class="highlight"><pre><code class="js language-js" data-lang="js"><span class="p">{</span>
+    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;phone_number&quot;</span><span class="o">:</span> <span class="s2">&quot;415 555-1234&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>However, developers in different locations require that the phone number have a
 local area code. In this situation, we could simply change the mock to be:</p>
-
-<p><figure class='code'><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div></pre></td><td class='main  js+jinja'><pre><div class='line'><span class="p">{</span>
-</div><div class='line'>    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
-</div><div class='line'>    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
-</div><div class='line'>    <span class="s2">&quot;phone_number&quot;</span><span class="o">:</span> <span class="s2">&quot;</span><span class="cp">&#x7b;&#x7b;</span> <span class="nv">area_code</span> <span class="cp">}}</span><span class="s2"> 555-1234&quot;</span>
-</div><div class='line'><span class="p">}</span>
-</div></pre></td></tr></table></div></figure></p>
-
+<div class="highlight"><pre><code class="js+jinja language-js+jinja" data-lang="js+jinja"><span class="p">{</span>
+    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;phone_number&quot;</span><span class="o">:</span> <span class="s2">&quot;</span><span class="cp">{{</span> <span class="nv">area_code</span> <span class="cp">}}</span><span class="s2"> 555-1234&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Now, we only need to process the mocks through Jinja with the area code in
 the context to generate mocks using the new area code. We can render the mock
-with <code>area_code='312'</code> in the context to get the phone number <code>"312 555-1234"</code>.</p>
+with <code>area_code=&#39;312&#39;</code> in the context to get the phone number <code>&quot;312 555-1234&quot;</code>.</p>
 
 <h3>Conditionals</h3>
 
@@ -140,16 +135,14 @@ complicated control flows. For example, suppose that we wanted to format our
 mock from the previous example to include a Person&rsquo;s last name sometimes, but
 not in other cases. We can accomplish this simply in Jinja with an
 <a href="http://jinja.pocoo.org/docs/templates/#if">if block</a>:</p>
-
-<p><figure class='code'><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div><div data-line='7' class='line-number'></div></pre></td><td class='main  js+jinja'><pre><div class='line'><span class="p">{</span>
-</div><div class='line'>    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
-</div><div class='line'>    <span class="cp">&#x7b;&#x25;</span> <span class="k">if</span> <span class="nv">last_names_included</span> <span class="cp">%}</span>
-</div><div class='line'>    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
-</div><div class='line'>    <span class="cp">&#x7b;&#x25;</span> <span class="k">endif</span> <span class="cp">%}</span>
-</div><div class='line'>    <span class="s2">&quot;phone_number&quot;</span><span class="o">:</span> <span class="s2">&quot;415 555-1234&quot;</span>
-</div><div class='line'><span class="p">}</span>
-</div></pre></td></tr></table></div></figure></p>
-
+<div class="highlight"><pre><code class="js+jinja language-js+jinja" data-lang="js+jinja"><span class="p">{</span>
+    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
+    <span class="cp">{%</span> <span class="k">if</span> <span class="nv">last_names_included</span> <span class="cp">%}</span>
+    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+    <span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+    <span class="s2">&quot;phone_number&quot;</span><span class="o">:</span> <span class="s2">&quot;415 555-1234&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>If this mock is rendered with <code>last_names_included=True</code> in the context,
 it will include the <code>last_name</code> field, and if not it will be absent!</p>
 
@@ -163,28 +156,24 @@ mocks if we can define an object once and reference it in many places.</p>
 
 <p>Perhaps multiple responses from our example API include addresses in a common
 format. We can provide an example address in its own file:</p>
-
-<p><figure class='code'><figcaption>address.json</figcaption><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div></pre></td><td class='main  js'><pre><div class='line'><span class="p">{</span>
-</div><div class='line'>    <span class="s2">&quot;street_address&quot;</span><span class="o">:</span> <span class="s2">&quot;21 2nd Street&quot;</span><span class="p">,</span>
-</div><div class='line'>    <span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;New York&quot;</span><span class="p">,</span>
-</div><div class='line'>    <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;NY&quot;</span><span class="p">,</span>
-</div><div class='line'>    <span class="s2">&quot;postal_code&quot;</span><span class="o">:</span> <span class="mi">10021</span>
-</div><div class='line'><span class="p">}</span>
-</div></pre></td></tr></table></div></figure></p>
-
+<div class="highlight"><pre><code class="js language-js" data-lang="js"><span class="p">{</span>
+    <span class="s2">&quot;street_address&quot;</span><span class="o">:</span> <span class="s2">&quot;21 2nd Street&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;New York&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;NY&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;postal_code&quot;</span><span class="o">:</span> <span class="mi">10021</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Then, in any response that includes an address, instead of copy-pasting this
 example address or creating an entirely new address, we can simply include our
 address in the mock with
 <a href="http://jinja.pocoo.org/docs/templates/#include">Jinja&rsquo;s include tag</a>:</p>
-
-<p><figure class='code'><figcaption>person.json</figcaption><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div></pre></td><td class='main  js+jinja'><pre><div class='line'><span class="p">{</span>
-</div><div class='line'>    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
-</div><div class='line'>    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
-</div><div class='line'>    <span class="s2">&quot;address&quot;</span><span class="o">:</span> <span class="cp">&#x7b;&#x25;</span> <span class="k">include</span> <span class="s1">&#39;address.json&#39;</span> <span class="cp">%}</span><span class="p">,</span>
-</div><div class='line'>    <span class="s2">&quot;phone_number&quot;</span><span class="o">:</span> <span class="s2">&quot;415 555-1234&quot;</span>
-</div><div class='line'><span class="p">}</span>
-</div></pre></td></tr></table></div></figure></p>
-
+<div class="highlight"><pre><code class="js+jinja language-js+jinja" data-lang="js+jinja"><span class="p">{</span>
+    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;address&quot;</span><span class="o">:</span> <span class="cp">{%</span> <span class="k">include</span> <span class="s1">&#39;address.json&#39;</span> <span class="cp">%}</span><span class="p">,</span>
+    <span class="s2">&quot;phone_number&quot;</span><span class="o">:</span> <span class="s2">&quot;415 555-1234&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>The include tag does not only let us avoid duplicating data; if each object is
 stored in its own file, it can turn our response mocks into a simple
 composition of objects where the structure is clear at a glance.</p>
@@ -204,23 +193,20 @@ use the <a href="http://docs.python.org/2/library/stdtypes.html#dict.update"><co
 method to override the items in the base dictionary with our changes.
 The dictionary of updates will be specified in JSON, so a function to return
 the JSON that results from updating looks like this:</p>
-
-<p><figure class='code'><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div></pre></td><td class='main  python'><pre><div class='line'><span class="k">def</span> <span class="nf">json_update</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">updates</span><span class="p">):</span>
-</div><div class='line'>    <span class="n">result</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
-</div><div class='line'>    <span class="n">result</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">updates</span><span class="p">))</span>
-</div><div class='line'>    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-</div></pre></td></tr></table></div></figure></p>
-
+<div class="highlight"><pre><code class="python language-python" data-lang="python"><span class="k">def</span> <span class="nf">json_update</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">updates</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">updates</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</code></pre></div>
 <p>We can then include this function in Jinja&rsquo;s context to access it within our
 response mocks. This allows us to write an <code>extend_json</code>
 <a href="http://jinja.pocoo.org/docs/templates/#macros">macro</a>:</p>
+<div class="highlight"><pre><code class="jinja language-jinja" data-lang="jinja"><span class="cp">{%</span> <span class="k">macro</span> <span class="nv">include_json</span><span class="o">(</span><span class="nv">path</span><span class="o">)</span> <span class="cp">%}{%</span> <span class="k">include</span> <span class="nv">path</span> <span class="cp">%}{%</span> <span class="k">endmacro</span> <span class="cp">%}</span><span class="x"></span>
 
-<p><figure class='code'><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div></pre></td><td class='main  jinja'><pre><div class='line'><span class="cp">&#x7b;&#x25;</span> <span class="k">macro</span> <span class="nv">include_json</span><span class="o">(</span><span class="nv">path</span><span class="o">)</span> <span class="cp">%}&#x7b;&#x25;</span> <span class="k">include</span> <span class="nv">path</span> <span class="cp">%}&#x7b;&#x25;</span> <span class="k">endmacro</span> <span class="cp">%}</span><span class="x"></span>
-</div><div class='line'> </div><div class='line'><span class="cp">&#x7b;&#x25;</span> <span class="k">macro</span> <span class="nv">extend_json</span><span class="o">(</span><span class="nv">base_path</span><span class="o">)</span> <span class="cp">%}</span><span class="x"></span>
-</div><div class='line'><span class="x">    </span><span class="cp">&#x7b;&#x7b;</span> <span class="nv">json_update</span><span class="o">(</span><span class="nv">include_json</span><span class="o">(</span><span class="nv">base_path</span><span class="o">),</span> <span class="nv">caller</span><span class="o">())</span> <span class="cp">}}</span><span class="x"></span>
-</div><div class='line'><span class="cp">&#x7b;&#x25;</span> <span class="k">endmacro</span> <span class="cp">%}</span><span class="x"></span>
-</div></pre></td></tr></table></div></figure></p>
-
+<span class="cp">{%</span> <span class="k">macro</span> <span class="nv">extend_json</span><span class="o">(</span><span class="nv">base_path</span><span class="o">)</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    </span><span class="cp">{{</span> <span class="nv">json_update</span><span class="o">(</span><span class="nv">include_json</span><span class="o">(</span><span class="nv">base_path</span><span class="o">),</span> <span class="nv">caller</span><span class="o">())</span> <span class="cp">}}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endmacro</span> <span class="cp">%}</span><span class="x"></span>
+</code></pre></div>
 <p>This macro will be called with the JSON updates as its body so that they are
 accessible within the macro through the <code>caller()</code> function.
 The <code>include_json</code> macro just allows us to use an included file as an argument
@@ -228,24 +214,20 @@ to the <code>json_update</code> function.</p>
 
 <p>To see this macro in action, let&rsquo;s consider our Person object with an age
 parameter:</p>
-
-<p><figure class='code'><figcaption>person.json</figcaption><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div><div data-line='6' class='line-number'></div></pre></td><td class='main  js'><pre><div class='line'><span class="p">{</span>
-</div><div class='line'>    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
-</div><div class='line'>    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
-</div><div class='line'>    <span class="s2">&quot;age&quot;</span><span class="o">:</span> <span class="mi">25</span><span class="p">,</span>
-</div><div class='line'>    <span class="s2">&quot;phone_number&quot;</span><span class="o">:</span> <span class="s2">&quot;415 555-1234&quot;</span>
-</div><div class='line'><span class="p">}</span>
-</div></pre></td></tr></table></div></figure></p>
-
+<div class="highlight"><pre><code class="js language-js" data-lang="js"><span class="p">{</span>
+    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;age&quot;</span><span class="o">:</span> <span class="mi">25</span><span class="p">,</span>
+    <span class="s2">&quot;phone_number&quot;</span><span class="o">:</span> <span class="s2">&quot;415 555-1234&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>To create another Person object with a different age, we only have to do this:</p>
-
-<p><figure class='code'><figcaption>senior.json</figcaption><div class='highlight'><table><tr><td class='line-numbers' aria-hidden='true'><pre><div data-line='1' class='line-number'></div><div data-line='2' class='line-number'></div><div data-line='3' class='line-number'></div><div data-line='4' class='line-number'></div><div data-line='5' class='line-number'></div></pre></td><td class='main  js+jinja'><pre><div class='line'><span class="cp">&#x7b;&#x25;</span> <span class="k">call</span> <span class="nv">extend_json</span><span class="o">(</span><span class="s1">&#39;person.json&#39;</span><span class="o">)</span> <span class="cp">%}</span>
-</div><div class='line'><span class="p">{</span>
-</div><div class='line'>    <span class="s2">&quot;age&quot;</span><span class="o">:</span> <span class="mi">70</span>
-</div><div class='line'><span class="p">}</span>
-</div><div class='line'><span class="cp">&#x7b;&#x25;</span> <span class="k">endcall</span> <span class="cp">%}</span>
-</div></pre></td></tr></table></div></figure></p>
-
+<div class="highlight"><pre><code class="js+jinja language-js+jinja" data-lang="js+jinja"><span class="cp">{%</span> <span class="k">call</span> <span class="nv">extend_json</span><span class="o">(</span><span class="s1">&#39;person.json&#39;</span><span class="o">)</span> <span class="cp">%}</span>
+<span class="p">{</span>
+    <span class="s2">&quot;age&quot;</span><span class="o">:</span> <span class="mi">70</span>
+<span class="p">}</span>
+<span class="cp">{%</span> <span class="k">endcall</span> <span class="cp">%}</span>
+</code></pre></div>
 <p>It&rsquo;s useful to note that the <code>extend_json</code> macro must be available in this
 file, so we&rsquo;ll likely need to
 <a href="http://jinja.pocoo.org/docs/templates/#import">import</a> it from the file in
@@ -280,7 +262,7 @@ can surely adapt to meet whatever your needs are.</p>
   
 
 
-<time datetime="2013-12-14T13:43:01-08:00"  class="updated" >Dec 14<span>th</span>, 2013</time>
+<time datetime="2013-12-14T21:43:01Z"  class="updated" >Dec 14, 2013</time>
       
 
 
@@ -305,8 +287,7 @@ can surely adapt to meet whatever your needs are.</p>
 </div>
 
 <aside class="sidebar">
-  
-    <section>
+  <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
@@ -325,11 +306,6 @@ can surely adapt to meet whatever your needs are.</p>
   </ul>
 </section>
 
-
-
-
-
-  
 </aside>
 
 
