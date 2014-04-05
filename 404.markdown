@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Page Not Found
+sitemap_exclude: true
 ---
 
 Oops, I couldn't find that page! Sorry about that.
