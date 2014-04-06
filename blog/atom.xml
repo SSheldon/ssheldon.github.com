@@ -4,7 +4,7 @@
   <title><![CDATA[sasheldon.com]]></title>
   <link href="http://sasheldon.com/blog/atom.xml" rel="self"/>
   <link href="http://sasheldon.com/"/>
-  <updated>2014-04-05T17:24:15-07:00</updated>
+  <updated>2014-04-05T17:49:12-07:00</updated>
   <id>http://sasheldon.com/</id>
   <author>
     <name><![CDATA[Steven Sheldon]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Simplifying JSON Response Mocks With Jinja]]></title>
     <link href="http://sasheldon.com/blog/2013/12/14/simplifying-json-response-mocks-with-jinja/"/>
-    <updated>2013-12-14T21:43:01Z</updated>
+    <updated>2013-12-14T13:43:01-08:00</updated>
     <id>http://sasheldon.com/blog/2013/12/14/simplifying-json-response-mocks-with-jinja</id>
     <content type="html"><![CDATA[<p>For documenting and testing large APIs, response mocks can be a very useful
 tool. They not only provide examples for the users of your API, but they can be
