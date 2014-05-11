@@ -1,5 +1,6 @@
 ---
 layout: page
+no_header: true
 footer: false
 ---
 
