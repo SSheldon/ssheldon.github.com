@@ -1,7 +1,6 @@
 ---
 layout: page
 no_header: true
-footer: false
 ---
 
 [![GitHub](/images/github.png)](http://github.com/SSheldon)
