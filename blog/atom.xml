@@ -1,336 +1,336 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[sasheldon.com]]></title>
+  <title>sasheldon.com</title>
   <link href="http://sasheldon.com/blog/atom.xml" rel="self"/>
   <link href="http://sasheldon.com/"/>
-  <updated>2014-04-05T17:49:12-07:00</updated>
+  <updated>2014-05-11T01:02:26-07:00</updated>
   <id>http://sasheldon.com/</id>
   <author>
-    <name><![CDATA[Steven Sheldon]]></name>
+    <name>Steven Sheldon</name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
   
   <entry>
-    <title type="html"><![CDATA[Simplifying JSON Response Mocks With Jinja]]></title>
+    <title type="html">Simplifying JSON Response Mocks With Jinja</title>
     <link href="http://sasheldon.com/blog/2013/12/14/simplifying-json-response-mocks-with-jinja/"/>
     <updated>2013-12-14T13:43:01-08:00</updated>
     <id>http://sasheldon.com/blog/2013/12/14/simplifying-json-response-mocks-with-jinja</id>
-    <content type="html"><![CDATA[<p>For documenting and testing large APIs, response mocks can be a very useful
+    <content type="html">&lt;p&gt;For documenting and testing large APIs, response mocks can be a very useful
 tool. They not only provide examples for the users of your API, but they can be
 used in automated tests as if you had received real data without actually
-hitting the network.</p>
+hitting the network.&lt;/p&gt;
 
-<p>Creating and maintaining a large collection of response mocks can be greatly
-simplified by preprocessing them with a template engine like Python&rsquo;s
-<a href="http://jinja.pocoo.org/">Jinja</a>. Although this adds another step to your build
-process, it allows some really useful functionality!</p>
+&lt;p&gt;Creating and maintaining a large collection of response mocks can be greatly
+simplified by preprocessing them with a template engine like Python&amp;rsquo;s
+&lt;a href=&quot;http://jinja.pocoo.org/&quot;&gt;Jinja&lt;/a&gt;. Although this adds another step to your build
+process, it allows some really useful functionality!&lt;/p&gt;
 
-<!-- more -->
+&lt;!-- more --&gt;
 
-<h3>Variables</h3>
+&lt;h3&gt;Variables&lt;/h3&gt;
 
-<p>One of the first advantages of processing response mocks with Jinja is that
-we can use <a href="http://jinja.pocoo.org/docs/templates/#variables">variables</a> when
+&lt;p&gt;One of the first advantages of processing response mocks with Jinja is that
+we can use &lt;a href=&quot;http://jinja.pocoo.org/docs/templates/#variables&quot;&gt;variables&lt;/a&gt; when
 generating them.
-For example, let&rsquo;s consider an API that can respond with information about a
-person. One of our mock responses is a Person object, like so:</p>
-<div class="highlight"><pre><code class="js language-js" data-lang="js"><span class="p">{</span>
-    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;phone_number&quot;</span><span class="o">:</span> <span class="s2">&quot;415 555-1234&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>However, developers in different locations require that the phone number have a
-local area code. In this situation, we could simply change the mock to be:</p>
-<div class="highlight"><pre><code class="js+jinja language-js+jinja" data-lang="js+jinja"><span class="p">{</span>
-    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;phone_number&quot;</span><span class="o">:</span> <span class="s2">&quot;</span><span class="cp">{{</span> <span class="nv">area_code</span> <span class="cp">}}</span><span class="s2"> 555-1234&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Now, we only need to process the mocks through Jinja with the area code in
+For example, let&amp;rsquo;s consider an API that can respond with information about a
+person. One of our mock responses is a Person object, like so:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;first_name&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;John&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;last_name&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Smith&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;phone_number&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;415 555-1234&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;However, developers in different locations require that the phone number have a
+local area code. In this situation, we could simply change the mock to be:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js+jinja&quot; data-lang=&quot;js+jinja&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;first_name&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;John&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;last_name&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Smith&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;phone_number&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;{{&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;area_code&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;}}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; 555-1234&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now, we only need to process the mocks through Jinja with the area code in
 the context to generate mocks using the new area code. We can render the mock
-with <code>area_code=&#39;312&#39;</code> in the context to get the phone number <code>&quot;312 555-1234&quot;</code>.</p>
+with &lt;code&gt;area_code=&amp;#39;312&amp;#39;&lt;/code&gt; in the context to get the phone number &lt;code&gt;&amp;quot;312 555-1234&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
-<h3>Conditionals</h3>
+&lt;h3&gt;Conditionals&lt;/h3&gt;
 
-<p>We can further take advantage of Jinja to template our mocks using more
+&lt;p&gt;We can further take advantage of Jinja to template our mocks using more
 complicated control flows. For example, suppose that we wanted to format our
-mock from the previous example to include a Person&rsquo;s last name sometimes, but
+mock from the previous example to include a Person&amp;rsquo;s last name sometimes, but
 not in other cases. We can accomplish this simply in Jinja with an
-<a href="http://jinja.pocoo.org/docs/templates/#if">if block</a>:</p>
-<div class="highlight"><pre><code class="js+jinja language-js+jinja" data-lang="js+jinja"><span class="p">{</span>
-    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
-    <span class="cp">{%</span> <span class="k">if</span> <span class="nv">last_names_included</span> <span class="cp">%}</span>
-    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
-    <span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
-    <span class="s2">&quot;phone_number&quot;</span><span class="o">:</span> <span class="s2">&quot;415 555-1234&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>If this mock is rendered with <code>last_names_included=True</code> in the context,
-it will include the <code>last_name</code> field, and if not it will be absent!</p>
+&lt;a href=&quot;http://jinja.pocoo.org/docs/templates/#if&quot;&gt;if block&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js+jinja&quot; data-lang=&quot;js+jinja&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;first_name&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;John&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;last_names_included&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;last_name&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Smith&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;phone_number&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;415 555-1234&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If this mock is rendered with &lt;code&gt;last_names_included=True&lt;/code&gt; in the context,
+it will include the &lt;code&gt;last_name&lt;/code&gt; field, and if not it will be absent!&lt;/p&gt;
 
-<h3>Including mocks</h3>
+&lt;h3&gt;Including mocks&lt;/h3&gt;
 
-<p>The previous examples might feel a little contrived, but importing one mock
+&lt;p&gt;The previous examples might feel a little contrived, but importing one mock
 from another is one of the greatest benefits of Jinja.
 A large API will likely have objects with a common scheme that are used in
 multiple responses, and it can be very convenient and greatly simplify our
-mocks if we can define an object once and reference it in many places.</p>
+mocks if we can define an object once and reference it in many places.&lt;/p&gt;
 
-<p>Perhaps multiple responses from our example API include addresses in a common
-format. We can provide an example address in its own file:</p>
-<div class="highlight"><pre><code class="js language-js" data-lang="js"><span class="p">{</span>
-    <span class="s2">&quot;street_address&quot;</span><span class="o">:</span> <span class="s2">&quot;21 2nd Street&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;New York&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;state&quot;</span><span class="o">:</span> <span class="s2">&quot;NY&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;postal_code&quot;</span><span class="o">:</span> <span class="mi">10021</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Then, in any response that includes an address, instead of copy-pasting this
+&lt;p&gt;Perhaps multiple responses from our example API include addresses in a common
+format. We can provide an example address in its own file:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;street_address&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;21 2nd Street&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;city&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;New York&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;state&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;NY&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;postal_code&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10021&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then, in any response that includes an address, instead of copy-pasting this
 example address or creating an entirely new address, we can simply include our
 address in the mock with
-<a href="http://jinja.pocoo.org/docs/templates/#include">Jinja&rsquo;s include tag</a>:</p>
-<div class="highlight"><pre><code class="js+jinja language-js+jinja" data-lang="js+jinja"><span class="p">{</span>
-    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;address&quot;</span><span class="o">:</span> <span class="cp">{%</span> <span class="k">include</span> <span class="s1">&#39;address.json&#39;</span> <span class="cp">%}</span><span class="p">,</span>
-    <span class="s2">&quot;phone_number&quot;</span><span class="o">:</span> <span class="s2">&quot;415 555-1234&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>The include tag does not only let us avoid duplicating data; if each object is
+&lt;a href=&quot;http://jinja.pocoo.org/docs/templates/#include&quot;&gt;Jinja&amp;rsquo;s include tag&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js+jinja&quot; data-lang=&quot;js+jinja&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;first_name&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;John&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;last_name&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Smith&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;address&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;address.json&amp;#39;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;phone_number&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;415 555-1234&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The include tag does not only let us avoid duplicating data; if each object is
 stored in its own file, it can turn our response mocks into a simple
-composition of objects where the structure is clear at a glance.</p>
+composition of objects where the structure is clear at a glance.&lt;/p&gt;
 
-<h3>Extending mocks</h3>
+&lt;h3&gt;Extending mocks&lt;/h3&gt;
 
-<p>I commonly need to create a response mock that is modified slightly from an
+&lt;p&gt;I commonly need to create a response mock that is modified slightly from an
 existing one, like a version of the response that has a parameter with a
 different value or that specifies some optional parameters.
-I think of this like JSON &ldquo;inheritance&rdquo;, where an object gets all the values
-from a base object but can then override them.</p>
+I think of this like JSON &amp;ldquo;inheritance&amp;rdquo;, where an object gets all the values
+from a base object but can then override them.&lt;/p&gt;
 
-<p>With Jinja, we call allow this &ldquo;inheritance&rdquo; by creating a way to extend mocks.
+&lt;p&gt;With Jinja, we call allow this &amp;ldquo;inheritance&amp;rdquo; by creating a way to extend mocks.
 We can simply model the changes we want and the base object as Python
-<a href="http://docs.python.org/2/library/stdtypes.html#mapping-types-dict"><code>dict</code></a>s and
-use the <a href="http://docs.python.org/2/library/stdtypes.html#dict.update"><code>update</code></a>
+&lt;a href=&quot;http://docs.python.org/2/library/stdtypes.html#mapping-types-dict&quot;&gt;&lt;code&gt;dict&lt;/code&gt;&lt;/a&gt;s and
+use the &lt;a href=&quot;http://docs.python.org/2/library/stdtypes.html#dict.update&quot;&gt;&lt;code&gt;update&lt;/code&gt;&lt;/a&gt;
 method to override the items in the base dictionary with our changes.
 The dictionary of updates will be specified in JSON, so a function to return
-the JSON that results from updating looks like this:</p>
-<div class="highlight"><pre><code class="python language-python" data-lang="python"><span class="k">def</span> <span class="nf">json_update</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">updates</span><span class="p">):</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
-    <span class="n">result</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">updates</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-</code></pre></div>
-<p>We can then include this function in Jinja&rsquo;s context to access it within our
-response mocks. This allows us to write an <code>extend_json</code>
-<a href="http://jinja.pocoo.org/docs/templates/#macros">macro</a>:</p>
-<div class="highlight"><pre><code class="jinja language-jinja" data-lang="jinja"><span class="cp">{%</span> <span class="k">macro</span> <span class="nv">include_json</span><span class="o">(</span><span class="nv">path</span><span class="o">)</span> <span class="cp">%}{%</span> <span class="k">include</span> <span class="nv">path</span> <span class="cp">%}{%</span> <span class="k">endmacro</span> <span class="cp">%}</span><span class="x"></span>
+the JSON that results from updating looks like this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;json_update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;updates&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loads&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loads&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;updates&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dumps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sort_keys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;indent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We can then include this function in Jinja&amp;rsquo;s context to access it within our
+response mocks. This allows us to write an &lt;code&gt;extend_json&lt;/code&gt;
+&lt;a href=&quot;http://jinja.pocoo.org/docs/templates/#macros&quot;&gt;macro&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-jinja&quot; data-lang=&quot;jinja&quot;&gt;&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;macro&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;include_json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endmacro&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
 
-<span class="cp">{%</span> <span class="k">macro</span> <span class="nv">extend_json</span><span class="o">(</span><span class="nv">base_path</span><span class="o">)</span> <span class="cp">%}</span><span class="x"></span>
-<span class="x">    </span><span class="cp">{{</span> <span class="nv">json_update</span><span class="o">(</span><span class="nv">include_json</span><span class="o">(</span><span class="nv">base_path</span><span class="o">),</span> <span class="nv">caller</span><span class="o">())</span> <span class="cp">}}</span><span class="x"></span>
-<span class="cp">{%</span> <span class="k">endmacro</span> <span class="cp">%}</span><span class="x"></span>
-</code></pre></div>
-<p>This macro will be called with the JSON updates as its body so that they are
-accessible within the macro through the <code>caller()</code> function.
-The <code>include_json</code> macro just allows us to use an included file as an argument
-to the <code>json_update</code> function.</p>
+&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;macro&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;extend_json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;base_path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;{{&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;json_update&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;include_json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;base_path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;caller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;}}&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endmacro&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This macro will be called with the JSON updates as its body so that they are
+accessible within the macro through the &lt;code&gt;caller()&lt;/code&gt; function.
+The &lt;code&gt;include_json&lt;/code&gt; macro just allows us to use an included file as an argument
+to the &lt;code&gt;json_update&lt;/code&gt; function.&lt;/p&gt;
 
-<p>To see this macro in action, let&rsquo;s consider our Person object with an age
-parameter:</p>
-<div class="highlight"><pre><code class="js language-js" data-lang="js"><span class="p">{</span>
-    <span class="s2">&quot;first_name&quot;</span><span class="o">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;last_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Smith&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;age&quot;</span><span class="o">:</span> <span class="mi">25</span><span class="p">,</span>
-    <span class="s2">&quot;phone_number&quot;</span><span class="o">:</span> <span class="s2">&quot;415 555-1234&quot;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>To create another Person object with a different age, we only have to do this:</p>
-<div class="highlight"><pre><code class="js+jinja language-js+jinja" data-lang="js+jinja"><span class="cp">{%</span> <span class="k">call</span> <span class="nv">extend_json</span><span class="o">(</span><span class="s1">&#39;person.json&#39;</span><span class="o">)</span> <span class="cp">%}</span>
-<span class="p">{</span>
-    <span class="s2">&quot;age&quot;</span><span class="o">:</span> <span class="mi">70</span>
-<span class="p">}</span>
-<span class="cp">{%</span> <span class="k">endcall</span> <span class="cp">%}</span>
-</code></pre></div>
-<p>It&rsquo;s useful to note that the <code>extend_json</code> macro must be available in this
-file, so we&rsquo;ll likely need to
-<a href="http://jinja.pocoo.org/docs/templates/#import">import</a> it from the file in
-which it is declared.</p>
+&lt;p&gt;To see this macro in action, let&amp;rsquo;s consider our Person object with an age
+parameter:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;first_name&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;John&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;last_name&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Smith&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;age&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;phone_number&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;415 555-1234&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To create another Person object with a different age, we only have to do this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js+jinja&quot; data-lang=&quot;js+jinja&quot;&gt;&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;extend_json&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;person.json&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;age&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;70&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endcall&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It&amp;rsquo;s useful to note that the &lt;code&gt;extend_json&lt;/code&gt; macro must be available in this
+file, so we&amp;rsquo;ll likely need to
+&lt;a href=&quot;http://jinja.pocoo.org/docs/templates/#import&quot;&gt;import&lt;/a&gt; it from the file in
+which it is declared.&lt;/p&gt;
 
-<p>The functionality of Jinja doesn&rsquo;t end with macros; after all, it&rsquo;s a
+&lt;p&gt;The functionality of Jinja doesn&amp;rsquo;t end with macros; after all, it&amp;rsquo;s a
 full-fledged template engine with many
-<a href="http://jinja.pocoo.org/docs/templates/#list-of-builtin-filters">built-in filters</a>
+&lt;a href=&quot;http://jinja.pocoo.org/docs/templates/#list-of-builtin-filters&quot;&gt;built-in filters&lt;/a&gt;
 and a powerful (if complicated)
-<a href="http://jinja.pocoo.org/docs/extensions/">extension system</a>.
-This article just covered the functionality that I&rsquo;ve found useful, but Jinja
-can surely adapt to meet whatever your needs are.</p>
-]]></content>
+&lt;a href=&quot;http://jinja.pocoo.org/docs/extensions/&quot;&gt;extension system&lt;/a&gt;.
+This article just covered the functionality that I&amp;rsquo;ve found useful, but Jinja
+can surely adapt to meet whatever your needs are.&lt;/p&gt;
+</content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Waiting for Octopress 2.0's Successor]]></title>
+    <title type="html">Waiting for Octopress 2.0&#39;s Successor</title>
     <link href="http://sasheldon.com/blog/2013/07/07/waiting-for-octopress-2-successor/"/>
     <updated>2013-07-07T02:24:00-07:00</updated>
     <id>http://sasheldon.com/blog/2013/07/07/waiting-for-octopress-2-successor</id>
-    <content type="html"><![CDATA[<p>The next version of <a href="http://octopress.org/">Octopress</a> is packed full of
-<a href="https://gist.github.com/imathis/e9c2ee2406e93c4269e8">awesome improvements</a>.
+    <content type="html">&lt;p&gt;The next version of &lt;a href=&quot;http://octopress.org/&quot;&gt;Octopress&lt;/a&gt; is packed full of
+&lt;a href=&quot;https://gist.github.com/imathis/e9c2ee2406e93c4269e8&quot;&gt;awesome improvements&lt;/a&gt;.
 Octopress will change massively to be more extensible and customizable while
 still being as powerful and easy as ever; as such, this update has been in
-development for a long time, still not having released officially.</p>
+development for a long time, still not having released officially.&lt;/p&gt;
 
-<p>In anticipation of this update, I periodically check the
-<a href="https://twitter.com/octopress">Octopress Twitter</a> for news and have
+&lt;p&gt;In anticipation of this update, I periodically check the
+&lt;a href=&quot;https://twitter.com/octopress&quot;&gt;Octopress Twitter&lt;/a&gt; for news and have
 encountered many release date estimates. Estimating time for development is
-<a href="http://blog.hut8labs.com/coding-fast-and-slow.html">notoriously difficult</a>,
-so I&rsquo;ve compiled a lighthearted Twitter history of Octopress 2.0&rsquo;s
-successor and its estimated release dates.</p>
+&lt;a href=&quot;http://blog.hut8labs.com/coding-fast-and-slow.html&quot;&gt;notoriously difficult&lt;/a&gt;,
+so I&amp;rsquo;ve compiled a lighthearted Twitter history of Octopress 2.0&amp;rsquo;s
+successor and its estimated release dates.&lt;/p&gt;
 
-<!-- more -->
+&lt;!-- more --&gt;
 
-<p>The follow-up to Octopress 2.0 was originally envisioned as a much smaller set
+&lt;p&gt;The follow-up to Octopress 2.0 was originally envisioned as a much smaller set
 of changes to be called Octopress 2.1. The release of this version was first
-mentioned in March of 2012 as &ldquo;soon&rdquo;.</p>
+mentioned in March of 2012 as &amp;ldquo;soon&amp;rdquo;.&lt;/p&gt;
 
-<div class='embed tweet'><blockquote class="twitter-tweet" data-conversation="none"><p><a href="https://twitter.com/apcarballo">@apcarballo</a> Glad to help. That will be shipping in 2.1 (soon).</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/184723922556686337">March 27, 2012</a></blockquote>
-<script async src="http://sasheldon.com//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+&lt;div class=&#39;embed tweet&#39;&gt;&lt;blockquote class=&quot;twitter-tweet&quot; data-conversation=&quot;none&quot;&gt;&lt;p&gt;&lt;a href=&quot;https://twitter.com/apcarballo&quot;&gt;@apcarballo&lt;/a&gt; Glad to help. That will be shipping in 2.1 (soon).&lt;/p&gt;&amp;mdash; Octopress (@octopress) &lt;a href=&quot;https://twitter.com/octopress/statuses/184723922556686337&quot;&gt;March 27, 2012&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
 
-<p>By May, the outlook for Octopress 2.1 was looking good enough that its release
-seemed imminent, within a &ldquo;day or two&rdquo;.</p>
+&lt;p&gt;By May, the outlook for Octopress 2.1 was looking good enough that its release
+seemed imminent, within a &amp;ldquo;day or two&amp;rdquo;.&lt;/p&gt;
 
-<div class='embed tweet'><blockquote class="twitter-tweet" data-conversation="none"><p><a href="https://twitter.com/jameslutley">@jameslutley</a> Beautiful work. Have you tried 2.1 yet? I&rsquo;m hoping to release it in the next day or two.</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/205288498591309824">May 23, 2012</a></blockquote>
-<script async src="http://sasheldon.com//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+&lt;div class=&#39;embed tweet&#39;&gt;&lt;blockquote class=&quot;twitter-tweet&quot; data-conversation=&quot;none&quot;&gt;&lt;p&gt;&lt;a href=&quot;https://twitter.com/jameslutley&quot;&gt;@jameslutley&lt;/a&gt; Beautiful work. Have you tried 2.1 yet? I&amp;rsquo;m hoping to release it in the next day or two.&lt;/p&gt;&amp;mdash; Octopress (@octopress) &lt;a href=&quot;https://twitter.com/octopress/statuses/205288498591309824&quot;&gt;May 23, 2012&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
 
-<p>But it was not to be! A week and a half later, in June, 2.1 was still looking
-as though it would release &ldquo;soon&rdquo;.</p>
+&lt;p&gt;But it was not to be! A week and a half later, in June, 2.1 was still looking
+as though it would release &amp;ldquo;soon&amp;rdquo;.&lt;/p&gt;
 
-<div class='embed tweet'><blockquote class="twitter-tweet" data-conversation="none"><p><a href="https://twitter.com/ScottMuc">@ScottMuc</a> 2.1 should be releasing soon. It has lots of goodies and fixes.</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/209408163571707905">June 3, 2012</a></blockquote>
-<script async src="http://sasheldon.com//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+&lt;div class=&#39;embed tweet&#39;&gt;&lt;blockquote class=&quot;twitter-tweet&quot; data-conversation=&quot;none&quot;&gt;&lt;p&gt;&lt;a href=&quot;https://twitter.com/ScottMuc&quot;&gt;@ScottMuc&lt;/a&gt; 2.1 should be releasing soon. It has lots of goodies and fixes.&lt;/p&gt;&amp;mdash; Octopress (@octopress) &lt;a href=&quot;https://twitter.com/octopress/statuses/209408163571707905&quot;&gt;June 3, 2012&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
 
-<p>Next month, July, enough progress had been made to offer a new estimate that
-2.1 would release in a &ldquo;week or two&rdquo;.</p>
+&lt;p&gt;Next month, July, enough progress had been made to offer a new estimate that
+2.1 would release in a &amp;ldquo;week or two&amp;rdquo;.&lt;/p&gt;
 
-<div class='embed tweet'><blockquote class="twitter-tweet"><p><a href="https://twitter.com/fannheyward">@fannheyward</a> It&rsquo;ll be released once I finish a couple of remaining features. I&rsquo;m hoping that&rsquo;ll be in the next week or two.</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/219804276447379456">July 2, 2012</a></blockquote>
-<script async src="http://sasheldon.com//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+&lt;div class=&#39;embed tweet&#39;&gt;&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;&lt;a href=&quot;https://twitter.com/fannheyward&quot;&gt;@fannheyward&lt;/a&gt; It&amp;rsquo;ll be released once I finish a couple of remaining features. I&amp;rsquo;m hoping that&amp;rsquo;ll be in the next week or two.&lt;/p&gt;&amp;mdash; Octopress (@octopress) &lt;a href=&quot;https://twitter.com/octopress/statuses/219804276447379456&quot;&gt;July 2, 2012&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
 
-<p>It was not until 4 months later in November that the next estimation was made
-that 2.1 would be released before the end of 2012.</p>
+&lt;p&gt;It was not until 4 months later in November that the next estimation was made
+that 2.1 would be released before the end of 2012.&lt;/p&gt;
 
-<div class='embed tweet'><blockquote class="twitter-tweet"><p><a href="https://twitter.com/sebdah">@sebdah</a> I can’t give a solid date right now. But I expect to have a release before years end.</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/268762061197148161">November 14, 2012</a></blockquote>
-<script async src="http://sasheldon.com//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+&lt;div class=&#39;embed tweet&#39;&gt;&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;&lt;a href=&quot;https://twitter.com/sebdah&quot;&gt;@sebdah&lt;/a&gt; I can’t give a solid date right now. But I expect to have a release before years end.&lt;/p&gt;&amp;mdash; Octopress (@octopress) &lt;a href=&quot;https://twitter.com/octopress/statuses/268762061197148161&quot;&gt;November 14, 2012&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
 
-<p>With an acknowledgement of the difficulty in estimating, by January 2013
-Octopress 2.1 was predicted to be completed &ldquo;soon&rdquo;.</p>
+&lt;p&gt;With an acknowledgement of the difficulty in estimating, by January 2013
+Octopress 2.1 was predicted to be completed &amp;ldquo;soon&amp;rdquo;.&lt;/p&gt;
 
-<div class='embed tweet'><blockquote class="twitter-tweet"><p><a href="https://twitter.com/vassie">@vassie</a> We&rsquo;re working on an asset pipeline, fixing any critical bugs and setting up a migration for 2.0. It&rsquo;s hard to estimate, but soon.</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/289446177575948289">January 10, 2013</a></blockquote>
-<script async src="http://sasheldon.com//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+&lt;div class=&#39;embed tweet&#39;&gt;&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;&lt;a href=&quot;https://twitter.com/vassie&quot;&gt;@vassie&lt;/a&gt; We&amp;rsquo;re working on an asset pipeline, fixing any critical bugs and setting up a migration for 2.0. It&amp;rsquo;s hard to estimate, but soon.&lt;/p&gt;&amp;mdash; Octopress (@octopress) &lt;a href=&quot;https://twitter.com/octopress/statuses/289446177575948289&quot;&gt;January 10, 2013&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
 
-<p>In February, it seemed that the eagerly awaited update would be finalized
-within a &ldquo;month or two&rdquo;.</p>
+&lt;p&gt;In February, it seemed that the eagerly awaited update would be finalized
+within a &amp;ldquo;month or two&amp;rdquo;.&lt;/p&gt;
 
-<div class='embed tweet'><blockquote class="twitter-tweet"><p><a href="https://twitter.com/inti_minty">@inti_minty</a> right now it’s not entirely stable. We’re working on a few large features then we’ll release it in the next month or two.</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/300027017397665793">February 8, 2013</a></blockquote>
-<script async src="http://sasheldon.com//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+&lt;div class=&#39;embed tweet&#39;&gt;&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;&lt;a href=&quot;https://twitter.com/inti_minty&quot;&gt;@inti_minty&lt;/a&gt; right now it’s not entirely stable. We’re working on a few large features then we’ll release it in the next month or two.&lt;/p&gt;&amp;mdash; Octopress (@octopress) &lt;a href=&quot;https://twitter.com/octopress/statuses/300027017397665793&quot;&gt;February 8, 2013&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
 
-<p>With the tremendous amount of effort that had gone into the update, it seemed
+&lt;p&gt;With the tremendous amount of effort that had gone into the update, it seemed
 more fitting that the major version change, so it would instead be released as
-<a href="https://twitter.com/octopress/status/306972342582657026">Octopress 3.0</a>.</p>
+&lt;a href=&quot;https://twitter.com/octopress/status/306972342582657026&quot;&gt;Octopress 3.0&lt;/a&gt;.&lt;/p&gt;
 
-<p>By March, this 3.0 update&rsquo;s release date was further clarified to &ldquo;mid April&rdquo;.</p>
+&lt;p&gt;By March, this 3.0 update&amp;rsquo;s release date was further clarified to &amp;ldquo;mid April&amp;rdquo;.&lt;/p&gt;
 
-<div class='embed tweet'><blockquote class="twitter-tweet"><p><a href="https://twitter.com/adadslife">@adadslife</a> Right now, 2.1 is under pretty active development. We’re shooting for a mid April release, so it might be a good idea to wait.</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/314553072535887872">March 21, 2013</a></blockquote>
-<script async src="http://sasheldon.com//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+&lt;div class=&#39;embed tweet&#39;&gt;&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;&lt;a href=&quot;https://twitter.com/adadslife&quot;&gt;@adadslife&lt;/a&gt; Right now, 2.1 is under pretty active development. We’re shooting for a mid April release, so it might be a good idea to wait.&lt;/p&gt;&amp;mdash; Octopress (@octopress) &lt;a href=&quot;https://twitter.com/octopress/statuses/314553072535887872&quot;&gt;March 21, 2013&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
 
-<p>My mid April, though, it seemed more likely that the release would occur
-later in the month.</p>
+&lt;p&gt;My mid April, though, it seemed more likely that the release would occur
+later in the month.&lt;/p&gt;
 
-<div class='embed tweet'><blockquote class="twitter-tweet"><p><a href="https://twitter.com/kaushikgopal">@kaushikgopal</a> I’d hold off for the next release. It’s in flux right now. We’re hoping for late April.</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/323868125709864960">April 15, 2013</a></blockquote>
-<script async src="http://sasheldon.com//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+&lt;div class=&#39;embed tweet&#39;&gt;&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;&lt;a href=&quot;https://twitter.com/kaushikgopal&quot;&gt;@kaushikgopal&lt;/a&gt; I’d hold off for the next release. It’s in flux right now. We’re hoping for late April.&lt;/p&gt;&amp;mdash; Octopress (@octopress) &lt;a href=&quot;https://twitter.com/octopress/statuses/323868125709864960&quot;&gt;April 15, 2013&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
 
-<p>Although an April release had been missed, by late May it seemed that there
-would be a 3.0 release candidate available within a &ldquo;month or so&rdquo;.</p>
+&lt;p&gt;Although an April release had been missed, by late May it seemed that there
+would be a 3.0 release candidate available within a &amp;ldquo;month or so&amp;rdquo;.&lt;/p&gt;
 
-<div class='embed tweet'><blockquote class="twitter-tweet"><p>@salout_de We’re currently working through getting some core functionality working, but I’ll be announcing an RC in the next month or so.</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/339044122801360896">May 27, 2013</a></blockquote>
-<script async src="http://sasheldon.com//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+&lt;div class=&#39;embed tweet&#39;&gt;&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;@salout_de We’re currently working through getting some core functionality working, but I’ll be announcing an RC in the next month or so.&lt;/p&gt;&amp;mdash; Octopress (@octopress) &lt;a href=&quot;https://twitter.com/octopress/statuses/339044122801360896&quot;&gt;May 27, 2013&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
 
-<p>At the end of June, the ambitious Octopress 3.0 was still predicted to arrive
-during the summer.</p>
+&lt;p&gt;At the end of June, the ambitious Octopress 3.0 was still predicted to arrive
+during the summer.&lt;/p&gt;
 
-<div class='embed tweet'><blockquote class="twitter-tweet"><p><a href="https://twitter.com/atlgeek007">@atlgeek007</a> Going well. We’re targeting a summer release, still lots to do though. :)</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/351439257996505088">June 30, 2013</a></blockquote>
-<script async src="http://sasheldon.com//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+&lt;div class=&#39;embed tweet&#39;&gt;&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;&lt;a href=&quot;https://twitter.com/atlgeek007&quot;&gt;@atlgeek007&lt;/a&gt; Going well. We’re targeting a summer release, still lots to do though. :)&lt;/p&gt;&amp;mdash; Octopress (@octopress) &lt;a href=&quot;https://twitter.com/octopress/statuses/351439257996505088&quot;&gt;June 30, 2013&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
 
-<p>And so we still anticipate the official release of this update that will
+&lt;p&gt;And so we still anticipate the official release of this update that will
 redefine Octopress. This does showcase a neat benefit of open source;
 despite not being officilly released, you can try out 3.0 and closely follow
-its development <a href="https://github.com/imathis/octopress/tree/2.1">on GitHub</a>.</p>
+its development &lt;a href=&quot;https://github.com/imathis/octopress/tree/2.1&quot;&gt;on GitHub&lt;/a&gt;.&lt;/p&gt;
 
-<p>Regardless of Octopress&#39; history of imprecise estimates, I have great faith in
-its developers to deliver such an ambitious update. I&rsquo;ll keep an eye out on
-Twitter for an announcement that Octopress 3.0 has finally been perfected!</p>
+&lt;p&gt;Regardless of Octopress&amp;#39; history of imprecise estimates, I have great faith in
+its developers to deliver such an ambitious update. I&amp;rsquo;ll keep an eye out on
+Twitter for an announcement that Octopress 3.0 has finally been perfected!&lt;/p&gt;
 
-<hr>
+&lt;hr&gt;
 
-<p><strong>Update (Aug 18, 2013):</strong>
-By the end of July, there was still &ldquo;a ways to go&rdquo; on Octopress 3.0, but
+&lt;p&gt;&lt;strong&gt;Update (Aug 18, 2013):&lt;/strong&gt;
+By the end of July, there was still &amp;ldquo;a ways to go&amp;rdquo; on Octopress 3.0, but
 version 2.1 of Octopress was resurrected as a smaller, incremental upgrade on
-the way to Octopress 3.0.</p>
+the way to Octopress 3.0.&lt;/p&gt;
 
-<div class='embed tweet'><blockquote class="twitter-tweet"><p><a href="https://twitter.com/atlgeek007">@atlgeek007</a> we still have a ways to go. Right now I’m working on 2.1 which adds support for Jekyll 1.0 and uses Guard for watching files.</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/361299670313615360">July 28, 2013</a></blockquote>
-<script async src="http://sasheldon.com//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+&lt;div class=&#39;embed tweet&#39;&gt;&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;&lt;a href=&quot;https://twitter.com/atlgeek007&quot;&gt;@atlgeek007&lt;/a&gt; we still have a ways to go. Right now I’m working on 2.1 which adds support for Jekyll 1.0 and uses Guard for watching files.&lt;/p&gt;&amp;mdash; Octopress (@octopress) &lt;a href=&quot;https://twitter.com/octopress/statuses/361299670313615360&quot;&gt;July 28, 2013&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
 
-<hr>
+&lt;hr&gt;
 
-<p><strong>Update (Feb 15, 2014):</strong>
-In September, Octopress 3.0 still wasn&rsquo;t ready for release, but it seemed
+&lt;p&gt;&lt;strong&gt;Update (Feb 15, 2014):&lt;/strong&gt;
+In September, Octopress 3.0 still wasn&amp;rsquo;t ready for release, but it seemed
 mature enough that a blog post was promised detailing the roadmap leading up
-to its release.</p>
+to its release.&lt;/p&gt;
 
-<div class='embed tweet'><blockquote class="twitter-tweet"><p><a href="https://twitter.com/brian_pearce">@brian_pearce</a> We’ve finally nailed it down. Blog post coming soon after <a href="https://twitter.com/imathis">@imathis</a> gets back from BlendConf.</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/375377966727192576">September 4, 2013</a></blockquote>
-<script async src="http://sasheldon.com//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+&lt;div class=&#39;embed tweet&#39;&gt;&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;&lt;a href=&quot;https://twitter.com/brian_pearce&quot;&gt;@brian_pearce&lt;/a&gt; We’ve finally nailed it down. Blog post coming soon after &lt;a href=&quot;https://twitter.com/imathis&quot;&gt;@imathis&lt;/a&gt; gets back from BlendConf.&lt;/p&gt;&amp;mdash; Octopress (@octopress) &lt;a href=&quot;https://twitter.com/octopress/statuses/375377966727192576&quot;&gt;September 4, 2013&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
 
-<p>Despite it originally being anticipated that this blog post would be published
-<a href="https://twitter.com/octopress/statuses/381781655385812992">within a week</a>,
-by mid October there were still details to be ironed out.</p>
+&lt;p&gt;Despite it originally being anticipated that this blog post would be published
+&lt;a href=&quot;https://twitter.com/octopress/statuses/381781655385812992&quot;&gt;within a week&lt;/a&gt;,
+by mid October there were still details to be ironed out.&lt;/p&gt;
 
-<div class='embed tweet'><blockquote class="twitter-tweet"><p><a href="https://twitter.com/breerly">@breerly</a> There’s a draft. Still ironing out some details. :)</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/392425128442994688">October 21, 2013</a></blockquote>
-<script async src="http://sasheldon.com//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+&lt;div class=&#39;embed tweet&#39;&gt;&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;&lt;a href=&quot;https://twitter.com/breerly&quot;&gt;@breerly&lt;/a&gt; There’s a draft. Still ironing out some details. :)&lt;/p&gt;&amp;mdash; Octopress (@octopress) &lt;a href=&quot;https://twitter.com/octopress/statuses/392425128442994688&quot;&gt;October 21, 2013&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
 
-<p>By the new year, it appeared that version 3.0 was still &ldquo;a couple of months&rdquo;
-away from being released.</p>
+&lt;p&gt;By the new year, it appeared that version 3.0 was still &amp;ldquo;a couple of months&amp;rdquo;
+away from being released.&lt;/p&gt;
 
-<div class='embed tweet'><blockquote class="twitter-tweet"><p><a href="https://twitter.com/kartikluke">@kartikluke</a> The update is coming with Octopress 3.0 (which is probably a couple of months out) you should be able to migrate content easily.</p>&mdash; Octopress (@octopress) <a href="https://twitter.com/octopress/statuses/420592959672029184">January 7, 2014</a></blockquote>
-<script async src="http://sasheldon.com//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+&lt;div class=&#39;embed tweet&#39;&gt;&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;&lt;a href=&quot;https://twitter.com/kartikluke&quot;&gt;@kartikluke&lt;/a&gt; The update is coming with Octopress 3.0 (which is probably a couple of months out) you should be able to migrate content easily.&lt;/p&gt;&amp;mdash; Octopress (@octopress) &lt;a href=&quot;https://twitter.com/octopress/statuses/420592959672029184&quot;&gt;January 7, 2014&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
 
-<p>It also appears that the previously proposed version 2.1 was abandoned,
-so no new version is slated before Octopress 3.0.</p>
-]]></content>
+&lt;p&gt;It also appears that the previously proposed version 2.1 was abandoned,
+so no new version is slated before Octopress 3.0.&lt;/p&gt;
+</content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Octopress]]></title>
+    <title type="html">Octopress</title>
     <link href="http://sasheldon.com/blog/2012/11/15/octopress/"/>
     <updated>2012-11-15T22:14:00-08:00</updated>
     <id>http://sasheldon.com/blog/2012/11/15/octopress</id>
-    <content type="html"><![CDATA[<p>I really like git; if I could keep everything under version control, I would.
-I&rsquo;ve started writing all my papers in LaTeX instead of Word, not only because
-it&rsquo;s cleaner and can provide more control, but because then I can version
-control them. Hell, I&rsquo;ve even started keeping my Borderlands 2 game saves
-backed up in a git repository.</p>
+    <content type="html">&lt;p&gt;I really like git; if I could keep everything under version control, I would.
+I&amp;rsquo;ve started writing all my papers in LaTeX instead of Word, not only because
+it&amp;rsquo;s cleaner and can provide more control, but because then I can version
+control them. Hell, I&amp;rsquo;ve even started keeping my Borderlands 2 game saves
+backed up in a git repository.&lt;/p&gt;
 
-<p>Imagine my delight, then, when I discovered <a href="http://octopress.org/">Octopress</a>.
+&lt;p&gt;Imagine my delight, then, when I discovered &lt;a href=&quot;http://octopress.org/&quot;&gt;Octopress&lt;/a&gt;.
 Octopress is a framework that makes it really easy to generate a blog just from
 a set of markdown files that can be hosted on
-<a href="http://pages.github.com/">GitHub pages</a>. I&rsquo;ve already been using GitHub to
-host my personal website, and using it to host a blog would be pretty swell.</p>
+&lt;a href=&quot;http://pages.github.com/&quot;&gt;GitHub pages&lt;/a&gt;. I&amp;rsquo;ve already been using GitHub to
+host my personal website, and using it to host a blog would be pretty swell.&lt;/p&gt;
 
-<p>I&rsquo;ve worked through the documentation to get a blog up and running; after all,
+&lt;p&gt;I&amp;rsquo;ve worked through the documentation to get a blog up and running; after all,
 I have homework to be working on right now, so I need to find something else to
 do. Nevermind the fact that I never actually put in the effort to blog or can
 come up with interesting topics; if nothing else, this was just an exercise to
 test out Octopress and to become more familiar with the features of GitHub
-pages.</p>
-]]></content>
+pages.&lt;/p&gt;
+</content>
   </entry>
   
 </feed>
