@@ -5,6 +5,11 @@
   <div id="main">
     <div id="content">
       {{ content }}
+      {% unless page.sidebar == false %}
+      <aside class="sidebar">
+        {% include asides/recent_posts.html %}
+      </aside>
+      {% endunless %}
     </div>
   </div>
   <footer role="contentinfo">{% include footer.html %}</footer>
