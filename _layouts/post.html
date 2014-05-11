@@ -1,11 +1,11 @@
 ---
 layout: default
-single: true
 ---
 
 <div>
 <article class="hentry" role="article">
-  {% include article.html %}
+  {% include post/header.html %}
+  <div class="entry-content">{{ content }}</div>
   <footer>
     <p class="meta">
       {% include post/author.html %}

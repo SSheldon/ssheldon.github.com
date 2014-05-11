@@ -5,9 +5,14 @@ layout: default
 <div class="blog-index">
   {% assign index = true %}
   {% for post in paginator.posts %}
-  {% assign content = post.content %}
     <article>
-      {% include article.html %}
+      {% include post/header.html %}
+      <div class="entry-content">{{ post.excerpt }}</div>
+      {% if post.content != post.excerpt %}
+        <footer>
+          <a rel="full-article" href="{{ root_url }}{{ post.url }}">{{ site.excerpt_link }}</a>
+        </footer>
+      {% endif %}
     </article>
   {% endfor %}
   <div class="pagination">
