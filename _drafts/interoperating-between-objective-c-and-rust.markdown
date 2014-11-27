@@ -8,20 +8,28 @@ how to build a safe rust interface for this?
 
 # Calling Objective-C methods
 
-start with calling a method:
+If we want to interoperate with Objective-C from rust, one of the first things
+we'll need to be able to do is call methods on Objective-C object.
+For example, let's consider this example where we have an `NSString` pointer
+`string`:
 
 ``` objc
 const char *c_string = [string UTF8String];
 ```
 
-translates to:
+Since the Objective-C runtime actually has a C interface, we can invoke methods
+in C using the [`objc_msgSend`](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ObjCRuntimeRef/index.html#//apple_ref/c/func/objc_msgSend)
+function. Our previous Objective-C code is equivalent to this C:
 
 ``` c
 SEL selector = sel_registerName("UTF8String");
-const char *c_string = objc_msgSend(string, selector);
+const char *c_string = (const char *)objc_msgSend(string, selector);
 ```
 
-we can do this in rust:
+Now that we see the C code, the translation into Rust is pretty straightforward
+using Rust's [Foreign Function Interface](http://doc.rust-lang.org/guide-ffi.html).
+Once we've set up an interface for the functions of the Objective-C runtime,
+we can write:
 
 ``` rust
 let selector = "UTF8String".with_c_str(|name| unsafe {
@@ -32,11 +40,33 @@ let c_string = unsafe {
 };
 ```
 
-No problem, but we can make it better with a macro:
+Nice! But this is Rust, we can make this better with
+[Rust's powerful macros](http://doc.rust-lang.org/guide-macros.html).
+We can even support methods with arguments using a macro like this:
 
 ``` rust
-let c_string = unsafe { msg_send![string UTF8String] as *const c_char };
+macro_rules! msg_send(
+    ($obj:expr $($name:ident : $arg:expr)+) => ({
+        let sel_name = concat!($(stringify!($name), ':'),+);
+        let sel = sel_name.with_c_str(|name| {
+            sel_registerName(name)
+        });
+        objc_msgSend($obj, sel $(,$arg)+)
+    });
+)
 ```
+
+By adding a special case to our macro for the no-argument case, we can rewrite
+our example as:
+
+``` rust
+let c_string = unsafe {
+    msg_send![string UTF8String] as *const c_char
+};
+```
+
+And so we have a convenient way to call Objective-C methods with a syntax that
+feels comfortable for Objective-C developers.
 
 # Representing Objective-C objects
 
