@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Interoperating Between Objective-C and Rust"
+date: 2014-11-28T03:52:17-06:00
 ---
 
 Since the Objective-C runtime exposes a C interface, it's actually pretty easy
