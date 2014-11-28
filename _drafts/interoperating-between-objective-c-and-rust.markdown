@@ -163,7 +163,7 @@ becoming "fat" two-word references.
 
 ## Why not just wrap the pointer?
 
-If an NSString can never exist on the stack, why don't we just prevent that
+If an `NSString` can never exist on the stack, why don't we just prevent that
 by making a struct that wraps a pointer?
 
 ``` rust
@@ -172,9 +172,9 @@ struct NSString {
 }
 ```
 
-Let's consider the case of an NSArray of NSStrings.
-If we want to get a string from the array, our NSArray can't return references
-to this NSString struct:
+Let's consider the case of an `NSArray` of `NSString`s.
+If we want to get a string from the array, our array can't return references
+to this `NSString` struct:
 
 ``` rust
 fn object_at(array: &NSArray, index: uint) -> &NSString {
@@ -186,14 +186,14 @@ fn object_at(array: &NSArray, index: uint) -> &NSString {
 }
 ```
 
-Instead, we'd have to return this NSString struct by value, and then it's not
-tied to the lifetime of our array at all.
-This would allow us to get multiple copies of an NSString from our array and
+Instead, we'd have to return this `NSString` struct by value, and then it's
+not tied to the lifetime of our array at all.
+This would allow us to get multiple copies of an `NSString` from our array and
 try to mutate them simultaneously, which would cause a race condition.
 To fix this we'd need to add a lifetime parameter to indicate that the string
 is only valid as long as the array is mutably borrowed.
 Not all strings should have this lifetime parameter, though, so we'd actually
-end up needing 3 different NSString representations:
+end up needing 3 different `NSString` representations:
 an owned string (`NSString`),
 one representing an immutable borrow (`NSStringRef<'a>`),
 and one representing a mutable borrow (`NSStringRefMut<'a>`).
@@ -205,7 +205,7 @@ structs in Rust, it makes for a much more usable API.
 
 # A safe Rust interface
 
-Now that we've got a struct for representing our NSString, we can implement
+Now that we've got a struct for representing our `NSString`, we can implement
 some methods on it. For example, we can wrap the
 [`UTF8String`](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/#//apple_ref/occ/instp/NSString/UTF8String)
 method using idiomatic Rust types:
@@ -234,9 +234,9 @@ us to verify this.
 
 ## Inheritance
 
-What happens when we decide to implement a safe interface for NSMutableString?
-Since NSMutableString inherits from NSString, it should also have this method,
-but Rust structs don't allow inheritance.
+What happens when we decide to implement a safe interface for `NSMutableString`?
+Since `NSMutableString` inherits from `NSString`, it should also have this
+method, but Rust structs don't allow inheritance.
 Instead of just duplicating the method, we can implement it in a trait:
 
 ``` rust
@@ -252,25 +252,28 @@ trait INSString {
 impl INSString for NSString { }
 ```
 
-Now if we just implement INSString for NSMutableString, it'll get this
+Now if we just implement `INSString` for `NSMutableString`, it'll get this
 functionality, too.
 This trait is also useful for generic programming; with it, we can write
-functions that take any type that implements the INSString trait and will
-accept either an NSString or an NSMutableString.
+functions that take any type that implements the `INSString` trait and will
+accept either an `NSString` or an `NSMutableString`.
 
 There is a drawback to this approach, though: users could implement this trait
 for any type inappropriately.
 Since it doesn't require any other methods implemented, I could, in safe code,
-just implement the INSString trait for int and then have undefined behavior
-by sending Objective-C messages on an int.
+just implement the `INSString` trait for `int` and then have undefined
+behavior by sending Objective-C messages on an `int`.
 I don't know of a way to prevent this without losing the convenience of
 only declaring these methods once.
 
 # Objective-C memory management
 
-So great, at this point we can call methods from an NSString reference, but where does this reference come from? What's its lifetime?
+Great, at this point we can call methods from an `NSString` reference,
+but where does this reference come from? What's its lifetime?
 
-Our Objective-C objects must be retained while we're using them and released when we're done with them, so this is a great fit for creating a custom smart pointer in rust:
+Our Objective-C objects must be retained while we're using them and released
+when we're done with them, so this is a great fit for a custom smart pointer in
+Rust:
 
 ``` rust
 struct Id<T> {
@@ -279,7 +282,7 @@ struct Id<T> {
 
 impl<T> Drop for Id<T> {
     fn drop(&mut self) {
-        unsafe { msg_send![ptr release]; }
+        unsafe { msg_send![self.ptr release]; }
     }
 }
 
@@ -307,23 +310,67 @@ impl NSString {
 }
 ```
 
-This finally allows us to work with an NSString with no more unsafe blocks:
+This finally allows us to work with an `NSString` without any unsafe blocks!
 
 ``` rust
 let string = NSString::new();
 println!("{}", string.as_str());
 ```
 
-What if we have an object we want to mutate? We can implement DerefMut for Id, but sometimes we could have an object that we want to retain but that is shared, so it isn't safe to mutate. Similarly, we can implement Clone for Id by retaining the pointer and creating another Id, but if we allow you to mutably dereference the clone, we'd end up with aliasing mut references.
+When the `Id` goes out of scope, the object will automatically be released.
+With just a few lines of Rust code, we've implemented our own simplified
+version of Objective-C's automatic reference counting.
 
-The way I chose to resolve this was by adding a phantom type param to Id, which is either Owned or Shared. Then, we can implement Clone for a Shared Id, and we can implement DerefMut for an Owned Id. This ensures that we won't have aliasing mut references. We can also allow an Owned Id to be "downgraded" to a Shared Id and then cloned.
+## Mutability
 
-Thinking about Objective-C in terms of Rust's memory semantics leads to some interesting questions, and these phantom types will be used again. For example, unlike a Vec in Rust, an NSArray can be copied without copying all of its elements. From this, we come to realize that an NSArray can have elements that are either shared or owned, and only an array of shared items can be copied; otherwise we'd end up with two arrays that think they own the items and could have aliasing mut references.
+Sometimes we may want to retain a shared object, but it wouldn't be safe to do
+this if we implement
+[`DerefMut`](http://doc.rust-lang.org/std/ops/trait.DerefMut.html) for any
+`Id`, because if it is mutably dereferenced in multiple places we'd have
+aliasing muts. Similarly, it'd be safe to implement
+[`Clone`](http://doc.rust-lang.org/std/clone/trait.Clone.html)
+when the object is shared, but an `Id` that implements `DerefMut` shouldn't
+implement `Clone`.
 
---- other neat things ---
+I chose to resolve this was by adding a phantom type parameter to `Id` which is
+either `Owned` or `Shared`. Then, we can implement `Clone` only for a shared
+`Id`, and we can implement `DerefMut` only for an owned `Id`.
 
-adding generics to objc?
-weak refs
-declaring classes
-idiomatic nsenumerator
+``` rust
+enum Owned { }
+enum Shared { }
 
+impl<T> Clone for Id<T, Shared> {
+    fn clone(&self) -> Id<T, Shared> {
+        unsafe { msg_send![self.ptr retain]; }
+        Id { ptr: self.ptr }
+    }
+}
+
+impl<T> DerefMut<T> for Id<T, Owned> {
+    fn deref_mut(&mut self) -> &mut T {
+        unsafe { &mut *self.ptr }
+    }
+}
+```
+
+We can also allow an owned `Id` to be "downgraded" to a shared `Id`
+and then cloned.
+
+``` rust
+impl<T> Id<T, Owned> {
+    fn share(self) -> Id<T, Shared> {
+        Id { ptr: self.ptr }
+    }
+}
+```
+
+Thinking about Objective-C in terms of Rust's memory semantics leads to some
+interesting questions, and these phantom types will be used again.
+For example, unlike a `Vec` in Rust, an `NSArray` can be copied without
+copying all of its elements.
+If we consider the array to own its objects, this isn't safe because it could create aliasing mut references.
+However, it's totally fine if the array's objects are shared.
+We can resolve this by using an approach similar to `Id`:
+if our `NSArray` has a type param for `Owned` or `Shared`,
+we only implement copying for the shared array.
