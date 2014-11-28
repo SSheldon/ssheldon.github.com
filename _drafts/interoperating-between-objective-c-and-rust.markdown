@@ -3,14 +3,24 @@ layout: post
 title: "Interoperating Between Objective-C and Rust"
 ---
 
-Rust can interoperate with objc via the objc runtime
-how to build a safe rust interface for this?
+Since the Objective-C runtime exposes a C interface, it's actually pretty easy
+to interact with from Rust.
+Over the past months I've worked on Rust wrapper around the
+[Objective-C runtime](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ObjCRuntimeRef/index.html)
+and some classes of the
+[Foundation framework](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/ObjC_classic/index.html),
+creatively called [rust-objc](https://github.com/SSheldon/rust-objc/).
+I had hoped to learn more about Rust's foreign function interface and the
+Objective-C runtime, but along the way I also encountered some interesting
+challenges in API design.
 
-# Calling Objective-C methods
+<!-- more -->
 
-If we want to interoperate with Objective-C from rust, one of the first things
-we'll need to be able to do is call methods on Objective-C object.
-For example, let's consider this example where we have an `NSString` pointer
+## Calling Objective-C methods
+
+If we want to interact with Objective-C from Rust, one of the first things
+we'll need to be able to do is call methods on Objective-C objects.
+For example, let's consider this example where we have an `NSString` pointer,
 `string`:
 
 ``` objc
@@ -27,7 +37,7 @@ const char *c_string = (const char *)objc_msgSend(string, selector);
 ```
 
 Now that we see the C code, the translation into Rust is pretty straightforward
-using Rust's [Foreign Function Interface](http://doc.rust-lang.org/guide-ffi.html).
+using [Rust's foreign function interface](http://doc.rust-lang.org/guide-ffi.html).
 Once we've set up an interface for the functions of the Objective-C runtime,
 we can write:
 
@@ -68,7 +78,7 @@ let c_string = unsafe {
 And so we have a convenient way to call Objective-C methods with a syntax that
 feels comfortable for Objective-C developers.
 
-# Representing Objective-C objects
+## Representing Objective-C objects
 
 In our previous examples, we've been working with a variable named `string`,
 but what is the type of this variable? Well, in Objective-C it'd be declared
@@ -121,7 +131,7 @@ let string: &NSString;
 let string_on_stack = *string;
 ```
 
-This happens because the rust compiler sees that our enum has no fields that
+This happens because the Rust compiler sees that our enum has no fields that
 can't be copied, and therefore infers that our enum is copyable as well.
 To solve this, we must use the
 [`NoCopy`](http://doc.rust-lang.org/std/kinds/marker/struct.NoCopy.html) marker:
@@ -137,10 +147,10 @@ cannot construct an `NSString` themselves. As long as we don't construct an
 `NSString` on the stack in our module, there will be no way in safe code for
 users to end up with a stack-allocated `NSString`.
 
-## Drawbacks of this representation
+### Drawbacks of this representation
 
 This isn't a perfect solution, because even if there's no way to get a
-stack-allocated `NSString`, the compiler will stil accept definitions like:
+stack-allocated `NSString`, the compiler will still accept definitions like:
 
 ``` rust
 let string: NSString;
@@ -161,7 +171,7 @@ the compiler would disallow these types as local variables, but unfortunately
 it doesn't seem possible to have an unsized type without all references to it
 becoming "fat" two-word references.
 
-## Why not just wrap the pointer?
+### Why not just wrap the pointer?
 
 If an `NSString` can never exist on the stack, why don't we just prevent that
 by making a struct that wraps a pointer?
@@ -203,7 +213,7 @@ developers.
 I felt that, despite the imperfections of representing Objective-C objects as
 structs in Rust, it makes for a much more usable API.
 
-# A safe Rust interface
+## A safe Rust interface
 
 Now that we've got a struct for representing our `NSString`, we can implement
 some methods on it. For example, we can wrap the
@@ -232,7 +242,7 @@ We've assumed that as long as the string isn't mutated, the internal pointer is
 still valid, but since Foundation is closed source there isn't really a way for
 us to verify this.
 
-## Inheritance
+### Inheritance
 
 What happens when we decide to implement a safe interface for `NSMutableString`?
 Since `NSMutableString` inherits from `NSString`, it should also have this
@@ -266,7 +276,7 @@ behavior by sending Objective-C messages on an `int`.
 I don't know of a way to prevent this without losing the convenience of
 only declaring these methods once.
 
-# Objective-C memory management
+## Objective-C memory management
 
 Great, at this point we can call methods from an `NSString` reference,
 but where does this reference come from? What's its lifetime?
@@ -319,15 +329,15 @@ println!("{}", string.as_str());
 
 When the `Id` goes out of scope, the object will automatically be released.
 With just a few lines of Rust code, we've implemented our own simplified
-version of Objective-C's automatic reference counting.
+version of [Objective-C's automatic reference counting](http://clang.llvm.org/docs/AutomaticReferenceCounting.html).
 
-## Mutability
+### Mutability
 
 Sometimes we may want to retain a shared object, but it wouldn't be safe to do
 this if we implement
 [`DerefMut`](http://doc.rust-lang.org/std/ops/trait.DerefMut.html) for any
 `Id`, because if it is mutably dereferenced in multiple places we'd have
-aliasing muts. Similarly, it'd be safe to implement
+aliasing mut references. Similarly, it'd be safe to implement
 [`Clone`](http://doc.rust-lang.org/std/clone/trait.Clone.html)
 when the object is shared, but an `Id` that implements `DerefMut` shouldn't
 implement `Clone`.
@@ -372,5 +382,5 @@ copying all of its elements.
 If we consider the array to own its objects, this isn't safe because it could create aliasing mut references.
 However, it's totally fine if the array's objects are shared.
 We can resolve this by using an approach similar to `Id`:
-if our `NSArray` has a type param for `Owned` or `Shared`,
+if our `NSArray` has a type parameter for `Owned` or `Shared`,
 we only implement copying for the shared array.
