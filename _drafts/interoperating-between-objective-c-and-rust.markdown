@@ -137,6 +137,8 @@ cannot construct an `NSString` themselves. As long as we don't construct an
 `NSString` on the stack in our module, there will be no way in safe code for
 users to end up with a stack-allocated `NSString`.
 
+## Drawbacks of this representation
+
 This isn't a perfect solution, because even if there's no way to get a
 stack-allocated `NSString`, the compiler will stil accept definitions like:
 
@@ -201,9 +203,12 @@ developers.
 I felt that, despite the imperfections of representing Objective-C objects as
 structs in Rust, it makes for a much more usable API.
 
-# Implementing a safe Rust interface
+# A safe Rust interface
 
-Now that we've got a struct for representing our NSString, we can implement some methods on it. For example, we can wrap the UTF8String method with idiomatic Rust types:
+Now that we've got a struct for representing our NSString, we can implement
+some methods on it. For example, we can wrap the
+[`UTF8String`](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/#//apple_ref/occ/instp/NSString/UTF8String)
+method using idiomatic Rust types:
 
 ``` rust
 impl NSString {
@@ -216,9 +221,23 @@ impl NSString {
 }
 ```
 
-Here we also see one of the challenges of wrapping objc with a safe interface. The pointer returned by UTF8String doesn't need to be freed, so it's probably an internal pointer. The docs say it isn't valid forever, but don't specify precisely how long. We've assumed that as long as the string isn't mutated, the internal pointer is still valid, but since Foundation is closed source there isn't really a way for us to verify this.
+Here we can also see one of the challenges of wrapping Objective-C with a safe
+interface. Of the C string returned by `UTF8String`, the docs say:
 
-What happens when we're implementing NSMutableString? Since NSMutableString inherits from NSString, it'd also have this method. But Rust structs don't allow inheritance. Instead of just duplicating the method, one thing we can do is implement it in a trait:
+> This C string is a pointer to a structure inside the string object, which may
+> have a lifetime shorter than the string object and will certainly not have a
+> longer lifetime.
+
+We've assumed that as long as the string isn't mutated, the internal pointer is
+still valid, but since Foundation is closed source there isn't really a way for
+us to verify this.
+
+## Inheritance
+
+What happens when we decide to implement a safe interface for NSMutableString?
+Since NSMutableString inherits from NSString, it should also have this method,
+but Rust structs don't allow inheritance.
+Instead of just duplicating the method, we can implement it in a trait:
 
 ``` rust
 trait INSString {
@@ -233,9 +252,19 @@ trait INSString {
 impl INSString for NSString { }
 ```
 
-Now when we just implement INSString for NSMutableString it'll get this functionality, too. This is also useful because we can make methods generic for any type that implements the INSString trait to accept either an NSString or an NSMutableString.
+Now if we just implement INSString for NSMutableString, it'll get this
+functionality, too.
+This trait is also useful for generic programming; with it, we can write
+functions that take any type that implements the INSString trait and will
+accept either an NSString or an NSMutableString.
 
-There is a drawback to this, though: users could implement this trait for any type inappropriately. Since it doesn't require any other method implemented, I could, in safe code, just implement the INSString trait for an int and then have undefined behavior by calling those methods on an int. I don't know of a way to prevent this without losing the convenience.
+There is a drawback to this approach, though: users could implement this trait
+for any type inappropriately.
+Since it doesn't require any other methods implemented, I could, in safe code,
+just implement the INSString trait for int and then have undefined behavior
+by sending Objective-C messages on an int.
+I don't know of a way to prevent this without losing the convenience of
+only declaring these methods once.
 
 # Objective-C memory management
 
