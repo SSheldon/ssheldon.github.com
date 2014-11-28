@@ -70,46 +70,61 @@ feels comfortable for Objective-C developers.
 
 # Representing Objective-C objects
 
-Now what type is string?
-Well, let's just try to mimic the objc:
+In our previous examples, we've been working with a variable named `string`,
+but what is the type of this variable? Well, in Objective-C it'd be declared
+like this:
 
 ``` objc
 NSString *string;
 ```
 
+The identical declaration in Rust would look like this:
+
 ``` rust
 let string: *const NSString;
 ```
 
-declare an NSString struct:
+Okay, so we'll need some sort of `NSString` type in Rust.
+Since we don't actually know or care about the memory layout of the `NSString`,
+we could declare it simply as a unit struct:
 
 ``` rust
 struct NSString;
 ```
 
-Now we can give a type to our string pointer, but there's a problem with this. This struct allows users to construct NSStrings on the stack, and ObjC objects only live on the heap!
+There's a problem with this, though: it allows user to construct an `NSString`
+on the stack, and Objective-C objects only live on the heap!
 
 ``` rust
 let string_on_stack = NSString;
 let c_string = unsafe {
-    msg_send![&string_on_stack UTF8String] as *const c_char
+    msg_send![&string_on_stack UTF8String] as *const c_char // Oops!
 };
 ```
 
-All right, we can make it a phantom type:
+We don't actually want users to be able to construct our `NSString`, we'll just
+be giving them pointers and references to one. To avoid this, we could use a
+phantom type:
 
 ``` rust
 enum NSString { }
 ```
 
-But this still has a problem; if a user has a reference to this NSString, they can still dereference it in safe code:
+By using an enum with no variants, `NSString` will be a valid type but there is
+no way for users to instantiate an instance of one.
+
+Unfortunately, this still has a problem; if a user has a reference to this
+`NSString`, they can still dereference it in safe code:
 
 ``` rust
 let string: &NSString;
 let string_on_stack = *string;
 ```
 
-This happens because the rust compiler sees that our enum has no fields that can't be copied, and therefore infers that our enum is copyable as well. To solve this, we must use the NoCopy marker:
+This happens because the rust compiler sees that our enum has no fields that
+can't be copied, and therefore infers that our enum is copyable as well.
+To solve this, we must use the
+[`NoCopy`](http://doc.rust-lang.org/std/kinds/marker/struct.NoCopy.html) marker:
 
 ``` rust
 struct NSString {
@@ -117,10 +132,20 @@ struct NSString {
 }
 ```
 
-We can actually use a struct again now, because with a private field users will not be able to construct an NSString themselves on the stack.
-We just must never return an NSString by value (only pointers or references to one) and there is no way in safe code for users to get a stack allocated NSString.
+This also lets us use a struct again; now that it has a private field, users
+cannot construct an `NSString` themselves. As long as we don't construct an
+`NSString` on the stack in our module, there will be no way in safe code for
+users to end up with a stack-allocated `NSString`.
 
-Note: not a perfect solution; it'd be best if we could mark this struct as unsized. Still allows code like this:
+This isn't a perfect solution, because even if there's no way to get a
+stack-allocated `NSString`, the compiler will stil accept definitions like:
+
+``` rust
+let string: NSString;
+let vector: Vec<NSString>;
+```
+
+Additionally, the following code will compile and run without doing anything:
 
 ``` rust
 let a: &mut NSString;
@@ -128,7 +153,53 @@ let b: &mut NSString;
 mem::swap(a, b); // Doesn't actually do anything
 ```
 
-Aside: has to be ref; if each thing you get from a collection is owned, you can't prevent mutating it simultaneously
+Ideally, we would opt out of the
+[`Sized`](http://doc.rust-lang.org/std/kinds/trait.Sized.html) trait so that
+the compiler would disallow these types as local variables, but unfortunately
+it doesn't seem possible to have an unsized type without all references to it
+becoming "fat" two-word references.
+
+## Why not just wrap the pointer?
+
+If an NSString can never exist on the stack, why don't we just prevent that
+by making a struct that wraps a pointer?
+
+``` rust
+struct NSString {
+    ptr: *mut c_void,
+}
+```
+
+Let's consider the case of an NSArray of NSStrings.
+If we want to get a string from the array, our NSArray can't return references
+to this NSString struct:
+
+``` rust
+fn object_at(array: &NSArray, index: uint) -> &NSString {
+    let string_ptr = unsafe {
+        msg_send![array objectAtIndex:index]
+    };
+    let string = NSString { ptr: string_ptr };
+    &string // Oops! string doesn't live past this method
+}
+```
+
+Instead, we'd have to return this NSString struct by value, and then it's not
+tied to the lifetime of our array at all.
+This would allow us to get multiple copies of an NSString from our array and
+try to mutate them simultaneously, which would cause a race condition.
+To fix this we'd need to add a lifetime parameter to indicate that the string
+is only valid as long as the array is mutably borrowed.
+Not all strings should have this lifetime parameter, though, so we'd actually
+end up needing 3 different NSString representations:
+an owned string (`NSString`),
+one representing an immutable borrow (`NSStringRef<'a>`),
+and one representing a mutable borrow (`NSStringRefMut<'a>`).
+This results in an interface that looks odd to both Rust and Objective-C
+developers.
+
+I felt that, despite the imperfections of representing Objective-C objects as
+structs in Rust, it makes for a much more usable API.
 
 # Implementing a safe Rust interface
 
