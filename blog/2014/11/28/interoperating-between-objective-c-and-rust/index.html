@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Interoperating Between Objective-C and Rust - sasheldon.com</title>
+  <meta name="author" content="Steven Sheldon">
+
+  
+  <meta name="description" content="Since the Objective-C runtime exposes a C interface, it&rsquo;s actually pretty easy to interact with from Rust. Over the past months I&rsquo;ve wo...">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://sasheldon.com/blog/2014/11/28/interoperating-between-objective-c-and-rust/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/blog/atom.xml" rel="alternate" title="sasheldon.com" type="application/atom+xml">
+
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+  <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">sasheldon.com</a></h1>
+  
+</hgroup>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+
+
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:sasheldon.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+
+
+<ul class="main-navigation">
+  <li><a href="/">About</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+<header>
+  
+    <h1 class="entry-title">Interoperating Between Objective-C and Rust</h1>
+  
+  
+    <p class="meta">
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-11-28T03:52:17-06:00"  class="updated" >Nov 28, 2014</time>
+      
+    </p>
+  
+</header>
+
+
+  <div class="entry-content"><p>Since the Objective-C runtime exposes a C interface, it&rsquo;s actually pretty easy
+to interact with from Rust.
+Over the past months I&rsquo;ve worked on Rust wrapper around the
+<a href="https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ObjCRuntimeRef/index.html">Objective-C runtime</a>
+and some classes of the
+<a href="https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/ObjC_classic/index.html">Foundation framework</a>,
+creatively called <a href="https://github.com/SSheldon/rust-objc/">rust-objc</a>.
+I had hoped to learn more about Rust&rsquo;s foreign function interface and the
+Objective-C runtime, but along the way I also encountered some interesting
+challenges in API design.</p>
+
+<!-- more -->
+
+<h2>Calling Objective-C methods</h2>
+
+<p>If we want to interact with Objective-C from Rust, one of the first things
+we&rsquo;ll need to be able to do is call methods on Objective-C objects.
+For example, let&rsquo;s consider this example where we have an <code>NSString</code> pointer,
+<code>string</code>:</p>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">c_string</span> <span class="o">=</span> <span class="p">[</span><span class="n">string</span> <span class="n">UTF8String</span><span class="p">];</span>
+</code></pre></div>
+<p>Since the Objective-C runtime actually has a C interface, we can invoke methods
+in C using the <a href="https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ObjCRuntimeRef/index.html#//apple_ref/c/func/objc_msgSend"><code>objc_msgSend</code></a>
+function. Our previous Objective-C code is equivalent to this C:</p>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">SEL</span> <span class="n">selector</span> <span class="o">=</span> <span class="n">sel_registerName</span><span class="p">(</span><span class="s">&quot;UTF8String&quot;</span><span class="p">);</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">c_string</span> <span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">objc_msgSend</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">selector</span><span class="p">);</span>
+</code></pre></div>
+<p>Now that we see the C code, the translation into Rust is pretty straightforward
+using <a href="http://doc.rust-lang.org/guide-ffi.html">Rust&rsquo;s foreign function interface</a>.
+Once we&rsquo;ve set up an interface for the functions of the Objective-C runtime,
+we can write:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">let</span> <span class="n">selector</span> <span class="o">=</span> <span class="s">&quot;UTF8String&quot;</span><span class="p">.</span><span class="n">with_c_str</span><span class="p">(</span><span class="o">|</span><span class="n">name</span><span class="o">|</span> <span class="k">unsafe</span> <span class="p">{</span>
+    <span class="n">sel_registerName</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="p">});</span>
+<span class="k">let</span> <span class="n">c_string</span> <span class="o">=</span> <span class="k">unsafe</span> <span class="p">{</span>
+    <span class="n">objc_msgSend</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">selector</span><span class="p">)</span> <span class="k">as</span> <span class="o">*</span><span class="k">const</span> <span class="n">c_char</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>Nice! But this is Rust, we can make this better with
+<a href="http://doc.rust-lang.org/guide-macros.html">Rust&rsquo;s powerful macros</a>.
+We can even support methods with arguments using a macro like this:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="n">macro_rules</span><span class="o">!</span> <span class="n">msg_send</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">$obj</span><span class="o">:</span><span class="n">expr</span> <span class="n">$</span><span class="p">(</span><span class="n">$name</span><span class="o">:</span><span class="n">ident</span> <span class="o">:</span> <span class="n">$arg</span><span class="o">:</span><span class="n">expr</span><span class="p">)</span><span class="o">+</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
+        <span class="k">let</span> <span class="n">sel_name</span> <span class="o">=</span> <span class="n">concat</span><span class="o">!</span><span class="p">(</span><span class="n">$</span><span class="p">(</span><span class="n">stringify</span><span class="o">!</span><span class="p">(</span><span class="n">$name</span><span class="p">),</span> <span class="sc">&#39;:&#39;</span><span class="p">),</span><span class="o">+</span><span class="p">);</span>
+        <span class="k">let</span> <span class="n">sel</span> <span class="o">=</span> <span class="n">sel_name</span><span class="p">.</span><span class="n">with_c_str</span><span class="p">(</span><span class="o">|</span><span class="n">name</span><span class="o">|</span> <span class="p">{</span>
+            <span class="n">sel_registerName</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="p">});</span>
+        <span class="n">objc_msgSend</span><span class="p">(</span><span class="n">$obj</span><span class="p">,</span> <span class="n">sel</span> <span class="n">$</span><span class="p">(,</span><span class="n">$arg</span><span class="p">)</span><span class="o">+</span><span class="p">)</span>
+    <span class="p">});</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>By adding a special case to our macro for the no-argument case, we can rewrite
+our example as:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">let</span> <span class="n">c_string</span> <span class="o">=</span> <span class="k">unsafe</span> <span class="p">{</span>
+    <span class="n">msg_send</span><span class="o">!</span><span class="p">[</span><span class="n">string</span> <span class="n">UTF8String</span><span class="p">]</span> <span class="k">as</span> <span class="o">*</span><span class="k">const</span> <span class="n">c_char</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>And so we have a convenient way to call Objective-C methods with a syntax that
+feels comfortable for Objective-C developers.</p>
+
+<h2>Representing Objective-C objects</h2>
+
+<p>In our previous examples, we&rsquo;ve been working with a variable named <code>string</code>,
+but what is the type of this variable? Well, in Objective-C it&rsquo;d be declared
+like this:</p>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="n">NSString</span> <span class="o">*</span><span class="n">string</span><span class="p">;</span>
+</code></pre></div>
+<p>The identical declaration in Rust would look like this:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">let</span> <span class="n">string</span><span class="o">:</span> <span class="o">*</span><span class="k">const</span> <span class="n">NSString</span><span class="p">;</span>
+</code></pre></div>
+<p>Okay, so we&rsquo;ll need some sort of <code>NSString</code> type in Rust.
+Since we don&rsquo;t actually know or care about the memory layout of the <code>NSString</code>,
+we could declare it simply as a unit struct:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">struct</span> <span class="n">NSString</span><span class="p">;</span>
+</code></pre></div>
+<p>There&rsquo;s a problem with this, though: it allows user to construct an <code>NSString</code>
+on the stack, and Objective-C objects only live on the heap!</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">let</span> <span class="n">string_on_stack</span> <span class="o">=</span> <span class="n">NSString</span><span class="p">;</span>
+<span class="k">let</span> <span class="n">c_string</span> <span class="o">=</span> <span class="k">unsafe</span> <span class="p">{</span>
+    <span class="n">msg_send</span><span class="o">!</span><span class="p">[</span><span class="o">&amp;</span><span class="n">string_on_stack</span> <span class="n">UTF8String</span><span class="p">]</span> <span class="k">as</span> <span class="o">*</span><span class="k">const</span> <span class="n">c_char</span> <span class="c1">// Oops!</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>We don&rsquo;t actually want users to be able to construct our <code>NSString</code>, we&rsquo;ll just
+be giving them pointers and references to one. To avoid this, we could use a
+phantom type:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">enum</span> <span class="n">NSString</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></div>
+<p>By using an enum with no variants, <code>NSString</code> will be a valid type but there is
+no way for users to instantiate an instance of one.</p>
+
+<p>Unfortunately, this still has a problem; if a user has a reference to this
+<code>NSString</code>, they can still dereference it in safe code:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">let</span> <span class="n">string</span><span class="o">:</span> <span class="o">&amp;</span><span class="n">NSString</span><span class="p">;</span>
+<span class="k">let</span> <span class="n">string_on_stack</span> <span class="o">=</span> <span class="o">*</span><span class="n">string</span><span class="p">;</span>
+</code></pre></div>
+<p>This happens because the Rust compiler sees that our enum has no fields that
+can&rsquo;t be copied, and therefore infers that our enum is copyable as well.
+To solve this, we must use the
+<a href="http://doc.rust-lang.org/std/kinds/marker/struct.NoCopy.html"><code>NoCopy</code></a> marker:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">struct</span> <span class="n">NSString</span> <span class="p">{</span>
+    <span class="n">nocopy</span><span class="o">:</span> <span class="n">NoCopy</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This also lets us use a struct again; now that it has a private field, users
+cannot construct an <code>NSString</code> themselves. As long as we don&rsquo;t construct an
+<code>NSString</code> on the stack in our module, there will be no way in safe code for
+users to end up with a stack-allocated <code>NSString</code>.</p>
+
+<h3>Drawbacks of this representation</h3>
+
+<p>This isn&rsquo;t a perfect solution, because even if there&rsquo;s no way to get a
+stack-allocated <code>NSString</code>, the compiler will still accept definitions like:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">let</span> <span class="n">string</span><span class="o">:</span> <span class="n">NSString</span><span class="p">;</span>
+<span class="k">let</span> <span class="n">vector</span><span class="o">:</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="n">NSString</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div>
+<p>Additionally, the following code will compile and run without doing anything:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">let</span> <span class="n">a</span><span class="o">:</span> <span class="o">&amp;</span><span class="k">mut</span> <span class="n">NSString</span><span class="p">;</span>
+<span class="k">let</span> <span class="n">b</span><span class="o">:</span> <span class="o">&amp;</span><span class="k">mut</span> <span class="n">NSString</span><span class="p">;</span>
+<span class="n">mem</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span> <span class="c1">// Doesn&#39;t actually do anything</span>
+</code></pre></div>
+<p>Ideally, we would opt out of the
+<a href="http://doc.rust-lang.org/std/kinds/trait.Sized.html"><code>Sized</code></a> trait so that
+the compiler would disallow these types as local variables, but unfortunately
+it doesn&rsquo;t seem possible to have an unsized type without all references to it
+becoming &ldquo;fat&rdquo; two-word references.</p>
+
+<h3>Why not just wrap the pointer?</h3>
+
+<p>If an <code>NSString</code> can never exist on the stack, why don&rsquo;t we just prevent that
+by making a struct that wraps a pointer?</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">struct</span> <span class="n">NSString</span> <span class="p">{</span>
+    <span class="n">ptr</span><span class="o">:</span> <span class="o">*</span><span class="k">mut</span> <span class="n">c_void</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Let&rsquo;s consider the case of an <code>NSArray</code> of <code>NSString</code>s.
+If we want to get a string from the array, our array can&rsquo;t return references
+to this <code>NSString</code> struct:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="n">object_at</span><span class="p">(</span><span class="n">array</span><span class="o">:</span> <span class="o">&amp;</span><span class="n">NSArray</span><span class="p">,</span> <span class="n">index</span><span class="o">:</span> <span class="k">uint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="o">&amp;</span><span class="n">NSString</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">string_ptr</span> <span class="o">=</span> <span class="k">unsafe</span> <span class="p">{</span>
+        <span class="n">msg_send</span><span class="o">!</span><span class="p">[</span><span class="n">array</span> <span class="n">objectAtIndex</span><span class="o">:</span><span class="n">index</span><span class="p">]</span>
+    <span class="p">};</span>
+    <span class="k">let</span> <span class="n">string</span> <span class="o">=</span> <span class="n">NSString</span> <span class="p">{</span> <span class="n">ptr</span><span class="o">:</span> <span class="n">string_ptr</span> <span class="p">};</span>
+    <span class="o">&amp;</span><span class="n">string</span> <span class="c1">// Oops! string doesn&#39;t live past this method</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Instead, we&rsquo;d have to return this <code>NSString</code> struct by value, and then it&rsquo;s
+not tied to the lifetime of our array at all.
+This would allow us to get multiple copies of an <code>NSString</code> from our array and
+try to mutate them simultaneously, which would cause a race condition.
+To fix this we&rsquo;d need to add a lifetime parameter to indicate that the string
+is only valid as long as the array is mutably borrowed.
+Not all strings should have this lifetime parameter, though, so we&rsquo;d actually
+end up needing 3 different <code>NSString</code> representations:
+an owned string (<code>NSString</code>),
+one representing an immutable borrow (<code>NSStringRef&lt;&#39;a&gt;</code>),
+and one representing a mutable borrow (<code>NSStringRefMut&lt;&#39;a&gt;</code>).
+This results in an interface that looks odd to both Rust and Objective-C
+developers.</p>
+
+<p>I felt that, despite the imperfections of representing Objective-C objects as
+structs in Rust, it makes for a much more usable API.</p>
+
+<h2>A safe Rust interface</h2>
+
+<p>Now that we&rsquo;ve got a struct for representing our <code>NSString</code>, we can implement
+some methods on it. For example, we can wrap the
+<a href="https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/#//apple_ref/occ/instp/NSString/UTF8String"><code>UTF8String</code></a>
+method using idiomatic Rust types:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">impl</span> <span class="n">NSString</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="n">as_str</span><span class="p">(</span><span class="o">&amp;</span><span class="n">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="o">&amp;</span><span class="k">str</span> <span class="p">{</span>
+        <span class="k">unsafe</span> <span class="p">{</span>
+            <span class="k">let</span> <span class="n">c_string</span> <span class="o">=</span> <span class="n">msg_send</span><span class="o">!</span><span class="p">[</span><span class="n">self</span> <span class="n">UTF8String</span><span class="p">]</span> <span class="k">as</span> <span class="o">*</span><span class="k">const</span> <span class="n">c_char</span><span class="p">;</span>
+            <span class="n">c_str_to_static_slice</span><span class="p">(</span><span class="n">c_string</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Here we can also see one of the challenges of wrapping Objective-C with a safe
+interface. Of the C string returned by <code>UTF8String</code>, the docs say:</p>
+
+<blockquote>
+<p>This C string is a pointer to a structure inside the string object, which may
+have a lifetime shorter than the string object and will certainly not have a
+longer lifetime.</p>
+</blockquote>
+
+<p>We&rsquo;ve assumed that as long as the string isn&rsquo;t mutated, the internal pointer is
+still valid, but since Foundation is closed source there isn&rsquo;t really a way for
+us to verify this.</p>
+
+<h3>Inheritance</h3>
+
+<p>What happens when we decide to implement a safe interface for <code>NSMutableString</code>?
+Since <code>NSMutableString</code> inherits from <code>NSString</code>, it should also have this
+method, but Rust structs don&rsquo;t allow inheritance.
+Instead of just duplicating the method, we can implement it in a trait:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">trait</span> <span class="n">INSString</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="n">as_str</span><span class="p">(</span><span class="o">&amp;</span><span class="n">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="o">&amp;</span><span class="k">str</span> <span class="p">{</span>
+        <span class="k">unsafe</span> <span class="p">{</span>
+            <span class="k">let</span> <span class="n">c_string</span> <span class="o">=</span> <span class="n">msg_send</span><span class="o">!</span><span class="p">[</span><span class="n">self</span> <span class="n">UTF8String</span><span class="p">]</span> <span class="k">as</span> <span class="o">*</span><span class="k">const</span> <span class="n">c_char</span><span class="p">;</span>
+            <span class="n">c_str_to_static_slice</span><span class="p">(</span><span class="n">c_string</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">impl</span> <span class="n">INSString</span> <span class="k">for</span> <span class="n">NSString</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></div>
+<p>Now if we just implement <code>INSString</code> for <code>NSMutableString</code>, it&rsquo;ll get this
+functionality, too.
+This trait is also useful for generic programming; with it, we can write
+functions that take any type that implements the <code>INSString</code> trait and will
+accept either an <code>NSString</code> or an <code>NSMutableString</code>.</p>
+
+<p>There is a drawback to this approach, though: users could implement this trait
+for any type inappropriately.
+Since it doesn&rsquo;t require any other methods implemented, I could, in safe code,
+just implement the <code>INSString</code> trait for <code>int</code> and then have undefined
+behavior by sending Objective-C messages on an <code>int</code>.
+I don&rsquo;t know of a way to prevent this without losing the convenience of
+only declaring these methods once.</p>
+
+<h2>Objective-C memory management</h2>
+
+<p>Great, at this point we can call methods from an <code>NSString</code> reference,
+but where does this reference come from? What&rsquo;s its lifetime?</p>
+
+<p>Our Objective-C objects must be retained while we&rsquo;re using them and released
+when we&rsquo;re done with them, so this is a great fit for a custom smart pointer in
+Rust:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">struct</span> <span class="n">Id</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="n">ptr</span><span class="o">:</span> <span class="o">*</span><span class="k">mut</span> <span class="n">T</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">Drop</span> <span class="k">for</span> <span class="n">Id</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="n">drop</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span> <span class="n">self</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">unsafe</span> <span class="p">{</span> <span class="n">msg_send</span><span class="o">!</span><span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">ptr</span> <span class="n">release</span><span class="p">];</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">Deref</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="k">for</span> <span class="n">Id</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="n">deref</span><span class="p">(</span><span class="o">&amp;</span><span class="n">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="o">&amp;</span><span class="n">T</span> <span class="p">{</span>
+        <span class="k">unsafe</span> <span class="p">{</span> <span class="o">&amp;*</span><span class="n">self</span><span class="p">.</span><span class="n">ptr</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Now we can use this to create safe wrappers over an object&rsquo;s initializers:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">impl</span> <span class="n">NSString</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="n">new</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Id</span><span class="o">&lt;</span><span class="n">NSString</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">unsafe</span> <span class="p">{</span>
+            <span class="k">let</span> <span class="n">cls</span> <span class="o">=</span> <span class="s">&quot;NSString&quot;</span><span class="p">.</span><span class="n">with_c_str</span><span class="p">(</span><span class="o">|</span><span class="n">name</span><span class="o">|</span> <span class="p">{</span>
+                <span class="n">objc_getClass</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="p">});</span>
+            <span class="k">let</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">msg_send</span><span class="o">!</span><span class="p">[</span><span class="n">class</span> <span class="n">alloc</span><span class="p">];</span>
+            <span class="k">let</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">msg_send</span><span class="o">!</span><span class="p">[</span><span class="n">obj</span> <span class="n">init</span><span class="p">];</span>
+            <span class="n">Id</span> <span class="p">{</span> <span class="n">ptr</span><span class="o">:</span> <span class="n">obj</span> <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This finally allows us to work with an <code>NSString</code> without any unsafe blocks!</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">let</span> <span class="n">string</span> <span class="o">=</span> <span class="n">NSString</span><span class="o">::</span><span class="n">new</span><span class="p">();</span>
+<span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span> <span class="n">string</span><span class="p">.</span><span class="n">as_str</span><span class="p">());</span>
+</code></pre></div>
+<p>When the <code>Id</code> goes out of scope, the object will automatically be released.
+With just a few lines of Rust code, we&rsquo;ve implemented our own simplified
+version of <a href="http://clang.llvm.org/docs/AutomaticReferenceCounting.html">Objective-C&rsquo;s automatic reference counting</a>.</p>
+
+<h3>Mutability</h3>
+
+<p>Sometimes we may want to retain a shared object, but it wouldn&rsquo;t be safe to do
+this if we implement
+<a href="http://doc.rust-lang.org/std/ops/trait.DerefMut.html"><code>DerefMut</code></a> for any
+<code>Id</code>, because if it is mutably dereferenced in multiple places we&rsquo;d have
+aliasing mut references. Similarly, it&rsquo;d be safe to implement
+<a href="http://doc.rust-lang.org/std/clone/trait.Clone.html"><code>Clone</code></a>
+when the object is shared, but an <code>Id</code> that implements <code>DerefMut</code> shouldn&rsquo;t
+implement <code>Clone</code>.</p>
+
+<p>I chose to resolve this was by adding a phantom type parameter to <code>Id</code> which is
+either <code>Owned</code> or <code>Shared</code>. Then, we can implement <code>Clone</code> only for a shared
+<code>Id</code>, and we can implement <code>DerefMut</code> only for an owned <code>Id</code>.</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">enum</span> <span class="n">Owned</span> <span class="p">{</span> <span class="p">}</span>
+<span class="k">enum</span> <span class="n">Shared</span> <span class="p">{</span> <span class="p">}</span>
+
+<span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">Clone</span> <span class="k">for</span> <span class="n">Id</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">Shared</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="n">clone</span><span class="p">(</span><span class="o">&amp;</span><span class="n">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Id</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">Shared</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">unsafe</span> <span class="p">{</span> <span class="n">msg_send</span><span class="o">!</span><span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">ptr</span> <span class="n">retain</span><span class="p">];</span> <span class="p">}</span>
+        <span class="n">Id</span> <span class="p">{</span> <span class="n">ptr</span><span class="o">:</span> <span class="n">self</span><span class="p">.</span><span class="n">ptr</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">DerefMut</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="k">for</span> <span class="n">Id</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">Owned</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="n">deref_mut</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span> <span class="n">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="o">&amp;</span><span class="k">mut</span> <span class="n">T</span> <span class="p">{</span>
+        <span class="k">unsafe</span> <span class="p">{</span> <span class="o">&amp;</span><span class="k">mut</span> <span class="o">*</span><span class="n">self</span><span class="p">.</span><span class="n">ptr</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>We can also allow an owned <code>Id</code> to be &ldquo;downgraded&rdquo; to a shared <code>Id</code>
+and then cloned.</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">Id</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">Owned</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="n">share</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Id</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">Shared</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="n">Id</span> <span class="p">{</span> <span class="n">ptr</span><span class="o">:</span> <span class="n">self</span><span class="p">.</span><span class="n">ptr</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Thinking about Objective-C in terms of Rust&rsquo;s memory semantics leads to some
+interesting questions, and these phantom types will be used again.
+For example, unlike a <code>Vec</code> in Rust, an <code>NSArray</code> can be copied without
+copying all of its elements.
+If we consider the array to own its objects, this isn&rsquo;t safe because it could create aliasing mut references.
+However, it&rsquo;s totally fine if the array&rsquo;s objects are shared.
+We can resolve this by using an approach similar to <code>Id</code>:
+if our <code>NSArray</code> has a type parameter for <code>Owned</code> or <code>Shared</code>,
+we only implement copying for the shared array.</p>
+</div>
+  
+<footer>
+  <p class="meta">
+    
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Steven Sheldon</span></span>
+
+    
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-11-28T03:52:17-06:00"  class="updated" >Nov 28, 2014</time>
+    
+
+
+  </p>
+  
+    <div class="sharing">
+  
+  
+  
+</div>
+
+  
+  <p class="meta">
+    
+      <a class="basic-alignment left" href="/blog/2013/12/14/simplifying-json-response-mocks-with-jinja/" title="Previous Post: Simplifying JSON Response Mocks With Jinja">&laquo; Simplifying JSON Response Mocks With Jinja</a>
+    
+    
+  </p>
+</footer>
+
+
+</article>
+
+</div>
+
+      
+      <aside class="sidebar">
+        <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/28/interoperating-between-objective-c-and-rust/">Interoperating Between Objective-C and Rust</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/14/simplifying-json-response-mocks-with-jinja/">Simplifying JSON Response Mocks With Jinja</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/07/waiting-for-octopress-2-successor/">Waiting for Octopress 2.0's Successor</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/15/octopress/">Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+      </aside>
+      
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Steven Sheldon -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+</footer>
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
