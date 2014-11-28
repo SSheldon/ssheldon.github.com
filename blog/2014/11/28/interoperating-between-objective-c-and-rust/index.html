@@ -93,7 +93,7 @@
 
   <div class="entry-content"><p>Since the Objective-C runtime exposes a C interface, it&rsquo;s actually pretty easy
 to interact with from Rust.
-Over the past months I&rsquo;ve worked on Rust wrapper around the
+Over the past months I&rsquo;ve worked on a Rust wrapper around the
 <a href="https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ObjCRuntimeRef/index.html">Objective-C runtime</a>
 and some classes of the
 <a href="https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/ObjC_classic/index.html">Foundation framework</a>,
@@ -108,8 +108,7 @@ challenges in API design.</p>
 
 <p>If we want to interact with Objective-C from Rust, one of the first things
 we&rsquo;ll need to be able to do is call methods on Objective-C objects.
-For example, let&rsquo;s consider this example where we have an <code>NSString</code> pointer,
-<code>string</code>:</p>
+Let&rsquo;s consider this example where we have an <code>NSString</code> pointer, <code>string</code>:</p>
 <div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">c_string</span> <span class="o">=</span> <span class="p">[</span><span class="n">string</span> <span class="n">UTF8String</span><span class="p">];</span>
 </code></pre></div>
 <p>Since the Objective-C runtime actually has a C interface, we can invoke methods

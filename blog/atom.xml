@@ -4,7 +4,7 @@
   <title>sasheldon.com</title>
   <link href="http://sasheldon.com/blog/atom.xml" rel="self"/>
   <link href="http://sasheldon.com/"/>
-  <updated>2014-11-28T03:54:05-06:00</updated>
+  <updated>2014-11-28T03:59:32-06:00</updated>
   <id>http://sasheldon.com/</id>
   <author>
     <name>Steven Sheldon</name>
@@ -20,7 +20,7 @@
     <id>http://sasheldon.com/blog/2014/11/28/interoperating-between-objective-c-and-rust</id>
     <content type="html">&lt;p&gt;Since the Objective-C runtime exposes a C interface, it&amp;rsquo;s actually pretty easy
 to interact with from Rust.
-Over the past months I&amp;rsquo;ve worked on Rust wrapper around the
+Over the past months I&amp;rsquo;ve worked on a Rust wrapper around the
 &lt;a href=&quot;https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ObjCRuntimeRef/index.html&quot;&gt;Objective-C runtime&lt;/a&gt;
 and some classes of the
 &lt;a href=&quot;https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/ObjC_classic/index.html&quot;&gt;Foundation framework&lt;/a&gt;,
@@ -35,8 +35,7 @@ challenges in API design.&lt;/p&gt;
 
 &lt;p&gt;If we want to interact with Objective-C from Rust, one of the first things
 we&amp;rsquo;ll need to be able to do is call methods on Objective-C objects.
-For example, let&amp;rsquo;s consider this example where we have an &lt;code&gt;NSString&lt;/code&gt; pointer,
-&lt;code&gt;string&lt;/code&gt;:&lt;/p&gt;
+Let&amp;rsquo;s consider this example where we have an &lt;code&gt;NSString&lt;/code&gt; pointer, &lt;code&gt;string&lt;/code&gt;:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objc&quot; data-lang=&quot;objc&quot;&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c_string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UTF8String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Since the Objective-C runtime actually has a C interface, we can invoke methods
