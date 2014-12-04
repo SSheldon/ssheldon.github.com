@@ -2,8 +2,6 @@
 layout: post
 title: "Octopress"
 date: 2012-11-15 22:14
-comments: true
-categories:
 ---
 
 I really like git; if I could keep everything under version control, I would.

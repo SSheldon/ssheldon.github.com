@@ -3,8 +3,6 @@ layout: post
 title: "Waiting for Octopress 2.0's Successor"
 date: 2013-07-07 02:24
 updated: 2014-02-15 17:08
-comments: true
-categories:
 ---
 
 The next version of [Octopress](http://octopress.org/) is packed full of

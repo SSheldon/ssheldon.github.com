@@ -2,8 +2,6 @@
 layout: post
 title: "Simplifying JSON Response Mocks With Jinja"
 date: 2013-12-14 13:43:01 -0800
-comments: true
-categories: 
 ---
 
 For documenting and testing large APIs, response mocks can be a very useful
