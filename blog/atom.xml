@@ -4,7 +4,7 @@
   <title>sasheldon.com</title>
   <link href="http://sasheldon.com/blog/atom.xml" rel="self"/>
   <link href="http://sasheldon.com/"/>
-  <updated>2014-11-29T14:13:51-06:00</updated>
+  <updated>2014-12-04T00:50:57-08:00</updated>
   <id>http://sasheldon.com/</id>
   <author>
     <name>Steven Sheldon</name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html">Interoperating Between Objective-C and Rust</title>
     <link href="http://sasheldon.com/blog/2014/11/28/interoperating-between-objective-c-and-rust/"/>
-    <updated>2014-11-28T03:52:17-06:00</updated>
+    <updated>2014-11-28T01:52:17-08:00</updated>
     <id>http://sasheldon.com/blog/2014/11/28/interoperating-between-objective-c-and-rust</id>
     <content type="html">&lt;p&gt;Since the Objective-C runtime exposes a C interface, it&amp;rsquo;s actually pretty easy
 to interact with from Rust.
@@ -337,7 +337,7 @@ we only implement copying for the shared array.&lt;/p&gt;
   <entry>
     <title type="html">Simplifying JSON Response Mocks With Jinja</title>
     <link href="http://sasheldon.com/blog/2013/12/14/simplifying-json-response-mocks-with-jinja/"/>
-    <updated>2013-12-14T15:43:01-06:00</updated>
+    <updated>2013-12-14T13:43:01-08:00</updated>
     <id>http://sasheldon.com/blog/2013/12/14/simplifying-json-response-mocks-with-jinja</id>
     <content type="html">&lt;p&gt;For documenting and testing large APIs, response mocks can be a very useful
 tool. They not only provide examples for the users of your API, but they can be
@@ -494,7 +494,7 @@ can surely adapt to meet whatever your needs are.&lt;/p&gt;
   <entry>
     <title type="html">Waiting for Octopress 2.0&#39;s Successor</title>
     <link href="http://sasheldon.com/blog/2013/07/07/waiting-for-octopress-2-successor/"/>
-    <updated>2013-07-07T02:24:00-05:00</updated>
+    <updated>2013-07-07T02:24:00-07:00</updated>
     <id>http://sasheldon.com/blog/2013/07/07/waiting-for-octopress-2-successor</id>
     <content type="html">&lt;p&gt;The next version of &lt;a href=&quot;http://octopress.org/&quot;&gt;Octopress&lt;/a&gt; is packed full of
 &lt;a href=&quot;https://gist.github.com/imathis/e9c2ee2406e93c4269e8&quot;&gt;awesome improvements&lt;/a&gt;.
@@ -631,7 +631,7 @@ so no new version is slated before Octopress 3.0.&lt;/p&gt;
   <entry>
     <title type="html">Octopress</title>
     <link href="http://sasheldon.com/blog/2012/11/15/octopress/"/>
-    <updated>2012-11-15T22:14:00-06:00</updated>
+    <updated>2012-11-15T22:14:00-08:00</updated>
     <id>http://sasheldon.com/blog/2012/11/15/octopress</id>
     <content type="html">&lt;p&gt;I really like git; if I could keep everything under version control, I would.
 I&amp;rsquo;ve started writing all my papers in LaTeX instead of Word, not only because
