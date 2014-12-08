@@ -38,14 +38,31 @@ function addSidebarToggler() {
 }
 
 function testFeatures() {
-  var features = ['maskImage'];
-  $(features).map(function(i, feature) {
-    if (Modernizr.testAllProps(feature)) {
-      $('html').addClass(feature);
-    } else {
-      $('html').addClass('no-'+feature);
+  // Extracted from Modernizr.testAllProps
+  // http://modernizr.com/docs/#testallprops
+  function testAllProps(prop) {
+    var cssomPrefixes = ['Webkit', 'Moz', 'O', 'ms'];
+    var ucProp = prop.charAt(0).toUpperCase() + prop.slice(1);
+    var props = (prop + ' ' + cssomPrefixes.join(ucProp + ' ') + ucProp).split(' ');
+
+    var modElem = document.createElement('modernizr');
+    var mStyle = modElem.style;
+
+    for (var i in props) {
+      var prop = props[i];
+      if (mStyle[prop] !== undefined) {
+        return true;
+      }
     }
-  });
+    return false;
+  }
+
+  if (testAllProps('maskImage')) {
+    $('html').addClass('maskImage');
+  } else {
+    $('html').addClass('no-maskImage');
+  }
+
   if ("placeholder" in document.createElement("input")) {
     $('html').addClass('placeholder');
   } else {
