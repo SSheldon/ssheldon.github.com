@@ -78,6 +78,151 @@ call goes through immutable ref because of block copy
 implement copy, too?
 
 what about creating our own blocks?
+
+we'll need a new struct for this (since we want to use our Block struct for representing blocks implemented in C, not implementing our own blocks)
+borrow the name concrete block
+the ideal would be if we can create a block from a rust closure
+our struct would look like this:
+
+``` rust
+struct ConcreteBlock<F> {
+    isa: *const Class,
+    flags: c_int,
+    _reserved: c_int,
+    invoke: unsafe extern fn(*mut ConcreteBlock<F>, ...),
+    // TODO: descriptor
+    closure: F,
+}
+```
+
+impl deref, like Vec<R> derefs to [T]
+but wait, our Block requires the args and return type as part of its type, how do we know that?
+turns out we don't need that since it's part of our closure's type:
+
+``` rust
+impl<A, R, F: Fn<A, R>> Deref<Block<A, R>> for ConcreteBlock<F> {
+    fn deref(&self) -> &Block<A, R> {
+        let ptr = self as *const _ as *const Block<A, R>;
+        unsafe { &*ptr }
+    }
+}
+```
+
+great, but the tricky part here is: in order for this to all work, we need a C function that calls our block when it is called.
+but the function will take some arbitrary number of arguments, not a tuple like the type of our closure uses. sounds a little familiar, maybe our BlockArguments trait can be useful again?
+
+``` rust
+unsafe extern fn concrete_block_invoke_args2<A, B, R, F: Fn<(A, B), R>>(
+        block_ptr: *mut ConcreteBlock<F>, a: A, b: B) -> R {
+    let block = &*block_ptr;
+    (block.closure)(a, b)
+}
+```
+
+``` rust
+trait BlockArguments {
+    ...
+
+    fn invoke_for_concrete_block<R, F: Fn<Self, R>>() ->
+            unsafe extern fn(*mut ConcreteBlock<F>, ...) -> R;
+}
+```
+
+``` rust
+impl<A, B> BlockArguments for (A, B) {
+    ...
+
+    fn invoke_for_concrete_block<R, F: Fn<(A, B), R>>() ->
+            unsafe extern fn(*mut ConcreteBlock<F>, ...) -> R {
+        unsafe {
+            mem::transmute(concrete_block_invoke_args2::<A, B, R, F>)
+        }
+    }
+}
+```
+
+``` rust
+#[link(name = "Foundation", kind = "framework")]
+extern {
+    static _NSConcreteStackBlock: Class;
+}
+
+
+impl<A: BlockArguments, R, F: Fn<A, R>> ConcreteBlock<F> {
+    fn new(closure: F) -> ConcreteBlock<F> {
+        ConcreteBlock {
+            isa: &_NSConcreteStackBlock,
+            flags: 0,
+            _reserved: 0,
+            invoke: BlockArguments::invoke_for_concrete_block::<R, F>(),
+            closure: closure,
+        }
+    }
+}
+```
+
+we need to be able to move this block to the heap
+since objc doesn't support generics like this, it'll only take our block by pointer
+
+the runtime does this through the copy method that all blocks support.
+unfortunately: objc doesn't support "moving", so you can copy the same stack block to the heap multiple times.
+this doesn't jive with how we'd think of this in rust, where boxing an object
+moves it and the original is no longer usable.
+if we want to implement this functionality in the way that's technically correct for the objc runtime, we'd have to clone our closure to heap since we can't move it. this is a big pain, though, because closure's don't seem to implement clone automatically and it's inefficient to clone all of its state if we won't be using the stack block again.
+
+so let's implement copy to move instead of clone, and warn that if you're interacting with C that may copy you block pointer multiple times, you should copy it to the heap before passing it.
+
+copying our block onto the heap for the objc runtime to manage means its drop won't be run by the rust compiler anymore. fortunately, we can specify custom behavior to run via a handler function. there are two, copy and dispose
+
+``` rust
+unsafe extern fn block_context_dispose<B>(block: &mut B) {
+    // Read the block onto the stack and let it drop
+    ptr::read(block);
+}
+
+unsafe extern fn block_context_copy<B>(_dst: &mut B, _src: &B) {
+    // The runtime memmoves the src block into the dst block, nothing to do
+}
+```
+
+``` rust
+#[repr(C)]
+struct BlockDescriptor<B> {
+    _reserved: c_ulong,
+    block_size: c_ulong,
+    copy_helper: unsafe extern fn(&mut B, &B),
+    dispose_helper: unsafe extern fn(&mut B),
+}
+
+impl<B> BlockDescriptor<B> {
+    fn new() -> BlockDescriptor<B> {
+        BlockDescriptor {
+            _reserved: 0,
+            block_size: mem::size_of::<B>() as c_ulong,
+            copy_helper: block_context_copy::<B>,
+            dispose_helper: block_context_dispose::<B>,
+        }
+    }
+}
+```
+
+``` rust
+impl<A, R, F: Fn<A, R>> ConcreteBlock<F> {
+    pub fn copy(self) -> Id<Block<A, R>> {
+        unsafe {
+            let block = msg_send![&*self copy] as *mut Block<A, R>;
+            // At this point, our copy helper has been run so the block will
+            // be moved to the heap and we can forget the original block
+            // because the heap block will drop in our dispose helper.
+            mem::forget(self);
+            Id::from_retained_ptr(block)
+        }
+    }
+}
+```
+
+---------------------------
+
 of course, the interesting thing about a block is that it can also capture some environment
 
 with rust's generics, we can add a context param
