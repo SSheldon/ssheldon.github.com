@@ -36,6 +36,10 @@ struct Block<A, R> {
 }
 ```
 
+Now, for example, a block that takes two `uints` and returns their sum would have the type `Block<(uint, uint), uint>`. Not the prettiest, but all of our type information is there now. We're ready for the next step: actually calling blocks in Rust.
+
+The first question we have to answer is: does calling a block require a mutable reference or just an immutable reference? On one hand, blocks are free to mutate their environment, which would require a `&mut` reference in Rust. On the other, though, a `&mut` reference in Rust provides more guarantees than just a normal pointer in C; to have a `&mut` reference to a block, we must have the only reference to that block, which is a tough guarantee to make when even copying an Objective-C block will often just return an aliased reference to the same block! In the end, `&mut` is probably the safer choice; however, it'd be most convenient if we could ultimately implement one of the `Fn` operators for our block, but since this is part of the currently in-development unboxed closures feature, it turns out it's currently impossible to implement the `FnMut` trait. In light of this, we'll allowing calling blocks through an immutable reference for now to show off what the most pleasant syntax would look like.
+
 Representing our arguments in Rust as tuples works great, but the C invoke function of the block doesn't take a tuple. Converting between the two representations is a bit tricky, but we can actually accomplish this by delegating the responsibility of calling the function to the arguments themselves. It might seem weird to make the arguments invoke the function, but it allows us to call the function differently based on how many arguments there are. Let's create a `BlockArguments` trait:
 
 ``` rust
@@ -113,9 +117,8 @@ but the function will take some arbitrary number of arguments, not a tuple like 
 
 ``` rust
 unsafe extern fn concrete_block_invoke_args2<A, B, R, F: Fn<(A, B), R>>(
-        block_ptr: *mut ConcreteBlock<F>, a: A, b: B) -> R {
-    let block = &*block_ptr;
-    (block.closure)(a, b)
+        block: *mut ConcreteBlock<F>, a: A, b: B) -> R {
+    ((&*block).closure)(a, b)
 }
 ```
 
