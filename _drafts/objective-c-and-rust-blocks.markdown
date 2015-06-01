@@ -117,6 +117,21 @@ impl<A, R, F> DerefMut for ConcreteBlock<A, R, F> {
 great, but the tricky part here is: in order for this to all work, we need a C function that calls our block when it is called.
 but the function will take some arbitrary number of arguments, not a tuple like the type of our closure uses. sounds a little familiar, maybe our BlockArguments trait can be useful again?
 
+let's look at creating a block from a closure
+
+impl<A, R, F> ConcreteBlock<A, R, F>
+        where F: ... {
+    pub fn new(closure: F) -> Self {
+        ...
+    }
+}
+
+how do we determine A from the closure?
+
+pub trait IntoConcreteBlock<A, R> where A: BlockArguments {
+    fn into_concrete_block(self) -> ConcreteBlock<A, R, Self>;
+}
+
 ``` rust
 unsafe extern fn concrete_block_invoke_args2<A, B, R, F>(
         block: *mut ConcreteBlock<(A, B), R, F>, a: A, b: B) -> R
@@ -124,6 +139,28 @@ unsafe extern fn concrete_block_invoke_args2<A, B, R, F>(
     ((&*block).closure)(a, b)
 }
 ```
+
+pub trait IntoConcreteBlock<A, R> where A: BlockArguments {
+    fn into_concrete_block(self) -> ConcreteBlock<A, R, Self>;
+}
+
+impl<A, B, R, F> IntoConcreteBlock<(A, B), R> for F
+        where F: Fn(A, B) -> R {
+    fn into_concrete_block(self) -> ConcreteBlock<(A, B), R, F> {
+        unsafe extern fn $f<$($t,)* R, X>(
+                block_ptr: *mut ConcreteBlock<($($t,)*), R, X>
+                $(, $a: $t)*) -> R
+                where X: Fn($($t,)*) -> R {
+            let block = &*block_ptr;
+            (block.closure)($($a),*)
+        }
+
+        unsafe {
+            ConcreteBlock::with_invoke(
+                mem::transmute($f::<$($t,)* R, X>), self)
+        }
+    }
+}
 
 ``` rust
 trait BlockArguments {
