@@ -34,7 +34,7 @@ It's easy to see how we could do this for, say, two arguments:
 unsafe fn msg_send<A, B, R>(obj: *mut Object, op: Sel, arg1: A, arg2: B) -> R {
     // Transmute objc_msgSend to the type of the method implementation
     let msg_send_fn: unsafe extern fn(A, B) -> R =
-        ::std::mem::transmute(objc_msgSend);
+        mem::transmute(objc_msgSend);
     msg_send_fn(arg1, arg2)
 }
 ```
@@ -60,7 +60,7 @@ impl<A, B> MessageArguments for (A, B) {
     unsafe fn send<R>(self, obj: *mut Object, op: Sel) -> R {
         // Transmute objc_msgSend to the type of the method implementation
         let msg_send_fn: unsafe extern fn(A, B) -> R =
-            ::std::mem::transmute(objc_msgSend);
+            mem::transmute(objc_msgSend);
         let (arg1, arg2) = self;
         msg_send_fn(arg1, arg2)
     }
@@ -107,11 +107,11 @@ fn msg_send_fn<R: Any>() -> unsafe extern fn(*mut Object, Sel, ...) -> R {
     let type_id = TypeId::of::<R>();
     let size = mem::size_of::<R>();
     if type_id == TypeId::of::<f32>() || type_id == TypeId::of::<f64>() {
-        unsafe { mem::transmute(runtime::objc_msgSend_fpret) }
+        unsafe { mem::transmute(objc_msgSend_fpret) }
     } else if size == 0 || size == 1 || size == 2 || size == 4 || size == 8 {
-        unsafe { mem::transmute(runtime::objc_msgSend) }
+        unsafe { mem::transmute(objc_msgSend) }
     } else {
-        unsafe { mem::transmute(runtime::objc_msgSend_stret) }
+        unsafe { mem::transmute(objc_msgSend_stret) }
     }
 }
 ```
