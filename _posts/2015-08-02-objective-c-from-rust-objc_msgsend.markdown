@@ -2,6 +2,7 @@
 layout: post
 title: "Objective-C from Rust: objc_msgSend"
 date: 2015-08-02T23:53:50-07:00
+updated: 2015-08-04T19:22:16-07:00
 ---
 
 I previously wrote about how to [interoperate between Objective-C and Rust](
@@ -33,9 +34,9 @@ It's easy to see how we could do this for, say, two arguments:
 ``` rust
 unsafe fn msg_send<A, B, R>(obj: *mut Object, op: Sel, arg1: A, arg2: B) -> R {
     // Transmute objc_msgSend to the type of the method implementation
-    let msg_send_fn: unsafe extern fn(A, B) -> R =
+    let msg_send_fn: unsafe extern fn(*mut Object, Sel, A, B) -> R =
         mem::transmute(objc_msgSend);
-    msg_send_fn(arg1, arg2)
+    msg_send_fn(obj, op, arg1, arg2)
 }
 ```
 
@@ -59,10 +60,10 @@ Let's add a `MessageArguments` trait and implement it for tuples:
 impl<A, B> MessageArguments for (A, B) {
     unsafe fn send<R>(self, obj: *mut Object, op: Sel) -> R {
         // Transmute objc_msgSend to the type of the method implementation
-        let msg_send_fn: unsafe extern fn(A, B) -> R =
+        let msg_send_fn: unsafe extern fn(*mut Object, Sel, A, B) -> R =
             mem::transmute(objc_msgSend);
         let (arg1, arg2) = self;
-        msg_send_fn(arg1, arg2)
+        msg_send_fn(obj, op, arg1, arg2)
     }
 }
 ```
