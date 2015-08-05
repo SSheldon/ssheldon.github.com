@@ -89,7 +89,9 @@
   
 
 
-<time datetime="2015-08-02T23:53:50-07:00"  class="updated" >Aug 02, 2015</time>
+
+  
+<time datetime="2015-08-02T23:53:50-07:00" >Aug 02, 2015</time>
     </p>
   
 </header>
@@ -118,9 +120,9 @@ wrapper function that calls it correctly.
 It&rsquo;s easy to see how we could do this for, say, two arguments:</p>
 <div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">unsafe</span> <span class="k">fn</span> <span class="n">msg_send</span><span class="o">&lt;</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">R</span><span class="o">&gt;</span><span class="p">(</span><span class="n">obj</span><span class="o">:</span> <span class="o">*</span><span class="k">mut</span> <span class="n">Object</span><span class="p">,</span> <span class="n">op</span><span class="o">:</span> <span class="n">Sel</span><span class="p">,</span> <span class="n">arg1</span><span class="o">:</span> <span class="n">A</span><span class="p">,</span> <span class="n">arg2</span><span class="o">:</span> <span class="n">B</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R</span> <span class="p">{</span>
     <span class="c1">// Transmute objc_msgSend to the type of the method implementation</span>
-    <span class="k">let</span> <span class="n">msg_send_fn</span><span class="o">:</span> <span class="k">unsafe</span> <span class="k">extern</span> <span class="k">fn</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R</span> <span class="o">=</span>
+    <span class="k">let</span> <span class="n">msg_send_fn</span><span class="o">:</span> <span class="k">unsafe</span> <span class="k">extern</span> <span class="k">fn</span><span class="p">(</span><span class="o">*</span><span class="k">mut</span> <span class="n">Object</span><span class="p">,</span> <span class="n">Sel</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R</span> <span class="o">=</span>
         <span class="n">mem</span><span class="o">::</span><span class="n">transmute</span><span class="p">(</span><span class="n">objc_msgSend</span><span class="p">);</span>
-    <span class="n">msg_send_fn</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
+    <span class="n">msg_send_fn</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>But our function needs to be able to accept one argument, or no arguments,
@@ -138,10 +140,10 @@ Let&rsquo;s add a <code>MessageArguments</code> trait and implement it for tuple
 <div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">impl</span><span class="o">&lt;</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="o">&gt;</span> <span class="n">MessageArguments</span> <span class="k">for</span> <span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">unsafe</span> <span class="k">fn</span> <span class="n">send</span><span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">obj</span><span class="o">:</span> <span class="o">*</span><span class="k">mut</span> <span class="n">Object</span><span class="p">,</span> <span class="n">op</span><span class="o">:</span> <span class="n">Sel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R</span> <span class="p">{</span>
         <span class="c1">// Transmute objc_msgSend to the type of the method implementation</span>
-        <span class="k">let</span> <span class="n">msg_send_fn</span><span class="o">:</span> <span class="k">unsafe</span> <span class="k">extern</span> <span class="k">fn</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R</span> <span class="o">=</span>
+        <span class="k">let</span> <span class="n">msg_send_fn</span><span class="o">:</span> <span class="k">unsafe</span> <span class="k">extern</span> <span class="k">fn</span><span class="p">(</span><span class="o">*</span><span class="k">mut</span> <span class="n">Object</span><span class="p">,</span> <span class="n">Sel</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">R</span> <span class="o">=</span>
             <span class="n">mem</span><span class="o">::</span><span class="n">transmute</span><span class="p">(</span><span class="n">objc_msgSend</span><span class="p">);</span>
         <span class="k">let</span> <span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span>
-        <span class="n">msg_send_fn</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
+        <span class="n">msg_send_fn</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -214,7 +216,9 @@ as easy from Rust as it is in Objective-C!</p>
   
 
 
-<time datetime="2015-08-02T23:53:50-07:00"  class="updated" >Aug 02, 2015</time>
+
+  
+<time datetime="2015-08-04T19:22:16-07:00" class="updated">Updated Aug 04, 2015</time>
     
 
 
