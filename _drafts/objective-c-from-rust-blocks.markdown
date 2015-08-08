@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Objective-C and Rust: Blocks"
+title: "Objective-C from Rust: Blocks"
 ---
 
 start with link to spec
