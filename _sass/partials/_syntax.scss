@@ -158,7 +158,7 @@ figure.code {
   .cp     { color: $base01; font-style: italic;  }                     /* Comment.Preproc */
   .c1     { color: $base01; font-style: italic; }                     /* Comment.Single */
   .cs     { color: $base01; font-weight: bold; font-style: italic; }   /* Comment.Special */
-  .err    { color: $solar-red; background: none; }                                            /* Error */
+  .err    { color: $base1; background: none; }                                            /* Error */
   .k      { color: $solar-orange; }                       /* Keyword */
   .o      { color: $base1; font-weight: bold; }                       /* Operator */
   .p      { color: $base1; }                                             /* Operator */
@@ -176,7 +176,7 @@ figure.code {
   .gu     { color: $solar-violet; }                                          /* Generic.Subheading */
   //.gt     { color: #aa0000 }                                          /* Generic.Traceback */
   .kc     { color: $solar-green; font-weight: bold; }                       /* Keyword.Constant */
-  .kd     { color: $solar-blue; }                       /* Keyword.Declaration */
+  .kd     { color: $solar-orange; }                       /* Keyword.Declaration */
   .kp     { color: $solar-orange; font-weight: bold; }                       /* Keyword.Pseudo */
   .kr     { color: $solar-magenta; font-weight: bold; }                       /* Keyword.Reserved */
   .kt     { color: $solar-cyan; }                       /* Keyword.Type */
