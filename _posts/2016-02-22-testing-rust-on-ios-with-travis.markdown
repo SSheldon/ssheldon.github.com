@@ -2,6 +2,7 @@
 layout: post
 title: Testing Rust on iOS with Travis
 date: 2016-02-22T22:10:43-08:00
+updated: 2016-02-23T08:22:56-08:00
 ---
 
 Since I started automatically testing my Rust crate with Travis,
@@ -77,7 +78,7 @@ and call these tests. The objc crate actually has
 [a Python script to parse out the tests from the project](https://github.com/SSheldon/rust-objc/blob/e034af2/xtests/build.py)
 to be included in a crate for external tests;
 ideally this will someday be replaced with a
-[custom test harnesses](https://github.com/rust-lang/rfcs/issues/816).
+[custom test harness](https://github.com/rust-lang/rfcs/issues/816).
 
 The code we'd like to test on iOS has to be compiled to a static library,
 as support for dynamic libraries on iOS was only added recently and
