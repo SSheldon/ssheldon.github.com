@@ -4,7 +4,7 @@
   <title>sasheldon.com</title>
   <link href="http://sasheldon.com/blog/atom.xml" rel="self"/>
   <link href="http://sasheldon.com/"/>
-  <updated>2016-02-22T22:20:24-08:00</updated>
+  <updated>2016-02-23T08:26:25-08:00</updated>
   <id>http://sasheldon.com/</id>
   <author>
     <name>Steven Sheldon</name>
@@ -82,7 +82,7 @@ and call these tests. The objc crate actually has
 &lt;a href=&quot;https://github.com/SSheldon/rust-objc/blob/e034af2/xtests/build.py&quot;&gt;a Python script to parse out the tests from the project&lt;/a&gt;
 to be included in a crate for external tests;
 ideally this will someday be replaced with a
-&lt;a href=&quot;https://github.com/rust-lang/rfcs/issues/816&quot;&gt;custom test harnesses&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&quot;https://github.com/rust-lang/rfcs/issues/816&quot;&gt;custom test harness&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;The code we&amp;rsquo;d like to test on iOS has to be compiled to a static library,
 as support for dynamic libraries on iOS was only added recently and
