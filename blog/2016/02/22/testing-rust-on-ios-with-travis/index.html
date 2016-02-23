@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="iem7"><![endif]-->
+<!--[if lt IE 9]><html class="lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Testing Rust on iOS with Travis - sasheldon.com</title>
+  <meta name="author" content="Steven Sheldon">
+
+  
+  <meta name="description" content="Since I started automatically testing my Rust crate with Travis, I had always wanted to test on iOS as well. Unfortunately, the default Rust compil...">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://sasheldon.com/blog/2016/02/22/testing-rust-on-ios-with-travis/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/blog/atom.xml" rel="alternate" title="sasheldon.com" type="application/atom+xml">
+
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+  <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-57212765-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">sasheldon.com</a></h1>
+  
+</hgroup>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+
+
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="sasheldon.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+
+
+<ul class="main-navigation">
+  <li><a href="/">About</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+<header>
+  
+    <h1 class="entry-title">Testing Rust on iOS with Travis</h1>
+  
+  
+    <p class="meta">
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-02-22T22:10:43-08:00"  class="updated" >Feb 22, 2016</time>
+    </p>
+  
+</header>
+
+
+  <div class="entry-content"><p>Since I started automatically testing my Rust crate with Travis,
+I had always wanted to test on iOS as well.
+Unfortunately, the default Rust compiler on Travis doesn&rsquo;t support iOS,
+and compiling one from scratch takes a prohibitively long time.
+With Rust&rsquo;s improved cross-compilation support, it&rsquo;s now possible!</p>
+
+<!-- more -->
+
+<h2>Travis configurations</h2>
+
+<p>We&rsquo;ll be running our tests on Xcode&rsquo;s iOS simulator,
+which means that these tests have to run on Travis&rsquo;s OSX image.
+We&rsquo;ll start with these Travis configurations for iOS builds:</p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">language</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">rust</span>
+<span class="l-Scalar-Plain">rust</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">nightly</span>
+<span class="l-Scalar-Plain">os</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">osx</span>
+<span class="l-Scalar-Plain">osx_image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">xcode7.2</span>
+</code></pre></div>
+<p>If you&rsquo;ll be testing your library on OSX and iOS, I&rsquo;ve found it convenient
+to use an <code>IOS_ARCHS</code> environment variable; this variable lists all the
+iOS architectures we should build, and will be empty for our OSX builds.
+To build for all currently supported iOS architectures,
+<code>IOS_ARCHS</code> can be defined as <code>IOS_ARCHS=&quot;i386 x86_64 armv7 armv7s aarch64&quot;</code>.</p>
+
+<p>By using an <code>IOS_ARCHS</code> environment variable, we can take advantage of
+<a href="https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-.travis.yml">Travis&rsquo;s build matrix functionality</a>
+to have separate iOS and OSX builds:</p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">env</span><span class="p-Indicator">:</span>
+  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">IOS_ARCHS=&quot;&quot;</span>
+  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">IOS_ARCHS=&quot;i386 x86_64 armv7 armv7s aarch64&quot;</span>
+</code></pre></div>
+<p>This will trigger two separate builds in Travis&rsquo;s matrix: one for no iOS
+architectures (i.e. an OSX build) and one for all iOS architectures.</p>
+
+<h2>Setting up the cross compiler</h2>
+
+<p>The Rust compiler included on Travis is not able to compile for iOS.
+With Rust&rsquo;s cross compiler support, though, compiling for iOS is just
+a matter of downloading the iOS versions of the standard library.</p>
+
+<p>Following the <a href="https://github.com/japaric/rust-cross/blob/master/README.md">rust-cross guide</a>,
+we can add a <a href="https://docs.travis-ci.com/user/customizing-the-build/#Customizing-the-Installation-Step">Travis <code>install</code> step</a>
+to install all the architectures we&rsquo;ll be building for:</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="k">for</span> arch in <span class="nv">$IOS_ARCHS</span><span class="p">;</span> <span class="k">do</span>
+    <span class="nv">ios_stdlib</span><span class="o">=</span><span class="s2">&quot;rust-std-nightly-${arch}-apple-ios&quot;</span>
+    curl -O <span class="s2">&quot;http://static.rust-lang.org/dist/${ios_stdlib}.tar.gz&quot;</span>
+    tar xzf <span class="s2">&quot;${ios_stdlib}.tar.gz&quot;</span>
+    <span class="s2">&quot;./${ios_stdlib}/install.sh&quot;</span> --prefix<span class="o">=</span><span class="k">$(</span>rustc --print sysroot<span class="k">)</span>
+<span class="k">done</span>
+</code></pre></div>
+<h2>Building an iOS library</h2>
+
+<p>The trickiest part about testing Rust on iOS currently is that
+you cannot directly run the <code>#[test]</code>s you&rsquo;ve written in Rust.
+Rust&rsquo;s testing infrastructure compiles tests into an executable to be run,
+but executables on iOS have to be packaged as apps and signed properly,
+a process best handled by Xcode.</p>
+
+<p>I chose to extract some of my testing code into a library that could be
+called from iOS, and then wrote a simple iOS test project that would link
+and call these tests. The objc crate actually has
+<a href="https://github.com/SSheldon/rust-objc/blob/e034af2/xtests/build.py">a Python script to parse out the tests from the project</a>
+to be included in a crate for external tests;
+ideally this will someday be replaced with a
+<a href="https://github.com/rust-lang/rfcs/issues/816">custom test harnesses</a>.</p>
+
+<p>The code we&rsquo;d like to test on iOS has to be compiled to a static library,
+as support for dynamic libraries on iOS was only added recently and
+<a href="https://github.com/rust-lang/rust/issues/21727">Rust does not yet support them</a>.
+To compile to a static library, simply add the
+<a href="http://doc.crates.io/manifest.html#building-dynamic-or-static-libraries"><code>crate-type</code> key</a>
+to the <code>lib</code> section of the <code>Cargo.toml</code> for your test library:</p>
+<div class="highlight"><pre><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="n">lib</span><span class="p">]</span>
+<span class="n">crate-type</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;staticlib&quot;</span><span class="p">]</span>
+</code></pre></div>
+<p>The test code that will be called from our iOS app must be properly exposed like
+<a href="https://doc.rust-lang.org/book/ffi.html#calling-rust-code-from-c">any Rust code called from C</a>:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="cp">#[no_mangle]</span>
+<span class="k">pub</span> <span class="k">extern</span> <span class="k">fn</span> <span class="n">rust_lib_test_functionality</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">c_int</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="c1">// Returns a non-zero code for test failure</span>
+    <span class="k">if</span> <span class="n">success</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="mi">1</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Great! Now we have a static lib exposing some test functionality that
+we&rsquo;ll call on iOS.</p>
+
+<p>One last thing: iOS libraries support multiple architectures, so to test
+on multiple architectures we&rsquo;ll want to combine the different builds of
+our library using the <code>lipo</code> tool:</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="k">for</span> arch in <span class="nv">$IOS_ARCHS</span><span class="p">;</span> <span class="k">do</span>
+    cargo build --target <span class="s2">&quot;${arch}-apple-ios&quot;</span>
+<span class="k">done</span>
+lipo -create -output <span class="s2">&quot;${LIB}&quot;</span> target/*-apple-ios/debug/<span class="s2">&quot;${LIB}&quot;</span>
+</code></pre></div>
+<h2>iOS test project</h2>
+
+<p>Now that we have our library of test code to call from iOS, we can create
+an iOS test project. Starting out from an empty project in Xcode,
+we&rsquo;ll add a new iOS unit testing target:</p>
+
+<p><img src="/blog/images/testing-rust-on-ios-with-travis/new-test-target.png" alt=""></p>
+
+<p>Next, drag your compiled library of Rust tests into the &ldquo;Link Binary With
+Libraries&rdquo; section of the &ldquo;Build Phases&rdquo; for your test target.</p>
+
+<p>Now we&rsquo;re ready to write an <code>XCTestCase</code> verifying the functionality of
+the Rust library:</p>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="kt">int</span> <span class="nf">rust_lib_test_functionality</span><span class="p">();</span>
+
+<span class="k">@interface</span> <span class="nc">RustLibTests</span> : <span class="nc">XCTestCase</span>
+<span class="k">@end</span>
+
+<span class="k">@implementation</span> <span class="nc">RustLibTests</span>
+
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">test</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">rust_lib_test_functionality</span><span class="p">();</span>
+  <span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot;Test failed with a non-zero code&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+</code></pre></div>
+<p>At this point, we can run our tests from within Xcode and should see a
+nice green checkmark if it&rsquo;s passing on the iOS simulator!</p>
+
+<h2>Running on Travis</h2>
+
+<p>The last step is simply adding a
+<a href="https://docs.travis-ci.com/user/customizing-the-build/#Customizing-the-Build-Step">Travis <code>script</code> step</a>
+to run our iOS tests.</p>
+
+<p>One caveat, first: running tests from a script requires a shared scheme, so
+make sure the test target scheme is shared and the <code>.xcscheme</code> file committed.
+This can be done in Xcode from the
+&ldquo;Product&rdquo; &gt; &ldquo;Scheme&rdquo; &gt; &ldquo;Manage Schemes&hellip;&rdquo; menu:</p>
+
+<p><img src="/blog/images/testing-rust-on-ios-with-travis/shared-scheme.png" alt=""></p>
+
+<p>Now, we can add a script step using <code>xcodebuild</code>. <code>xcodebuild</code> takes
+<a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/xcodebuild.1.html">a multitude of options</a>,
+but if your project and scheme were named <code>RustLibTests</code>,
+running your tests on an iPhone 5 and 5s simulator (32 and 64-bit,
+respectively) could be done with the following command:</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">xcodebuild <span class="se">\</span>
+    -project RustLibTests.xcodeproj <span class="se">\</span>
+    -scheme RustLibTests <span class="se">\</span>
+    -destination <span class="s1">&#39;platform=iOS Simulator,name=iPhone 5&#39;</span> <span class="se">\</span>
+    -destination <span class="s1">&#39;platform=iOS Simulator,name=iPhone 5s&#39;</span> <span class="se">\</span>
+    <span class="nb">test</span>
+</code></pre></div>
+<p>And there we have it! Now, Travis will run our tests on an iOS simulator
+to verify that our crate is working.</p>
+
+<p>For an example of this in action, check out the
+<a href="https://github.com/SSheldon/rust-objc">objc crate</a>.
+It may seem like a lot of hoops to jump though, but I am impressed with
+the ease of setting up Rust itself for cross-compilation.</p>
+</div>
+  
+<footer>
+  <p class="meta">
+    
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Steven Sheldon</span></span>
+
+    
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-02-22T22:10:43-08:00"  class="updated" >Feb 22, 2016</time>
+    
+
+
+  </p>
+  <p class="meta">
+    
+      <a class="basic-alignment left" href="/blog/2015/08/02/objective-c-from-rust-objc_msgsend/" title="Previous Post: Objective-C from Rust: objc_msgSend">&laquo; Objective-C from Rust: objc_msgSend</a>
+    
+    
+  </p>
+</footer>
+
+
+</article>
+</div>
+
+      
+      <aside class="sidebar">
+        <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/02/22/testing-rust-on-ios-with-travis/">Testing Rust on iOS with Travis</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/02/objective-c-from-rust-objc_msgsend/">Objective-C from Rust: objc_msgSend</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/28/interoperating-between-objective-c-and-rust/">Interoperating Between Objective-C and Rust</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/14/simplifying-json-response-mocks-with-jinja/">Simplifying JSON Response Mocks With Jinja</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/07/waiting-for-octopress-2-successor/">Waiting for Octopress 2.0's Successor</a>
+      </li>
+    
+  </ul>
+</section>
+
+      </aside>
+      
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Steven Sheldon -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+</footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+</body>
+</html>
