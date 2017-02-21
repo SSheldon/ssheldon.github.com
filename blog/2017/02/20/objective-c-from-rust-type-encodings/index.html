@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="iem7"><![endif]-->
+<!--[if lt IE 9]><html class="lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Objective-C from Rust: Statically Verified Type Encodings without Allocation - sasheldon.com</title>
+  <meta name="author" content="Steven Sheldon">
+
+  
+  <meta name="description" content="Lately I&rsquo;ve been thinking about a new way to generate Objective-C type encodings from Rust. The Objective-C runtime needs these encodings whe...">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://sasheldon.com/blog/2017/02/20/objective-c-from-rust-type-encodings/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/blog/atom.xml" rel="alternate" title="sasheldon.com" type="application/atom+xml">
+
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+  <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-57212765-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">sasheldon.com</a></h1>
+  
+</hgroup>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+
+
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="sasheldon.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+
+
+<ul class="main-navigation">
+  <li><a href="/">About</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+<header>
+  
+    <h1 class="entry-title">Objective-C from Rust: Statically Verified Type Encodings without Allocation</h1>
+  
+  
+    <p class="meta">
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-02-20T23:39:39-08:00"  class="updated" >Feb 20, 2017</time>
+    </p>
+  
+</header>
+
+
+  <div class="entry-content"><p>Lately I&rsquo;ve been thinking about a new way to generate
+<a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html">Objective-C type encodings</a>
+from Rust. The Objective-C runtime needs these encodings when declaring methods
+and instance variables, and in Objective-C they&rsquo;re simply generated via the
+<code>@encode()</code> compiler directive, but that&rsquo;s not available in Rust!</p>
+
+<!-- more -->
+
+<p>The current approach used in the <code>objc</code> crate basically just treats them as
+strings, like they are in Objective-C. The intention was: when you want the
+encoding of a type, just go run the Objective-C compiler and copy the result of
+<code>@encode()</code>.</p>
+
+<p>However, the encoding for a type is not the same on all platforms;
+certain types have different encodings on different architectures.
+<code>@encode(NSInteger)</code> is <code>&quot;i&quot;</code> on 32-bit systems and <code>&quot;q&quot;</code> on 64-bit systems,
+while <code>@encode(BOOL)</code> is <code>&quot;c&quot;</code> on most platforms but <code>&quot;b&quot;</code> on ARM64.</p>
+
+<p>With these discrepancies, it&rsquo;s really convenient to have ways of building up
+a type encoding from its parts. A first approach could look something like:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="n">encode_struct</span><span class="p">(</span><span class="n">name</span><span class="o">:</span> <span class="o">&amp;</span><span class="kt">str</span><span class="p">,</span> <span class="n">fields</span><span class="o">:</span> <span class="o">&amp;</span><span class="p">[</span><span class="o">&amp;</span><span class="kt">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">String</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="k">mut</span> <span class="n">encoding</span> <span class="o">=</span> <span class="n">format</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;{{{}=&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+    <span class="n">encoding</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">fields</span><span class="p">.</span><span class="n">iter</span><span class="p">().</span><span class="n">cloned</span><span class="p">());</span>
+    <span class="n">encoding</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="sc">&#39;}&#39;</span><span class="p">);</span>
+    <span class="n">encoding</span>
+<span class="p">}</span>
+
+<span class="n">encode_struct</span><span class="p">(</span><span class="s">&quot;CGPoint&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="p">[</span><span class="n">GCFloat</span><span class="o">::</span><span class="n">encode</span><span class="p">(),</span> <span class="n">CGFloat</span><span class="o">::</span><span class="n">encode</span><span class="p">()])</span>
+</code></pre></div>
+<p>This makes it easier for us to generate the struct&rsquo;s encoding and
+use the appropriate encoding for <code>CGFloat</code> on our platform.
+However, it&rsquo;s a <a href="http://wiki.c2.com/?StringlyTyped">stringly-typed API</a>;
+encodings have a well-defined format, but this code accepts inputs that can
+make it produce invalid encodings, like:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="n">encode_struct</span><span class="p">(</span><span class="s">&quot;CGPoint&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="p">[</span><span class="s">&quot;Hello, World!&quot;</span><span class="p">])</span>
+</code></pre></div>
+<p>Can we do better? Is there a design that will allow us to say
+&ldquo;I accept valid encodings and will produce a valid encoding from them&rdquo;?</p>
+
+<h2>Abstract syntax</h2>
+
+<p>Looking at the documentation for encodings, we can see that their grammar is
+pretty simple. It&rsquo;s not hard to represent the abstract syntax with Rust&rsquo;s enums:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">enum</span> <span class="n">Encoding</span> <span class="p">{</span>
+    <span class="nb">Char</span><span class="p">,</span>
+    <span class="nb">Int</span><span class="p">,</span>
+    <span class="p">...</span>
+    <span class="n">Pointer</span><span class="p">(</span><span class="n">Box</span><span class="o">&lt;</span><span class="n">Encoding</span><span class="o">&gt;</span><span class="p">),</span>
+    <span class="n">Struct</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="n">Encoding</span><span class="o">&gt;</span><span class="p">),</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>With this, it&rsquo;s even easier to build the encoding of a struct from its parts,
+because the type system won&rsquo;t let you build a struct encoding with an
+invalid format!</p>
+
+<p>There&rsquo;s something I&rsquo;m curious if we can improve on, though: see <code>Box</code> and <code>Vec</code>
+in that definition? Each of those will involve a memory allocation.
+Representing as simple an encoding as <code>&quot;^i&quot;</code> will allocate additional memory,
+and complex encodings like <code>&quot;{CGRect={CGPoint=dd}{CGSize=dd}}&quot;</code> require more.</p>
+
+<h2>Zero allocation</h2>
+
+<p>Our new challenge is composing these encodings together without allocation or
+virtualization. That problem reminds me of the design of
+<a href="https://doc.rust-lang.org/std/iter/index.html">iterators</a> and
+<a href="https://aturon.github.io/blog/2016/08/11/futures/">futures</a> in Rust;
+rather than representing these as a single concrete type, there is a trait
+defining the core functionality and then iterators/futures can be combined
+through generic structs which also conform to the trait.</p>
+
+<p>Let&rsquo;s take some inspiration from this design and say that there is an <code>Encoding</code>
+trait which every type representing a valid encoding implements
+(we&rsquo;ll come back later to exactly what functionality it should expose).
+Modelling a pointer encoding can be as simple as:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="c1">// T is the type of the target&#39;s encoding</span>
+<span class="k">struct</span> <span class="n">Pointer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">:</span> <span class="n">Encoding</span><span class="o">&gt;</span><span class="p">(</span><span class="n">T</span><span class="p">);</span>
+</code></pre></div>
+<p>Simple, and it avoids allocating!</p>
+
+<p>Things get trickier when we want to model a struct, because we need to hold the
+encoding of its multiple fields which may be of differing types.
+My go-to solution for representing heterogenous collections is using tuples
+with a trait they implement exposing the functionality we need, like the
+<a href="/blog/2015/08/02/objective-c-from-rust-objc_msgsend/"><code>MessageArguments</code> trait in the <code>objc</code> crate</a>.
+With such a trait, we could be able to create struct encodings like:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="n">Struct</span> <span class="p">{</span> <span class="n">name</span><span class="o">:</span> <span class="s">&quot;MyStruct&quot;</span><span class="p">,</span> <span class="n">fields</span><span class="o">:</span> <span class="p">(</span><span class="nb">Float</span><span class="p">,</span> <span class="n">Pointer</span><span class="p">(</span><span class="nb">Int</span><span class="p">))</span> <span class="p">}</span>
+</code></pre></div>
+<p>Again, no allocations needed. But what functionality will be needed in our
+encoding-tuple trait?</p>
+
+<h2>Encodings trait</h2>
+
+<p>In the end, the functionality we&rsquo;ll need from encodings will include
+writing out their string representation and comparing them for equality.
+For a struct encoding to do this, it will need access to its fields.
+If we could iterate over the fields of the struct, that should be sufficient!</p>
+
+<p>Unfortunately, we can&rsquo;t create an <code>Iterator</code> in this case; what would be the
+type of the items it yields? As mentioned earlier, we&rsquo;re working with tuples
+that contain encodings of differing types, so there is no single type we could
+choose for the type of the iterator&rsquo;s items.</p>
+
+<p>There&rsquo;s a different iteration technique we can fall back to:
+<a href="http://journal.stuffwithstuff.com/2013/01/13/iteration-inside-and-out/">internal iteration</a>.
+Internal (or push-based) iteration differs from external (or pull-based)
+iteration in that, instead of asking for each next element and then doing
+something with it, you provide an action to perform and that action is called
+for each item in the collection.</p>
+
+<p>Internal iteration works for us because, instead of needing to say explicitly
+which type of item will be returned, we can just ask for an action that can be
+performed on any type that implements <code>Encoding</code>!</p>
+
+<p>There&rsquo;s one obstacle here: we can&rsquo;t use Rust&rsquo;s usual <code>Fn</code> types because when
+the closure is passed, we don&rsquo;t know exactly which type of encoding it will be
+called with. In fact, we expect it to be called with different types of encoding!
+In effect, we want a closure that hasn&rsquo;t yet been monomorphized,
+which doesn&rsquo;t appear to be possible.
+If it were, the declaration would look something like this:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">trait</span> <span class="n">Encodings</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="n">each</span><span class="o">&lt;</span><span class="n">F</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="o">:</span> <span class="n">callback</span><span class="o">:</span> <span class="n">F</span><span class="p">)</span> <span class="n">where</span> <span class="k">for</span><span class="o">&lt;</span><span class="n">T</span><span class="o">:</span> <span class="n">Encode</span><span class="o">&gt;</span> <span class="n">F</span><span class="o">:</span> <span class="n">FnMut</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">bool</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>But instead we settle for defining the callback as a custom trait:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">pub</span> <span class="k">trait</span> <span class="n">EncodingsIterateCallback</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="n">call</span><span class="o">&lt;</span><span class="n">T</span><span class="o">:</span> <span class="n">Encoding</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span> <span class="bp">self</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">bool</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">trait</span> <span class="n">Encodings</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="n">each</span><span class="o">&lt;</span><span class="n">F</span><span class="o">:</span> <span class="n">EncodingsIterateCallback</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="o">:</span> <span class="n">callback</span><span class="o">:</span> <span class="n">F</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>And voilà! Now we have a way to iterate over a heterogenous collection of
+encodings. We can implement this trait for encodings of tuples and be on our way.</p>
+
+<h2>Encoding trait</h2>
+
+<p>You may have noticed that we&rsquo;ve so far dodged an important question:
+what does the <code>Encoding</code> trait look like? Let&rsquo;s figure that out!</p>
+
+<p>As mentioned earlier, one of the things we&rsquo;ll want to do with encodings is
+compare them for equality. But how can we compare with an encoding that could
+be any type? The <code>Encoding</code> trait will need to provide some sort of
+&ldquo;common language&rdquo; through which encodings of different types can interoperate.</p>
+
+<p>Fortunately, the kinds of encodings that exist are constrained and well-known.
+We would be able to compare if we could ask encodings something like:
+are you a pointer? what&rsquo;s the encoding of your target? are you an array?
+what&rsquo;s your length?</p>
+
+<p>To solve this, I used a <code>Descriptor</code> enum that describes which kind an encoding
+is and provides its properties. In pseudo-Rust, it looks like:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">enum</span> <span class="n">Descriptor</span> <span class="p">{</span>
+    <span class="c1">// Primitive is an enum of all encodings not composed from others</span>
+    <span class="nb">Primitive</span><span class="p">(</span><span class="nb">Primitive</span><span class="p">),</span>
+    <span class="n">Pointer</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="k">impl</span> <span class="n">Encoding</span><span class="p">)),</span>
+    <span class="n">Array</span><span class="p">(</span><span class="kt">u32</span><span class="p">,</span> <span class="o">&amp;</span><span class="p">(</span><span class="k">impl</span> <span class="n">Encoding</span><span class="p">)),</span>
+    <span class="n">Struct</span><span class="p">(</span><span class="o">&amp;</span><span class="kt">str</span><span class="p">,</span> <span class="o">&amp;</span><span class="p">(</span><span class="k">impl</span> <span class="n">Encodings</span><span class="p">)),</span>
+    <span class="n">Union</span><span class="p">(</span><span class="o">&amp;</span><span class="kt">str</span><span class="p">,</span> <span class="o">&amp;</span><span class="p">(</span><span class="k">impl</span> <span class="n">Encodings</span><span class="p">)),</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The <a href="https://github.com/SSheldon/rust-objc-encode/blob/0.0.2/src/descriptor.rs">real implementation</a>
+looks gnarlier and is generic rather than using <code>impl Trait</code>, but it&rsquo;s the same
+idea.</p>
+
+<p>With this descriptor we are effectively able to &ldquo;downcast&rdquo; encodings and figure
+out more about them, allowing us to compare encodings or convert them to strings.
+The <code>Encoding</code> trait ultimately ends up looking like:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">pub</span> <span class="k">trait</span> <span class="n">Encoding</span> <span class="p">{</span>
+    <span class="k">type</span> <span class="n">PointerTarget</span><span class="o">:</span> <span class="o">?</span><span class="nb">Sized</span> <span class="o">+</span> <span class="n">Encoding</span><span class="p">;</span>
+    <span class="k">type</span> <span class="n">ArrayItem</span><span class="o">:</span> <span class="o">?</span><span class="nb">Sized</span> <span class="o">+</span> <span class="n">Encoding</span><span class="p">;</span>
+    <span class="k">type</span> <span class="n">StructFields</span><span class="o">:</span> <span class="o">?</span><span class="nb">Sized</span> <span class="o">+</span> <span class="n">Encodings</span><span class="p">;</span>
+    <span class="k">type</span> <span class="n">UnionMembers</span><span class="o">:</span> <span class="o">?</span><span class="nb">Sized</span> <span class="o">+</span> <span class="n">Encodings</span><span class="p">;</span>
+
+    <span class="k">fn</span> <span class="n">descriptor</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Descriptor</span><span class="o">&lt;</span><span class="n">Self</span><span class="o">::</span><span class="n">PointerTarget</span><span class="p">,</span>
+                                       <span class="n">Self</span><span class="o">::</span><span class="n">ArrayItem</span><span class="p">,</span>
+                                       <span class="n">Self</span><span class="o">::</span><span class="n">StructFields</span><span class="p">,</span>
+                                       <span class="n">Self</span><span class="o">::</span><span class="n">UnionMembers</span><span class="o">&gt;</span><span class="p">;</span>
+
+    <span class="k">fn</span> <span class="n">eq_encoding</span><span class="o">&lt;</span><span class="n">T</span><span class="o">:</span> <span class="o">?</span><span class="nb">Sized</span> <span class="o">+</span> <span class="n">Encoding</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="o">:</span> <span class="o">&amp;</span><span class="n">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">bool</span> <span class="p">{</span>
+        <span class="cm">/* implementation provided based on the descriptor */</span>
+    <span class="p">}</span>
+
+    <span class="k">fn</span> <span class="n">write</span><span class="o">&lt;</span><span class="n">W</span><span class="o">:</span> <span class="n">fmt</span><span class="o">::</span><span class="n">Write</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span> <span class="n">writer</span><span class="o">:</span> <span class="o">&amp;</span><span class="k">mut</span> <span class="n">W</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">fmt</span><span class="o">::</span><span class="nb">Result</span> <span class="p">{</span>
+        <span class="cm">/* implementation provided based on the descriptor */</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2>Parsing encodings</h2>
+
+<p>As cool as the encoding structs we&rsquo;ve made so far are, we can&rsquo;t build encodings
+like them from parsing a string. This is because at compile time we have know
+idea how big the result would be, and with monomorphization the compiler would
+have to generate code for creating every possible kind of encoding struct,
+and there are infinitely many possible encodings. Believe me, I tried:</p>
+
+<p><img src="/blog/images/objective-c-from-rust-type-encodings/recursion-limit.png" alt=""></p>
+
+<p>What we can do, though, is make a new kind of encoding that is initialized from
+a string and parses itself lazily; I ended up calling
+<a href="https://github.com/SSheldon/rust-objc-encode/blob/0.0.2/src/parse/encoding.rs">this type <code>StrEncoding</code></a>.
+When <code>StrEncoding</code>&rsquo;s <code>descriptor</code> method is called, it determines which kind of
+encoding it is and creates more <code>StrEncoding</code>s for any sub-encodings it contains.
+These sub-encodings reference safely into the original buffer,
+no copying required, thanks to Rust&rsquo;s lifetimes and ownership system.</p>
+
+<p>There is one gotcha: our <code>Encoding</code> trait was designed for structs with
+encodings inside them, and so was designed where references to the contained
+encodings are returned. This doesn&rsquo;t seem to work with <code>StrEncoding</code>;
+it doesn&rsquo;t own its sub-encodings (remember, it creates them on demand),
+and how could we return a reference to something that was created inside the
+method and is about to drop out of scope?</p>
+
+<p>The key to solving this was realizing that the <code>StrEncoding</code> doesn&rsquo;t actually
+need any data other than its input string. What if we were able to convert
+a reference to a <code>str</code> into a reference to a <code>StrEncoding</code>?
+Turns out this is possible if <code>StrEncoding</code> is defined as a
+<a href="https://doc.rust-lang.org/nomicon/exotic-sizes.html#dynamically-sized-types-dsts">dynamically-sized type</a>
+wrapping <code>str</code>:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">struct</span> <span class="n">StrEncoding</span><span class="p">(</span><span class="kt">str</span><span class="p">);</span>
+</code></pre></div>
+<p>And with that, when a <code>StrEncoding</code> is parsed, it is able to return references
+to sub-encodings with the same lifetime!</p>
+
+<h2>Owned StrEncoding</h2>
+
+<p>As nice as our dynamically sized <code>StrEncoding</code> is, sometimes it&rsquo;d be beneficial
+to have a parsed encoding which owns its buffer and can be passed around
+without worrying about lifetimes.</p>
+
+<p>Complicating this is the fact that I was aiming to have this encodings crate be
+<a href="https://doc.rust-lang.org/book/using-rust-without-the-standard-library.html"><code>no_std</code>, relying only on libcore</a>.
+<code>String</code> doesn&rsquo;t even exist in libcore! How can we make a parsed encoding
+which owns a <code>String</code> when it&rsquo;s not available?</p>
+
+<p>Since we can&rsquo;t access <code>String</code> ourselves, I figured we&rsquo;d have to use a generic
+type parameter through which users could specify that <code>String</code> is used.
+I scoured the docs for a trait that is implemented by <code>String</code> and accessible
+in libcore and found just what we need in <code>AsRef&lt;str&gt;</code>.</p>
+
+<p>A further bonus is that <code>str</code> itself implements <code>AsRef&lt;str&gt;</code>,
+so we don&rsquo;t actually even need a new type for this;
+we can modify <code>StrEncoding</code> to support its original use case and this new one:</p>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="k">struct</span> <span class="n">StrEncoding</span><span class="o">&lt;</span><span class="n">S</span> <span class="o">=</span> <span class="kt">str</span><span class="o">&gt;</span><span class="p">(</span><span class="n">S</span><span class="p">)</span> <span class="n">where</span> <span class="n">S</span><span class="o">:</span> <span class="o">?</span><span class="nb">Sized</span> <span class="o">+</span> <span class="n">AsRef</span><span class="o">&lt;</span><span class="kt">str</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div>
+<p>Now we can have multiple flavors of string encodings:
+the original, dynamically sized version as <code>&amp;StrEncoding&lt;str&gt;</code>,
+or one with an owned buffer as <code>StrEncoding&lt;String&gt;</code>.</p>
+
+<h2>The end result</h2>
+
+<p>I&rsquo;ve published the end result as
+<a href="https://crates.io/crates/objc-encode">the <code>objc-encode</code> crate</a>,
+which allows creating encodings that are statically known to be valid
+and can be compared against encodings parsed from a string representation,
+all without memory allocation.</p>
+
+<p><a href="https://github.com/SSheldon/rust-objc-encode/blob/0.0.2/examples/core_graphics.rs#L41-L53">The encodings compose well</a>,
+albeit with a bit of boilerplate for more complex structs.
+The good news is that this boilerplate is very formulaic, and I think generating
+it would be a great candidate for a
+<a href="https://doc.rust-lang.org/book/procedural-macros.html">custom derive macro</a>,
+something I&rsquo;m eager to try in the future!</p>
+</div>
+  
+<footer>
+  <p class="meta">
+    
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Steven Sheldon</span></span>
+
+    
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-02-20T23:39:39-08:00"  class="updated" >Feb 20, 2017</time>
+    
+
+
+  </p>
+  <p class="meta">
+    
+      <a class="basic-alignment left" href="/blog/2016/02/22/testing-rust-on-ios-with-travis/" title="Previous Post: Testing Rust on iOS with Travis">&laquo; Testing Rust on iOS with Travis</a>
+    
+    
+  </p>
+</footer>
+
+
+</article>
+</div>
+
+      
+      <aside class="sidebar">
+        <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/02/20/objective-c-from-rust-type-encodings/">Objective-C from Rust: Statically Verified Type Encodings without Allocation</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/02/22/testing-rust-on-ios-with-travis/">Testing Rust on iOS with Travis</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/02/objective-c-from-rust-objc_msgsend/">Objective-C from Rust: objc_msgSend</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/28/interoperating-between-objective-c-and-rust/">Interoperating Between Objective-C and Rust</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/14/simplifying-json-response-mocks-with-jinja/">Simplifying JSON Response Mocks With Jinja</a>
+      </li>
+    
+  </ul>
+</section>
+
+      </aside>
+      
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Steven Sheldon -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+</footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+</body>
+</html>
