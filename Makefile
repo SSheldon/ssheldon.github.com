@@ -7,6 +7,6 @@ _site: vendor/bundle stylesheets/screen.css
 stylesheets/screen.css: vendor/bundle $(shell find _sass -type f -name "*.scss")
 	bin/compass compile -s compressed --sass-dir _sass
 
-vendor/bundle: Gemfile.lock .bundle/config
-	bundle install
+vendor/bundle: Gemfile.lock
+	bundle install --path=$@ --binstubs=bin
 	touch $@
