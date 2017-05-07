@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title>sasheldon.com</title>
-  <link href="http://sasheldon.com/blog/atom.xml" rel="self"/>
-  <link href="http://sasheldon.com/"/>
-  <updated>2017-02-21T23:13:32-08:00</updated>
-  <id>http://sasheldon.com/</id>
+  <link href="http://localhost:4000/blog/atom.xml" rel="self"/>
+  <link href="http://localhost:4000/"/>
+  <updated>2017-05-07T10:11:12-07:00</updated>
+  <id>http://localhost:4000/</id>
   <author>
     <name>Steven Sheldon</name>
     
@@ -14,10 +14,88 @@
 
   
   <entry>
+    <title type="html">How I Broke Rust's Package Manager for All Windows Users</title>
+    <link href="http://localhost:4000/blog/2017/05/07/how-i-broke-cargo-for-windows/"/>
+    <updated>2017-05-07T10:07:40-07:00</updated>
+    <id>http://localhost:4000/blog/2017/05/07/how-i-broke-cargo-for-windows</id>
+    <content type="html">&lt;p&gt;Last weekend I was playing around with a way to represent null-terminated UTF8
+strings in Rust. Rather than just toying with it forever,
+I decided to clean up a minimal version and publish it to crates.io. Creating
+the crate went smoothly, exactly the same as the 11 prior crates I&amp;rsquo;ve published.
+I closed up my laptop and called it a day.&lt;/p&gt;
+
+&lt;p&gt;Well, everything only seemed the same until an hour later when I got this tweet:&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;div class='embed tweet'&gt;&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;&lt;a href=&quot;https://twitter.com/sheldonut&quot;&gt;@sheldonut&lt;/a&gt; Hi Steven, Rust team here :) We&amp;rsquo;re having some technical difficulties with the name of one of your crates&amp;hellip; feel free to DM&lt;/p&gt;&amp;mdash; Oh, It&amp;rsquo;s Ben (@bstrie) &lt;a href=&quot;https://twitter.com/bstrie/status/858784809413472257&quot;&gt;April 30, 2017&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
+
+&lt;h2&gt;The impact&lt;/h2&gt;
+
+&lt;p&gt;The crate I had just published was named &lt;code&gt;nul&lt;/code&gt;, after
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Null_character&quot;&gt;the null terminator character&lt;/a&gt;
+which is abbreviated as &lt;code&gt;NUL&lt;/code&gt;.
+I hopped onto Rust&amp;rsquo;s IRC channel to figure out what I had done, and
+&lt;a href=&quot;https://botbot.me/mozilla/rust-internals/msg/84953638/&quot;&gt;the friendly Rust devs informed me&lt;/a&gt;
+that they were going to delete &lt;code&gt;nul&lt;/code&gt; from crates.io.&lt;/p&gt;
+
+&lt;p&gt;While trying to catch up at this point, I saw that there was an
+&lt;a href=&quot;https://github.com/SSheldon/nul/issues/1&quot;&gt;issue filed on my repo&lt;/a&gt;.
+And an &lt;a href=&quot;https://github.com/rust-lang/cargo/issues/3982&quot;&gt;issue filed on cargo&lt;/a&gt;.
+And a &lt;a href=&quot;https://www.reddit.com/r/rust/comments/68hemz/i_think_a_crate_called_nul_is_causing_errors_for/&quot;&gt;reddit thread&lt;/a&gt;.
+Whoops.&lt;/p&gt;
+
+&lt;p&gt;Whenever any users on Windows attempted to download new crates or update
+their dependencies, they were greeted with this error:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Updating registry https://github.com/rust-lang/crates.io-index
+error: [20/-1] Cannot checkout to invalid path &amp;#39;3/n/nul&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;As &lt;a href=&quot;https://botbot.me/mozilla/rust/msg/84953614/&quot;&gt;kmc described&lt;/a&gt;
+the status of cargo on Windows:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/images/how-i-broke-cargo-for-windows/on-fire.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;But why?&lt;/h2&gt;
+
+&lt;p&gt;Turns out that &amp;ldquo;NUL&amp;rdquo; (including &amp;ldquo;nul&amp;rdquo;) is a reserved filename on Windows.
+&lt;code&gt;NUL&lt;/code&gt; is the Windows equivalent of Unix&amp;rsquo;s &lt;code&gt;/dev/null&lt;/code&gt;, but instead of existing
+at a specific directory you can write to &lt;code&gt;NUL&lt;/code&gt; in any directory,
+and even with any extension!&lt;/p&gt;
+
+&lt;p&gt;That might sound surprising, but
+&lt;a href=&quot;https://blogs.msdn.microsoft.com/oldnewthing/20031022-00/?p=42073&quot;&gt;Raymond Chen has an illuminating explanation&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Because DOS 1.0 didn&amp;rsquo;t have subdirectories.
+There was only one directory, which today we would call the root directory&amp;hellip;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;And so, since these DOS 1.0 days, tons of batch files exist on Windows
+redirecting with &lt;code&gt;&amp;gt;NUL&lt;/code&gt;, and the reserved filenames remain.&lt;/p&gt;
+
+&lt;h2&gt;The aftermath&lt;/h2&gt;
+
+&lt;p&gt;Once my &lt;code&gt;nul&lt;/code&gt; crate was deleted, Windows users were back in business.
+The Rust team quickly moved to prevent this issue from happening again by
+&lt;a href=&quot;https://github.com/rust-lang/crates.io/pull/695&quot;&gt;adding &amp;ldquo;NUL&amp;rdquo; and Windows&amp;rsquo; 21 other reserved filenames to the list of reserved crate names&lt;/a&gt;.
+Guess I won&amp;rsquo;t get to publish that &lt;code&gt;aux&lt;/code&gt; crate now 😉&lt;/p&gt;
+
+&lt;p&gt;Apologies to Carol Nichols and any other Rust devs whose weekends I interrupted,
+thanks for your quick action!&lt;/p&gt;
+
+&lt;p&gt;Although, I mean, like withoutboats said:&lt;/p&gt;
+
+&lt;div class='embed tweet'&gt;&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;I thought Rust was supposed to prevent nul errors! ;-)&lt;/p&gt;&amp;mdash; boats ✨ (@withoutboats) &lt;a href=&quot;https://twitter.com/withoutboats/status/858791127750557696&quot;&gt;April 30, 2017&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
+</content>
+  </entry>
+  
+  <entry>
     <title type="html">Objective-C from Rust: Statically Verified Type Encodings without Allocation</title>
-    <link href="http://sasheldon.com/blog/2017/02/20/objective-c-from-rust-type-encodings/"/>
+    <link href="http://localhost:4000/blog/2017/02/20/objective-c-from-rust-type-encodings/"/>
     <updated>2017-02-20T23:39:39-08:00</updated>
-    <id>http://sasheldon.com/blog/2017/02/20/objective-c-from-rust-type-encodings</id>
+    <id>http://localhost:4000/blog/2017/02/20/objective-c-from-rust-type-encodings</id>
     <content type="html">&lt;p&gt;Lately I&amp;rsquo;ve been thinking about a new way to generate
 &lt;a href=&quot;https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html&quot;&gt;Objective-C type encodings&lt;/a&gt;
 from Rust. The Objective-C runtime needs these encodings when declaring methods
@@ -287,9 +365,9 @@ something I&amp;rsquo;m eager to try in the future!&lt;/p&gt;
   
   <entry>
     <title type="html">Testing Rust on iOS with Travis</title>
-    <link href="http://sasheldon.com/blog/2016/02/22/testing-rust-on-ios-with-travis/"/>
+    <link href="http://localhost:4000/blog/2016/02/22/testing-rust-on-ios-with-travis/"/>
     <updated>2016-02-22T22:10:43-08:00</updated>
-    <id>http://sasheldon.com/blog/2016/02/22/testing-rust-on-ios-with-travis</id>
+    <id>http://localhost:4000/blog/2016/02/22/testing-rust-on-ios-with-travis</id>
     <content type="html">&lt;p&gt;Since I started automatically testing my Rust crate with Travis,
 I had always wanted to test on iOS as well.
 Unfortunately, the default Rust compiler on Travis doesn&amp;rsquo;t support iOS,
@@ -452,9 +530,9 @@ the ease of setting up Rust itself for cross-compilation.&lt;/p&gt;
   
   <entry>
     <title type="html">Objective-C from Rust: objc_msgSend</title>
-    <link href="http://sasheldon.com/blog/2015/08/02/objective-c-from-rust-objc_msgsend/"/>
+    <link href="http://localhost:4000/blog/2015/08/02/objective-c-from-rust-objc_msgsend/"/>
     <updated>2015-08-02T23:53:50-07:00</updated>
-    <id>http://sasheldon.com/blog/2015/08/02/objective-c-from-rust-objc_msgsend</id>
+    <id>http://localhost:4000/blog/2015/08/02/objective-c-from-rust-objc_msgsend</id>
     <content type="html">&lt;p&gt;I previously wrote about how to &lt;a href=&quot;/blog/2014/11/28/interoperating-between-objective-c-and-rust/&quot;&gt;interoperate between Objective-C and Rust&lt;/a&gt;
 and use a Rust macro to pass a variable number of arguments to &lt;code&gt;objc_msgSend&lt;/code&gt;.
 Well, there&amp;rsquo;s a problem with this: &lt;code&gt;objc_msgSend&lt;/code&gt; isn&amp;rsquo;t a variadic function!&lt;/p&gt;
@@ -558,9 +636,9 @@ as easy from Rust as it is in Objective-C!&lt;/p&gt;
   
   <entry>
     <title type="html">Interoperating Between Objective-C and Rust</title>
-    <link href="http://sasheldon.com/blog/2014/11/28/interoperating-between-objective-c-and-rust/"/>
+    <link href="http://localhost:4000/blog/2014/11/28/interoperating-between-objective-c-and-rust/"/>
     <updated>2014-11-28T01:52:17-08:00</updated>
-    <id>http://sasheldon.com/blog/2014/11/28/interoperating-between-objective-c-and-rust</id>
+    <id>http://localhost:4000/blog/2014/11/28/interoperating-between-objective-c-and-rust</id>
     <content type="html">&lt;p&gt;Since the Objective-C runtime exposes a C interface, it&amp;rsquo;s actually pretty easy
 to interact with from Rust.
 Over the past months I&amp;rsquo;ve worked on a Rust wrapper around the
@@ -879,9 +957,9 @@ we only implement copying for the shared array.&lt;/p&gt;
   
   <entry>
     <title type="html">Simplifying JSON Response Mocks With Jinja</title>
-    <link href="http://sasheldon.com/blog/2013/12/14/simplifying-json-response-mocks-with-jinja/"/>
+    <link href="http://localhost:4000/blog/2013/12/14/simplifying-json-response-mocks-with-jinja/"/>
     <updated>2013-12-14T13:43:01-08:00</updated>
-    <id>http://sasheldon.com/blog/2013/12/14/simplifying-json-response-mocks-with-jinja</id>
+    <id>http://localhost:4000/blog/2013/12/14/simplifying-json-response-mocks-with-jinja</id>
     <content type="html">&lt;p&gt;For documenting and testing large APIs, response mocks can be a very useful
 tool. They not only provide examples for the users of your API, but they can be
 used in automated tests as if you had received real data without actually
@@ -1036,9 +1114,9 @@ can surely adapt to meet whatever your needs are.&lt;/p&gt;
   
   <entry>
     <title type="html">Waiting for Octopress 2.0's Successor</title>
-    <link href="http://sasheldon.com/blog/2013/07/07/waiting-for-octopress-2-successor/"/>
+    <link href="http://localhost:4000/blog/2013/07/07/waiting-for-octopress-2-successor/"/>
     <updated>2013-07-07T02:24:00-07:00</updated>
-    <id>http://sasheldon.com/blog/2013/07/07/waiting-for-octopress-2-successor</id>
+    <id>http://localhost:4000/blog/2013/07/07/waiting-for-octopress-2-successor</id>
     <content type="html">&lt;p&gt;The next version of &lt;a href=&quot;http://octopress.org/&quot;&gt;Octopress&lt;/a&gt; is packed full of
 &lt;a href=&quot;https://gist.github.com/imathis/e9c2ee2406e93c4269e8&quot;&gt;awesome improvements&lt;/a&gt;.
 Octopress will change massively to be more extensible and customizable while
@@ -1173,9 +1251,9 @@ so no new version is slated before Octopress 3.0.&lt;/p&gt;
   
   <entry>
     <title type="html">Octopress</title>
-    <link href="http://sasheldon.com/blog/2012/11/15/octopress/"/>
+    <link href="http://localhost:4000/blog/2012/11/15/octopress/"/>
     <updated>2012-11-15T22:14:00-08:00</updated>
-    <id>http://sasheldon.com/blog/2012/11/15/octopress</id>
+    <id>http://localhost:4000/blog/2012/11/15/octopress</id>
     <content type="html">&lt;p&gt;I really like git; if I could keep everything under version control, I would.
 I&amp;rsquo;ve started writing all my papers in LaTeX instead of Word, not only because
 it&amp;rsquo;s cleaner and can provide more control, but because then I can version
