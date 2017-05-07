@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title>sasheldon.com</title>
-  <link href="http://localhost:4000/blog/atom.xml" rel="self"/>
-  <link href="http://localhost:4000/"/>
-  <updated>2017-05-07T10:11:12-07:00</updated>
-  <id>http://localhost:4000/</id>
+  <link href="http://sasheldon.com/blog/atom.xml" rel="self"/>
+  <link href="http://sasheldon.com/"/>
+  <updated>2017-05-07T10:13:02-07:00</updated>
+  <id>http://sasheldon.com/</id>
   <author>
     <name>Steven Sheldon</name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html">How I Broke Rust's Package Manager for All Windows Users</title>
-    <link href="http://localhost:4000/blog/2017/05/07/how-i-broke-cargo-for-windows/"/>
+    <link href="http://sasheldon.com/blog/2017/05/07/how-i-broke-cargo-for-windows/"/>
     <updated>2017-05-07T10:07:40-07:00</updated>
-    <id>http://localhost:4000/blog/2017/05/07/how-i-broke-cargo-for-windows</id>
+    <id>http://sasheldon.com/blog/2017/05/07/how-i-broke-cargo-for-windows</id>
     <content type="html">&lt;p&gt;Last weekend I was playing around with a way to represent null-terminated UTF8
 strings in Rust. Rather than just toying with it forever,
 I decided to clean up a minimal version and publish it to crates.io. Creating
@@ -93,9 +93,9 @@ thanks for your quick action!&lt;/p&gt;
   
   <entry>
     <title type="html">Objective-C from Rust: Statically Verified Type Encodings without Allocation</title>
-    <link href="http://localhost:4000/blog/2017/02/20/objective-c-from-rust-type-encodings/"/>
+    <link href="http://sasheldon.com/blog/2017/02/20/objective-c-from-rust-type-encodings/"/>
     <updated>2017-02-20T23:39:39-08:00</updated>
-    <id>http://localhost:4000/blog/2017/02/20/objective-c-from-rust-type-encodings</id>
+    <id>http://sasheldon.com/blog/2017/02/20/objective-c-from-rust-type-encodings</id>
     <content type="html">&lt;p&gt;Lately I&amp;rsquo;ve been thinking about a new way to generate
 &lt;a href=&quot;https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html&quot;&gt;Objective-C type encodings&lt;/a&gt;
 from Rust. The Objective-C runtime needs these encodings when declaring methods
@@ -365,9 +365,9 @@ something I&amp;rsquo;m eager to try in the future!&lt;/p&gt;
   
   <entry>
     <title type="html">Testing Rust on iOS with Travis</title>
-    <link href="http://localhost:4000/blog/2016/02/22/testing-rust-on-ios-with-travis/"/>
+    <link href="http://sasheldon.com/blog/2016/02/22/testing-rust-on-ios-with-travis/"/>
     <updated>2016-02-22T22:10:43-08:00</updated>
-    <id>http://localhost:4000/blog/2016/02/22/testing-rust-on-ios-with-travis</id>
+    <id>http://sasheldon.com/blog/2016/02/22/testing-rust-on-ios-with-travis</id>
     <content type="html">&lt;p&gt;Since I started automatically testing my Rust crate with Travis,
 I had always wanted to test on iOS as well.
 Unfortunately, the default Rust compiler on Travis doesn&amp;rsquo;t support iOS,
@@ -530,9 +530,9 @@ the ease of setting up Rust itself for cross-compilation.&lt;/p&gt;
   
   <entry>
     <title type="html">Objective-C from Rust: objc_msgSend</title>
-    <link href="http://localhost:4000/blog/2015/08/02/objective-c-from-rust-objc_msgsend/"/>
+    <link href="http://sasheldon.com/blog/2015/08/02/objective-c-from-rust-objc_msgsend/"/>
     <updated>2015-08-02T23:53:50-07:00</updated>
-    <id>http://localhost:4000/blog/2015/08/02/objective-c-from-rust-objc_msgsend</id>
+    <id>http://sasheldon.com/blog/2015/08/02/objective-c-from-rust-objc_msgsend</id>
     <content type="html">&lt;p&gt;I previously wrote about how to &lt;a href=&quot;/blog/2014/11/28/interoperating-between-objective-c-and-rust/&quot;&gt;interoperate between Objective-C and Rust&lt;/a&gt;
 and use a Rust macro to pass a variable number of arguments to &lt;code&gt;objc_msgSend&lt;/code&gt;.
 Well, there&amp;rsquo;s a problem with this: &lt;code&gt;objc_msgSend&lt;/code&gt; isn&amp;rsquo;t a variadic function!&lt;/p&gt;
@@ -636,9 +636,9 @@ as easy from Rust as it is in Objective-C!&lt;/p&gt;
   
   <entry>
     <title type="html">Interoperating Between Objective-C and Rust</title>
-    <link href="http://localhost:4000/blog/2014/11/28/interoperating-between-objective-c-and-rust/"/>
+    <link href="http://sasheldon.com/blog/2014/11/28/interoperating-between-objective-c-and-rust/"/>
     <updated>2014-11-28T01:52:17-08:00</updated>
-    <id>http://localhost:4000/blog/2014/11/28/interoperating-between-objective-c-and-rust</id>
+    <id>http://sasheldon.com/blog/2014/11/28/interoperating-between-objective-c-and-rust</id>
     <content type="html">&lt;p&gt;Since the Objective-C runtime exposes a C interface, it&amp;rsquo;s actually pretty easy
 to interact with from Rust.
 Over the past months I&amp;rsquo;ve worked on a Rust wrapper around the
@@ -957,9 +957,9 @@ we only implement copying for the shared array.&lt;/p&gt;
   
   <entry>
     <title type="html">Simplifying JSON Response Mocks With Jinja</title>
-    <link href="http://localhost:4000/blog/2013/12/14/simplifying-json-response-mocks-with-jinja/"/>
+    <link href="http://sasheldon.com/blog/2013/12/14/simplifying-json-response-mocks-with-jinja/"/>
     <updated>2013-12-14T13:43:01-08:00</updated>
-    <id>http://localhost:4000/blog/2013/12/14/simplifying-json-response-mocks-with-jinja</id>
+    <id>http://sasheldon.com/blog/2013/12/14/simplifying-json-response-mocks-with-jinja</id>
     <content type="html">&lt;p&gt;For documenting and testing large APIs, response mocks can be a very useful
 tool. They not only provide examples for the users of your API, but they can be
 used in automated tests as if you had received real data without actually
@@ -1114,9 +1114,9 @@ can surely adapt to meet whatever your needs are.&lt;/p&gt;
   
   <entry>
     <title type="html">Waiting for Octopress 2.0's Successor</title>
-    <link href="http://localhost:4000/blog/2013/07/07/waiting-for-octopress-2-successor/"/>
+    <link href="http://sasheldon.com/blog/2013/07/07/waiting-for-octopress-2-successor/"/>
     <updated>2013-07-07T02:24:00-07:00</updated>
-    <id>http://localhost:4000/blog/2013/07/07/waiting-for-octopress-2-successor</id>
+    <id>http://sasheldon.com/blog/2013/07/07/waiting-for-octopress-2-successor</id>
     <content type="html">&lt;p&gt;The next version of &lt;a href=&quot;http://octopress.org/&quot;&gt;Octopress&lt;/a&gt; is packed full of
 &lt;a href=&quot;https://gist.github.com/imathis/e9c2ee2406e93c4269e8&quot;&gt;awesome improvements&lt;/a&gt;.
 Octopress will change massively to be more extensible and customizable while
@@ -1251,9 +1251,9 @@ so no new version is slated before Octopress 3.0.&lt;/p&gt;
   
   <entry>
     <title type="html">Octopress</title>
-    <link href="http://localhost:4000/blog/2012/11/15/octopress/"/>
+    <link href="http://sasheldon.com/blog/2012/11/15/octopress/"/>
     <updated>2012-11-15T22:14:00-08:00</updated>
-    <id>http://localhost:4000/blog/2012/11/15/octopress</id>
+    <id>http://sasheldon.com/blog/2012/11/15/octopress</id>
     <content type="html">&lt;p&gt;I really like git; if I could keep everything under version control, I would.
 I&amp;rsquo;ve started writing all my papers in LaTeX instead of Word, not only because
 it&amp;rsquo;s cleaner and can provide more control, but because then I can version
