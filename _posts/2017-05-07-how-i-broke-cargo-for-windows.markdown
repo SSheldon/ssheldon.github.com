@@ -14,7 +14,9 @@ Well, everything only seemed the same until an hour later when I got this tweet:
 
 <!-- more -->
 
-{% tweet 858784809413472257 %}
+> Hi Steven, Rust team here :) We’re having some technical difficulties with the name of one of your crates… feel free to DM
+>
+> — @bstrie [April 30, 2017](https://twitter.com/bstrie/status/858784809413472257)
 
 ## The impact
 
@@ -72,4 +74,6 @@ thanks for your quick action!
 
 Although, I mean, like withoutboats said:
 
-{% tweet 858791127750557696 %}
+> I thought Rust was supposed to prevent nul errors! ;-)
+>
+> — @withoutboats [April 30, 2017](https://twitter.com/withoutboats/status/858791127750557696)
