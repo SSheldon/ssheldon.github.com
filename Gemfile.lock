@@ -9,7 +9,7 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.2.17)
-    ffi (1.9.10)
+    ffi (1.17.2)
     forwardable-extended (2.6.0)
     fssm (0.2.10)
     jekyll (3.4.0)
@@ -63,7 +63,7 @@ GEM
     safe_yaml (1.0.4)
     sass (3.2.19)
     titlecase (0.1.1)
-    yajl-ruby (1.2.1)
+    yajl-ruby (1.2.3)
 
 PLATFORMS
   ruby
@@ -77,4 +77,4 @@ DEPENDENCIES
   pygments.rb (= 0.6.3)
 
 BUNDLED WITH
-   1.12.4
+   1.17.2
