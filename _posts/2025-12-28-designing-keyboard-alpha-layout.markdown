@@ -2,6 +2,7 @@
 layout: post
 title: Designing my own keyboard alpha layout for comfy inrolls
 date: 2025-12-28T22:00:00-08:00
+updated: 2025-12-29T11:10:00-08:00
 ---
 
 Last year, the discomfort in my arms after using the computer got too bad to
@@ -26,6 +27,25 @@ x c l d k  z y o u q
 r s t h f  p n e i a
 w v g m j  ↵ b ' . ,
 ```
+
+* [Background](#background)
+* [Learning](#learning)
+* [Basics of layout design](#basics-of-layout-design)
+* [My design goals](#my-design-goals)
+* [Design process](#design-process)
+  * [Vowels](#vowels)
+  * [Consonants](#consonants)
+  * [Punctuation](#punctuation)
+  * [Enter?](#enter)
+* [Metrics](#metrics)
+  * [Finger utilization](#finger-utilization)
+  * [In-rolls](#in-rolls)
+  * [Redirects](#redirects)
+  * [Same finger usage](#same-finger-usage)
+  * [Scissors and lateral stretches](#scissors-and-lateral-stretches)
+* [Thoughts from a year of usage](#thoughts-from-a-year-of-usage)
+* [Why I wrote this](#why-i-wrote-this)
+* [Resources and additional reading](#resources-and-additional-reading)
 
 ## Background
 
