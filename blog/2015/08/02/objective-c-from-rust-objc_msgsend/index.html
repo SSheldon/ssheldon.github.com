@@ -96,7 +96,7 @@ method implementation, like:</p>
 <p>If you try to call <code>objc_msgSend</code> as if it were a variadic function,
 <a href="https://github.com/servo/cocoa-rs/pull/74#issuecomment-75492331">weird things can happen</a>!</p>
 
-<h2>Handling arguments</h2>
+<h2 id="handling-arguments">Handling arguments</h2>
 
 <p>How can we handle <code>objc_msgSend</code> in Rust? Let&rsquo;s try to write a
 wrapper function that calls it correctly.
@@ -140,7 +140,7 @@ Our function simply becomes:</p>
 </code></pre></div>
 <p>And now we&rsquo;re no longer pretending that <code>objc_msgSend</code> is variadic!</p>
 
-<h2>Return types</h2>
+<h2 id="return-types">Return types</h2>
 
 <p>There&rsquo;s one other caveat with <code>objc_msgSend</code>, though:
 different versions of it are used for different return types.

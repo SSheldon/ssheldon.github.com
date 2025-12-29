@@ -96,7 +96,7 @@ I closed up my laptop and called it a day.</p>
 <p>— @bstrie <a href="https://twitter.com/bstrie/status/858784809413472257">April 30, 2017</a></p>
 </blockquote>
 
-<h2>The impact</h2>
+<h2 id="the-impact">The impact</h2>
 
 <p>The crate I had just published was named <code>nul</code>, after
 <a href="https://en.wikipedia.org/wiki/Null_character">the null terminator character</a>
@@ -121,7 +121,7 @@ the status of cargo on Windows:</p>
 
 <p><img src="/blog/images/how-i-broke-cargo-for-windows/on-fire.jpeg" alt=""></p>
 
-<h2>But why?</h2>
+<h2 id="but-why">But why?</h2>
 
 <p>Turns out that &ldquo;NUL&rdquo; (including &ldquo;nul&rdquo;) is a reserved filename on Windows.
 <code>NUL</code> is the Windows equivalent of Unix&rsquo;s <code>/dev/null</code>, but instead of existing
@@ -139,7 +139,7 @@ There was only one directory, which today we would call the root directory&helli
 <p>And so, since these DOS 1.0 days, tons of batch files exist on Windows
 redirecting with <code>&gt;NUL</code>, and the reserved filenames remain.</p>
 
-<h2>The aftermath</h2>
+<h2 id="the-aftermath">The aftermath</h2>
 
 <p>Once my <code>nul</code> crate was deleted, Windows users were back in business.
 The Rust team quickly moved to prevent this issue from happening again by

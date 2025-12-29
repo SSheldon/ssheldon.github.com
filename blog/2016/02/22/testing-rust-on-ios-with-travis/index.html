@@ -88,7 +88,7 @@ With Rust&rsquo;s improved cross-compilation support, it&rsquo;s now possible!</
 
 <!-- more -->
 
-<h2>Travis configurations</h2>
+<h2 id="travis-configurations">Travis configurations</h2>
 
 <p>We&rsquo;ll be running our tests on Xcode&rsquo;s iOS simulator,
 which means that these tests have to run on Travis&rsquo;s OSX image.
@@ -114,7 +114,7 @@ to have separate iOS and OSX builds:</p>
 <p>This will trigger two separate builds in Travis&rsquo;s matrix: one for no iOS
 architectures (i.e. an OSX build) and one for all iOS architectures.</p>
 
-<h2>Setting up the cross compiler</h2>
+<h2 id="setting-up-the-cross-compiler">Setting up the cross compiler</h2>
 
 <p>The Rust compiler included on Travis is not able to compile for iOS.
 With Rust&rsquo;s cross compiler support, though, compiling for iOS is just
@@ -130,7 +130,7 @@ to install all the architectures we&rsquo;ll be building for:</p>
 <span class="w">    </span><span class="s2">&quot;./</span><span class="si">${</span><span class="nv">ios_stdlib</span><span class="si">}</span><span class="s2">/install.sh&quot;</span><span class="w"> </span>--prefix<span class="o">=</span><span class="k">$(</span>rustc<span class="w"> </span>--print<span class="w"> </span>sysroot<span class="k">)</span>
 <span class="k">done</span>
 </code></pre></div>
-<h2>Building an iOS library</h2>
+<h2 id="building-an-ios-library">Building an iOS library</h2>
 
 <p>The trickiest part about testing Rust on iOS currently is that
 you cannot directly run the <code>#[test]</code>s you&rsquo;ve written in Rust.
@@ -175,7 +175,7 @@ our library using the <code>lipo</code> tool:</p>
 <span class="k">done</span>
 lipo<span class="w"> </span>-create<span class="w"> </span>-output<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LIB</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>target/*-apple-ios/debug/<span class="s2">&quot;</span><span class="si">${</span><span class="nv">LIB</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
-<h2>iOS test project</h2>
+<h2 id="ios-test-project">iOS test project</h2>
 
 <p>Now that we have our library of test code to call from iOS, we can create
 an iOS test project. Starting out from an empty project in Xcode,
@@ -205,7 +205,7 @@ the Rust library:</p>
 <p>At this point, we can run our tests from within Xcode and should see a
 nice green checkmark if it&rsquo;s passing on the iOS simulator!</p>
 
-<h2>Running on Travis</h2>
+<h2 id="running-on-travis">Running on Travis</h2>
 
 <p>The last step is simply adding a
 <a href="https://docs.travis-ci.com/user/customizing-the-build/#Customizing-the-Build-Step">Travis <code>script</code> step</a>

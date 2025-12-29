@@ -92,7 +92,7 @@ process, it allows some really useful functionality!</p>
 
 <!-- more -->
 
-<h3>Variables</h3>
+<h3 id="variables">Variables</h3>
 
 <p>One of the first advantages of processing response mocks with Jinja is that
 we can use <a href="http://jinja.pocoo.org/docs/templates/#variables">variables</a> when
@@ -117,7 +117,7 @@ local area code. In this situation, we could simply change the mock to be:</p>
 the context to generate mocks using the new area code. We can render the mock
 with <code>area_code=&#39;312&#39;</code> in the context to get the phone number <code>&quot;312 555-1234&quot;</code>.</p>
 
-<h3>Conditionals</h3>
+<h3 id="conditionals">Conditionals</h3>
 
 <p>We can further take advantage of Jinja to template our mocks using more
 complicated control flows. For example, suppose that we wanted to format our
@@ -135,7 +135,7 @@ not in other cases. We can accomplish this simply in Jinja with an
 <p>If this mock is rendered with <code>last_names_included=True</code> in the context,
 it will include the <code>last_name</code> field, and if not it will be absent!</p>
 
-<h3>Including mocks</h3>
+<h3 id="including-mocks">Including mocks</h3>
 
 <p>The previous examples might feel a little contrived, but importing one mock
 from another is one of the greatest benefits of Jinja.
@@ -167,7 +167,7 @@ address in the mock with
 stored in its own file, it can turn our response mocks into a simple
 composition of objects where the structure is clear at a glance.</p>
 
-<h3>Extending mocks</h3>
+<h3 id="extending-mocks">Extending mocks</h3>
 
 <p>I commonly need to create a response mock that is modified slightly from an
 existing one, like a version of the response that has a parameter with a

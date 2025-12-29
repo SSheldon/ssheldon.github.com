@@ -4,7 +4,7 @@
   <title>sasheldon.com</title>
   <link href="http://sasheldon.com/blog/atom.xml" rel="self"/>
   <link href="http://sasheldon.com/"/>
-  <updated>2025-12-29T01:22:28-06:00</updated>
+  <updated>2025-12-29T13:13:13-06:00</updated>
   <id>http://sasheldon.com/</id>
   <author>
     <name>Steven Sheldon</name>
@@ -38,7 +38,34 @@ I prioritized finger utilization I found comfortable and inward rolling:&lt;/p&g
 r s t h f  p n e i a
 w v g m j  ↵ b &amp;#39; . ,
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;Background&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#background&quot;&gt;Background&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#learning&quot;&gt;Learning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#basics-of-layout-design&quot;&gt;Basics of layout design&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#my-design-goals&quot;&gt;My design goals&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#design-process&quot;&gt;Design process&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#vowels&quot;&gt;Vowels&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#consonants&quot;&gt;Consonants&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#punctuation&quot;&gt;Punctuation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#enter&quot;&gt;Enter?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#metrics&quot;&gt;Metrics&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#finger-utilization&quot;&gt;Finger utilization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#in-rolls&quot;&gt;In-rolls&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#redirects&quot;&gt;Redirects&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#same-finger-usage&quot;&gt;Same finger usage&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#scissors-and-lateral-stretches&quot;&gt;Scissors and lateral stretches&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#thoughts-from-a-year-of-usage&quot;&gt;Thoughts from a year of usage&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#why-i-wrote-this&quot;&gt;Why I wrote this&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#resources-and-additional-reading&quot;&gt;Resources and additional reading&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
 
 &lt;p&gt;I originally intended to keep using QWERTY on my new keyboard.
 Surely my existing muscle memory would be far more valuable than any minor
@@ -69,7 +96,7 @@ entirely new layout. I was typing really slowly and would need a lot of practice
 and I would be putting in all this effort to re-learn to type
 with a layout that didn&amp;rsquo;t even perform well with strictly assigned fingers.&lt;/p&gt;
 
-&lt;h2&gt;Learning&lt;/h2&gt;
+&lt;h2 id=&quot;learning&quot;&gt;Learning&lt;/h2&gt;
 
 &lt;p&gt;Before we get into this process of designing a keyboard layout,
 if you haven&amp;rsquo;t learned to use an alternative layout before,
@@ -112,7 +139,7 @@ And I remind myself that the switch wasn&amp;rsquo;t about speed;
 I may type faster on my laptop keyboard, but after using it for a while
 I can feel the familiar forearm and wrist aches returning.&lt;/p&gt;
 
-&lt;h2&gt;Basics of layout design&lt;/h2&gt;
+&lt;h2 id=&quot;basics-of-layout-design&quot;&gt;Basics of layout design&lt;/h2&gt;
 
 &lt;p&gt;When I started researching alternative keyboard layouts, I thought I&amp;rsquo;d just
 find the best, most optimal one and pick that.
@@ -141,7 +168,7 @@ typing common words feels.&lt;/p&gt;
 impossible to maximize every metric at once, and the layout designer must
 decide what trade-offs to make to maximize metrics for their preferred patterns.&lt;/p&gt;
 
-&lt;h2&gt;My design goals&lt;/h2&gt;
+&lt;h2 id=&quot;my-design-goals&quot;&gt;My design goals&lt;/h2&gt;
 
 &lt;p&gt;When I first started using my new keyboard, I quickly found that I was not
 accustomed to typing with all 10 fingers, and some felt strained from the adjustment.
@@ -191,7 +218,7 @@ just avoiding SFBs already felt luxurious enough coming from QWERTY.&lt;/p&gt;
 &lt;li&gt;Low same finger bigrams&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2&gt;Design process&lt;/h2&gt;
+&lt;h2 id=&quot;design-process&quot;&gt;Design process&lt;/h2&gt;
 
 &lt;p&gt;With these goals established, how do we design a layout optimized for them?&lt;/p&gt;
 
@@ -210,7 +237,7 @@ with &lt;a href=&quot;https://docs.google.com/document/d/1W0jhfqJI2ueJ2FNseR4YAF
 (in order to leave more room for placing the many consonants).
 Let&amp;rsquo;s start &lt;a href=&quot;https://docs.google.com/document/d/1W0jhfqJI2ueJ2FNseR4YAFpNfsUM-_FlREHbpNGmC2o/edit?tab=t.uv9x1j70u2nc#heading=h.8grvg0w34swn&quot;&gt;designing the layout as recommended&lt;/a&gt; with the vowel hand!&lt;/p&gt;
 
-&lt;h3&gt;Vowels&lt;/h3&gt;
+&lt;h3 id=&quot;vowels&quot;&gt;Vowels&lt;/h3&gt;
 
 &lt;p&gt;Laying out the vowel hand starts with choosing the vowel block.&lt;/p&gt;
 
@@ -256,7 +283,7 @@ the guaranteed &lt;code&gt;qu&lt;/code&gt; inroll is nice, and &lt;code&gt;quo&l
 ☐ ☐ ☐ ☐ ☐  ☐ n e i a
 ☐ ☐ ☐ ☐ ☐  ☐ ☐ ☐ ☐ ☐
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;Consonants&lt;/h3&gt;
+&lt;h3 id=&quot;consonants&quot;&gt;Consonants&lt;/h3&gt;
 
 &lt;p&gt;With the vowel hand mostly established, and only 4 consonants remaining from
 the 9 most common letters, it&amp;rsquo;s time to start on the consonant hand.
@@ -336,7 +363,7 @@ in the terminal are in a convenient place.
 r s t h f  p n e i a
 w v g m j  ☐ b ☐ ☐ ☐
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;Punctuation&lt;/h3&gt;
+&lt;h3 id=&quot;punctuation&quot;&gt;Punctuation&lt;/h3&gt;
 
 &lt;p&gt;We still have some open spots on the vowel hand to place punctuation.
 The most frequent &lt;code&gt;.&lt;/code&gt; and &lt;code&gt;,&lt;/code&gt; deserve a spot on the base layer,
@@ -365,7 +392,7 @@ and I&amp;rsquo;d rather handle SFBs with the more dexterous middle finger.&lt;/
 r s t h f  p n e i a
 w v g m j  ☐ b &amp;#39; . ,
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;Enter?&lt;/h3&gt;
+&lt;h3 id=&quot;enter&quot;&gt;Enter?&lt;/h3&gt;
 
 &lt;p&gt;You may notice this leaves one spot unaccounted for on the vowel hand index.
 Normally a layout would include one more punctuation key, usually either &lt;code&gt;;&lt;/code&gt; or &lt;code&gt;/&lt;/code&gt;,
@@ -395,7 +422,7 @@ quickly correct mistakes. (I put backspace on a thumb home key instead.)&lt;/li&
 r s t h f  p n e i a
 w v g m j  ↵ b &amp;#39; . ,
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;Metrics&lt;/h2&gt;
+&lt;h2 id=&quot;metrics&quot;&gt;Metrics&lt;/h2&gt;
 
 &lt;p&gt;But enough of me justifying these choices; the best way to see if this layout
 succeeded at its goals is to turn to an analyzer and look at the metrics!&lt;/p&gt;
@@ -423,7 +450,7 @@ the most popular alternative layouts and is designed to be similar to QWERTY.&lt
 &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/QWERTY&quot;&gt;QWERTY&lt;/a&gt;: mostly just for laughs.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3&gt;Finger utilization&lt;/h3&gt;
+&lt;h3 id=&quot;finger-utilization&quot;&gt;Finger utilization&lt;/h3&gt;
 
 &lt;p&gt;The reported finger utilization is roughly in line with the targets:&lt;/p&gt;
 
@@ -503,7 +530,7 @@ And similarly, although left index has lower utilization than left middle,
 it has significantly higher movement.
 There may be more work required of these fingers than I hoped.&lt;/p&gt;
 
-&lt;h3&gt;In-rolls&lt;/h3&gt;
+&lt;h3 id=&quot;in-rolls&quot;&gt;In-rolls&lt;/h3&gt;
 
 &lt;table&gt;&lt;thead&gt;
 &lt;tr&gt;
@@ -565,7 +592,7 @@ falling behind especially on inward 3-rolls. We can see that alternation also
 falls between Gallium and APTv3, which makes sense due to
 &lt;a href=&quot;https://docs.google.com/document/d/1W0jhfqJI2ueJ2FNseR4YAFpNfsUM-_FlREHbpNGmC2o/edit?tab=t.6r1v629nms0d#heading=h.r8uk3gldl10w&quot;&gt;the inverse relationship between alternation and rolling&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3&gt;Redirects&lt;/h3&gt;
+&lt;h3 id=&quot;redirects&quot;&gt;Redirects&lt;/h3&gt;
 
 &lt;table&gt;&lt;thead&gt;
 &lt;tr&gt;
@@ -609,7 +636,7 @@ we&amp;rsquo;re prioritizing inrolls, and &lt;a href=&quot;https://docs.google.c
 Cyanophage classifies redirects that occur on the middle, ring, and pinky
 (i.e. without the index) as weak redirects, the redirects that feel clumsiest.&lt;/p&gt;
 
-&lt;h3&gt;Same finger usage&lt;/h3&gt;
+&lt;h3 id=&quot;same-finger-usage&quot;&gt;Same finger usage&lt;/h3&gt;
 
 &lt;table&gt;&lt;thead&gt;
 &lt;tr&gt;
@@ -654,7 +681,7 @@ it&amp;rsquo;s understandable that they lag behind Gallium and APTv3,
 though it&amp;rsquo;s good to see that they do still beat Colemak-DH.
 A considerable portion of SFSs come from the &lt;code&gt;oe&lt;/code&gt; stack.&lt;/p&gt;
 
-&lt;h3&gt;Scissors and lateral stretches&lt;/h3&gt;
+&lt;h3 id=&quot;scissors-and-lateral-stretches&quot;&gt;Scissors and lateral stretches&lt;/h3&gt;
 
 &lt;table&gt;&lt;thead&gt;
 &lt;tr&gt;
@@ -697,7 +724,7 @@ during design, so it&amp;rsquo;s worth checking on them.&lt;/p&gt;
 with most of the scissors coming from &lt;code&gt;bo&lt;/code&gt; (like Gallium&amp;rsquo;s &lt;code&gt;of&lt;/code&gt;).
 Lateral stretch bigrams are comparable to Gallium and lower than Colemak-DH.&lt;/p&gt;
 
-&lt;h2&gt;Thoughts from a year of usage&lt;/h2&gt;
+&lt;h2 id=&quot;thoughts-from-a-year-of-usage&quot;&gt;Thoughts from a year of usage&lt;/h2&gt;
 
 &lt;p&gt;A layout can&amp;rsquo;t be completely evaluated from its design justification or
 analyzer metrics; the real test is how it feels in real usage.
@@ -755,7 +782,7 @@ I&amp;rsquo;ve considered layouts with a thumb letter, but I&amp;rsquo;m concern
 thumb strain if I have backspace and a letter on the same thumb.
 Maybe someday a magic key will lure me into learning a new layout, but not yet.&lt;/p&gt;
 
-&lt;h2&gt;Why I wrote this&lt;/h2&gt;
+&lt;h2 id=&quot;why-i-wrote-this&quot;&gt;Why I wrote this&lt;/h2&gt;
 
 &lt;p&gt;Designing this layout was a fun project and I wanted to share about the process!
 I don&amp;rsquo;t think I&amp;rsquo;ve designed the world&amp;rsquo;s best layout, and I don&amp;rsquo;t think that
@@ -766,7 +793,7 @@ tweak existing ones to their preferences, and design their own.&lt;/p&gt;
 Every layout is made with certain preferences, and if you can&amp;rsquo;t find one that
 matches yours, it&amp;rsquo;s not so hard to tweak an existing layout or design your own.&lt;/p&gt;
 
-&lt;h2&gt;Resources and additional reading&lt;/h2&gt;
+&lt;h2 id=&quot;resources-and-additional-reading&quot;&gt;Resources and additional reading&lt;/h2&gt;
 
 &lt;p&gt;If you want to learn more about alternative layouts:&lt;/p&gt;
 
@@ -815,7 +842,7 @@ I closed up my laptop and called it a day.&lt;/p&gt;
 &lt;p&gt;— @bstrie &lt;a href=&quot;https://twitter.com/bstrie/status/858784809413472257&quot;&gt;April 30, 2017&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2&gt;The impact&lt;/h2&gt;
+&lt;h2 id=&quot;the-impact&quot;&gt;The impact&lt;/h2&gt;
 
 &lt;p&gt;The crate I had just published was named &lt;code&gt;nul&lt;/code&gt;, after
 &lt;a href=&quot;https://en.wikipedia.org/wiki/Null_character&quot;&gt;the null terminator character&lt;/a&gt;
@@ -840,7 +867,7 @@ the status of cargo on Windows:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/blog/images/how-i-broke-cargo-for-windows/on-fire.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 
-&lt;h2&gt;But why?&lt;/h2&gt;
+&lt;h2 id=&quot;but-why&quot;&gt;But why?&lt;/h2&gt;
 
 &lt;p&gt;Turns out that &amp;ldquo;NUL&amp;rdquo; (including &amp;ldquo;nul&amp;rdquo;) is a reserved filename on Windows.
 &lt;code&gt;NUL&lt;/code&gt; is the Windows equivalent of Unix&amp;rsquo;s &lt;code&gt;/dev/null&lt;/code&gt;, but instead of existing
@@ -858,7 +885,7 @@ There was only one directory, which today we would call the root directory&amp;h
 &lt;p&gt;And so, since these DOS 1.0 days, tons of batch files exist on Windows
 redirecting with &lt;code&gt;&amp;gt;NUL&lt;/code&gt;, and the reserved filenames remain.&lt;/p&gt;
 
-&lt;h2&gt;The aftermath&lt;/h2&gt;
+&lt;h2 id=&quot;the-aftermath&quot;&gt;The aftermath&lt;/h2&gt;
 
 &lt;p&gt;Once my &lt;code&gt;nul&lt;/code&gt; crate was deleted, Windows users were back in business.
 The Rust team quickly moved to prevent this issue from happening again by
@@ -922,7 +949,7 @@ make it produce invalid encodings, like:&lt;/p&gt;
 &lt;p&gt;Can we do better? Is there a design that will allow us to say
 &amp;ldquo;I accept valid encodings and will produce a valid encoding from them&amp;rdquo;?&lt;/p&gt;
 
-&lt;h2&gt;Abstract syntax&lt;/h2&gt;
+&lt;h2 id=&quot;abstract-syntax&quot;&gt;Abstract syntax&lt;/h2&gt;
 
 &lt;p&gt;Looking at the documentation for encodings, we can see that their grammar is
 pretty simple. It&amp;rsquo;s not hard to represent the abstract syntax with Rust&amp;rsquo;s enums:&lt;/p&gt;
@@ -944,7 +971,7 @@ in that definition? Each of those will involve a memory allocation.
 Representing as simple an encoding as &lt;code&gt;&amp;quot;^i&amp;quot;&lt;/code&gt; will allocate additional memory,
 and complex encodings like &lt;code&gt;&amp;quot;{CGRect={CGPoint=dd}{CGSize=dd}}&amp;quot;&lt;/code&gt; require more.&lt;/p&gt;
 
-&lt;h2&gt;Zero allocation&lt;/h2&gt;
+&lt;h2 id=&quot;zero-allocation&quot;&gt;Zero allocation&lt;/h2&gt;
 
 &lt;p&gt;Our new challenge is composing these encodings together without allocation or
 virtualization. That problem reminds me of the design of
@@ -974,7 +1001,7 @@ With such a trait, we could be able to create struct encodings like:&lt;/p&gt;
 &lt;p&gt;Again, no allocations needed. But what functionality will be needed in our
 encoding-tuple trait?&lt;/p&gt;
 
-&lt;h2&gt;Encodings trait&lt;/h2&gt;
+&lt;h2 id=&quot;encodings-trait&quot;&gt;Encodings trait&lt;/h2&gt;
 
 &lt;p&gt;In the end, the functionality we&amp;rsquo;ll need from encodings will include
 writing out their string representation and comparing them for equality.
@@ -1019,7 +1046,7 @@ If it were, the declaration would look something like this:&lt;/p&gt;
 &lt;p&gt;And voilà! Now we have a way to iterate over a heterogenous collection of
 encodings. We can implement this trait for encodings of tuples and be on our way.&lt;/p&gt;
 
-&lt;h2&gt;Encoding trait&lt;/h2&gt;
+&lt;h2 id=&quot;encoding-trait&quot;&gt;Encoding trait&lt;/h2&gt;
 
 &lt;p&gt;You may have noticed that we&amp;rsquo;ve so far dodged an important question:
 what does the &lt;code&gt;Encoding&lt;/code&gt; trait look like? Let&amp;rsquo;s figure that out!&lt;/p&gt;
@@ -1072,7 +1099,7 @@ The &lt;code&gt;Encoding&lt;/code&gt; trait ultimately ends up looking like:&lt;
 &lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;Parsing encodings&lt;/h2&gt;
+&lt;h2 id=&quot;parsing-encodings&quot;&gt;Parsing encodings&lt;/h2&gt;
 
 &lt;p&gt;As cool as the encoding structs we&amp;rsquo;ve made so far are, we can&amp;rsquo;t build encodings
 like them from parsing a string. This is because at compile time we have know
@@ -1108,7 +1135,7 @@ wrapping &lt;code&gt;str&lt;/code&gt;:&lt;/p&gt;
 &lt;p&gt;And with that, when a &lt;code&gt;StrEncoding&lt;/code&gt; is parsed, it is able to return references
 to sub-encodings with the same lifetime!&lt;/p&gt;
 
-&lt;h2&gt;Owned StrEncoding&lt;/h2&gt;
+&lt;h2 id=&quot;owned-strencoding&quot;&gt;Owned StrEncoding&lt;/h2&gt;
 
 &lt;p&gt;As nice as our dynamically sized &lt;code&gt;StrEncoding&lt;/code&gt; is, sometimes it&amp;rsquo;d be beneficial
 to have a parsed encoding which owns its buffer and can be passed around
@@ -1133,7 +1160,7 @@ we can modify &lt;code&gt;StrEncoding&lt;/code&gt; to support its original use c
 the original, dynamically sized version as &lt;code&gt;&amp;amp;StrEncoding&amp;lt;str&amp;gt;&lt;/code&gt;,
 or one with an owned buffer as &lt;code&gt;StrEncoding&amp;lt;String&amp;gt;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2&gt;The end result&lt;/h2&gt;
+&lt;h2 id=&quot;the-end-result&quot;&gt;The end result&lt;/h2&gt;
 
 &lt;p&gt;I&amp;rsquo;ve published the end result as
 &lt;a href=&quot;https://crates.io/crates/objc-encode&quot;&gt;the &lt;code&gt;objc-encode&lt;/code&gt; crate&lt;/a&gt;,
@@ -1163,7 +1190,7 @@ With Rust&amp;rsquo;s improved cross-compilation support, it&amp;rsquo;s now pos
 
 &lt;!-- more --&gt;
 
-&lt;h2&gt;Travis configurations&lt;/h2&gt;
+&lt;h2 id=&quot;travis-configurations&quot;&gt;Travis configurations&lt;/h2&gt;
 
 &lt;p&gt;We&amp;rsquo;ll be running our tests on Xcode&amp;rsquo;s iOS simulator,
 which means that these tests have to run on Travis&amp;rsquo;s OSX image.
@@ -1189,7 +1216,7 @@ to have separate iOS and OSX builds:&lt;/p&gt;
 &lt;p&gt;This will trigger two separate builds in Travis&amp;rsquo;s matrix: one for no iOS
 architectures (i.e. an OSX build) and one for all iOS architectures.&lt;/p&gt;
 
-&lt;h2&gt;Setting up the cross compiler&lt;/h2&gt;
+&lt;h2 id=&quot;setting-up-the-cross-compiler&quot;&gt;Setting up the cross compiler&lt;/h2&gt;
 
 &lt;p&gt;The Rust compiler included on Travis is not able to compile for iOS.
 With Rust&amp;rsquo;s cross compiler support, though, compiling for iOS is just
@@ -1205,7 +1232,7 @@ to install all the architectures we&amp;rsquo;ll be building for:&lt;/p&gt;
 &lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;./&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ios_stdlib&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/install.sh&amp;quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;--prefix&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;rustc&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;--print&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;sysroot&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;Building an iOS library&lt;/h2&gt;
+&lt;h2 id=&quot;building-an-ios-library&quot;&gt;Building an iOS library&lt;/h2&gt;
 
 &lt;p&gt;The trickiest part about testing Rust on iOS currently is that
 you cannot directly run the &lt;code&gt;#[test]&lt;/code&gt;s you&amp;rsquo;ve written in Rust.
@@ -1250,7 +1277,7 @@ our library using the &lt;code&gt;lipo&lt;/code&gt; tool:&lt;/p&gt;
 &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
 lipo&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-create&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-output&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;LIB&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;target/*-apple-ios/debug/&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;LIB&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;iOS test project&lt;/h2&gt;
+&lt;h2 id=&quot;ios-test-project&quot;&gt;iOS test project&lt;/h2&gt;
 
 &lt;p&gt;Now that we have our library of test code to call from iOS, we can create
 an iOS test project. Starting out from an empty project in Xcode,
@@ -1280,7 +1307,7 @@ the Rust library:&lt;/p&gt;
 &lt;p&gt;At this point, we can run our tests from within Xcode and should see a
 nice green checkmark if it&amp;rsquo;s passing on the iOS simulator!&lt;/p&gt;
 
-&lt;h2&gt;Running on Travis&lt;/h2&gt;
+&lt;h2 id=&quot;running-on-travis&quot;&gt;Running on Travis&lt;/h2&gt;
 
 &lt;p&gt;The last step is simply adding a
 &lt;a href=&quot;https://docs.travis-ci.com/user/customizing-the-build/#Customizing-the-Build-Step&quot;&gt;Travis &lt;code&gt;script&lt;/code&gt; step&lt;/a&gt;
@@ -1336,7 +1363,7 @@ method implementation, like:&lt;/p&gt;
 &lt;p&gt;If you try to call &lt;code&gt;objc_msgSend&lt;/code&gt; as if it were a variadic function,
 &lt;a href=&quot;https://github.com/servo/cocoa-rs/pull/74#issuecomment-75492331&quot;&gt;weird things can happen&lt;/a&gt;!&lt;/p&gt;
 
-&lt;h2&gt;Handling arguments&lt;/h2&gt;
+&lt;h2 id=&quot;handling-arguments&quot;&gt;Handling arguments&lt;/h2&gt;
 
 &lt;p&gt;How can we handle &lt;code&gt;objc_msgSend&lt;/code&gt; in Rust? Let&amp;rsquo;s try to write a
 wrapper function that calls it correctly.
@@ -1380,7 +1407,7 @@ Our function simply becomes:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And now we&amp;rsquo;re no longer pretending that &lt;code&gt;objc_msgSend&lt;/code&gt; is variadic!&lt;/p&gt;
 
-&lt;h2&gt;Return types&lt;/h2&gt;
+&lt;h2 id=&quot;return-types&quot;&gt;Return types&lt;/h2&gt;
 
 &lt;p&gt;There&amp;rsquo;s one other caveat with &lt;code&gt;objc_msgSend&lt;/code&gt;, though:
 different versions of it are used for different return types.
@@ -1439,7 +1466,7 @@ challenges in API design.&lt;/p&gt;
 
 &lt;!-- more --&gt;
 
-&lt;h2&gt;Calling Objective-C methods&lt;/h2&gt;
+&lt;h2 id=&quot;calling-objective-c-methods&quot;&gt;Calling Objective-C methods&lt;/h2&gt;
 
 &lt;p&gt;If we want to interact with Objective-C from Rust, one of the first things
 we&amp;rsquo;ll need to be able to do is call methods on Objective-C objects.
@@ -1485,7 +1512,7 @@ our example as:&lt;/p&gt;
 &lt;p&gt;And so we have a convenient way to call Objective-C methods with a syntax that
 feels comfortable for Objective-C developers.&lt;/p&gt;
 
-&lt;h2&gt;Representing Objective-C objects&lt;/h2&gt;
+&lt;h2 id=&quot;representing-objective-c-objects&quot;&gt;Representing Objective-C objects&lt;/h2&gt;
 
 &lt;p&gt;In our previous examples, we&amp;rsquo;ve been working with a variable named &lt;code&gt;string&lt;/code&gt;,
 but what is the type of this variable? Well, in Objective-C it&amp;rsquo;d be declared
@@ -1533,7 +1560,7 @@ cannot construct an &lt;code&gt;NSString&lt;/code&gt; themselves. As long as we 
 &lt;code&gt;NSString&lt;/code&gt; on the stack in our module, there will be no way in safe code for
 users to end up with a stack-allocated &lt;code&gt;NSString&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3&gt;Drawbacks of this representation&lt;/h3&gt;
+&lt;h3 id=&quot;drawbacks-of-this-representation&quot;&gt;Drawbacks of this representation&lt;/h3&gt;
 
 &lt;p&gt;This isn&amp;rsquo;t a perfect solution, because even if there&amp;rsquo;s no way to get a
 stack-allocated &lt;code&gt;NSString&lt;/code&gt;, the compiler will still accept definitions like:&lt;/p&gt;
@@ -1551,7 +1578,7 @@ the compiler would disallow these types as local variables, but unfortunately
 it doesn&amp;rsquo;t seem possible to have an unsized type without all references to it
 becoming &amp;ldquo;fat&amp;rdquo; two-word references.&lt;/p&gt;
 
-&lt;h3&gt;Why not just wrap the pointer?&lt;/h3&gt;
+&lt;h3 id=&quot;why-not-just-wrap-the-pointer&quot;&gt;Why not just wrap the pointer?&lt;/h3&gt;
 
 &lt;p&gt;If an &lt;code&gt;NSString&lt;/code&gt; can never exist on the stack, why don&amp;rsquo;t we just prevent that
 by making a struct that wraps a pointer?&lt;/p&gt;
@@ -1587,7 +1614,7 @@ developers.&lt;/p&gt;
 &lt;p&gt;I felt that, despite the imperfections of representing Objective-C objects as
 structs in Rust, it makes for a much more usable API.&lt;/p&gt;
 
-&lt;h2&gt;A safe Rust interface&lt;/h2&gt;
+&lt;h2 id=&quot;a-safe-rust-interface&quot;&gt;A safe Rust interface&lt;/h2&gt;
 
 &lt;p&gt;Now that we&amp;rsquo;ve got a struct for representing our &lt;code&gt;NSString&lt;/code&gt;, we can implement
 some methods on it. For example, we can wrap the
@@ -1615,7 +1642,7 @@ longer lifetime.&lt;/p&gt;
 still valid, but since Foundation is closed source there isn&amp;rsquo;t really a way for
 us to verify this.&lt;/p&gt;
 
-&lt;h3&gt;Inheritance&lt;/h3&gt;
+&lt;h3 id=&quot;inheritance&quot;&gt;Inheritance&lt;/h3&gt;
 
 &lt;p&gt;What happens when we decide to implement a safe interface for &lt;code&gt;NSMutableString&lt;/code&gt;?
 Since &lt;code&gt;NSMutableString&lt;/code&gt; inherits from &lt;code&gt;NSString&lt;/code&gt;, it should also have this
@@ -1646,7 +1673,7 @@ behavior by sending Objective-C messages on an &lt;code&gt;int&lt;/code&gt;.
 I don&amp;rsquo;t know of a way to prevent this without losing the convenience of
 only declaring these methods once.&lt;/p&gt;
 
-&lt;h2&gt;Objective-C memory management&lt;/h2&gt;
+&lt;h2 id=&quot;objective-c-memory-management&quot;&gt;Objective-C memory management&lt;/h2&gt;
 
 &lt;p&gt;Great, at this point we can call methods from an &lt;code&gt;NSString&lt;/code&gt; reference,
 but where does this reference come from? What&amp;rsquo;s its lifetime?&lt;/p&gt;
@@ -1692,7 +1719,7 @@ Rust:&lt;/p&gt;
 With just a few lines of Rust code, we&amp;rsquo;ve implemented our own simplified
 version of &lt;a href=&quot;http://clang.llvm.org/docs/AutomaticReferenceCounting.html&quot;&gt;Objective-C&amp;rsquo;s automatic reference counting&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3&gt;Mutability&lt;/h3&gt;
+&lt;h3 id=&quot;mutability&quot;&gt;Mutability&lt;/h3&gt;
 
 &lt;p&gt;Sometimes we may want to retain a shared object, but it wouldn&amp;rsquo;t be safe to do
 this if we implement
@@ -1759,7 +1786,7 @@ process, it allows some really useful functionality!&lt;/p&gt;
 
 &lt;!-- more --&gt;
 
-&lt;h3&gt;Variables&lt;/h3&gt;
+&lt;h3 id=&quot;variables&quot;&gt;Variables&lt;/h3&gt;
 
 &lt;p&gt;One of the first advantages of processing response mocks with Jinja is that
 we can use &lt;a href=&quot;http://jinja.pocoo.org/docs/templates/#variables&quot;&gt;variables&lt;/a&gt; when
@@ -1784,7 +1811,7 @@ local area code. In this situation, we could simply change the mock to be:&lt;/p
 the context to generate mocks using the new area code. We can render the mock
 with &lt;code&gt;area_code=&amp;#39;312&amp;#39;&lt;/code&gt; in the context to get the phone number &lt;code&gt;&amp;quot;312 555-1234&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3&gt;Conditionals&lt;/h3&gt;
+&lt;h3 id=&quot;conditionals&quot;&gt;Conditionals&lt;/h3&gt;
 
 &lt;p&gt;We can further take advantage of Jinja to template our mocks using more
 complicated control flows. For example, suppose that we wanted to format our
@@ -1802,7 +1829,7 @@ not in other cases. We can accomplish this simply in Jinja with an
 &lt;p&gt;If this mock is rendered with &lt;code&gt;last_names_included=True&lt;/code&gt; in the context,
 it will include the &lt;code&gt;last_name&lt;/code&gt; field, and if not it will be absent!&lt;/p&gt;
 
-&lt;h3&gt;Including mocks&lt;/h3&gt;
+&lt;h3 id=&quot;including-mocks&quot;&gt;Including mocks&lt;/h3&gt;
 
 &lt;p&gt;The previous examples might feel a little contrived, but importing one mock
 from another is one of the greatest benefits of Jinja.
@@ -1834,7 +1861,7 @@ address in the mock with
 stored in its own file, it can turn our response mocks into a simple
 composition of objects where the structure is clear at a glance.&lt;/p&gt;
 
-&lt;h3&gt;Extending mocks&lt;/h3&gt;
+&lt;h3 id=&quot;extending-mocks&quot;&gt;Extending mocks&lt;/h3&gt;
 
 &lt;p&gt;I commonly need to create a response mock that is modified slightly from an
 existing one, like a version of the response that has a parameter with a
