@@ -25,19 +25,6 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
   <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
   <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
-  <script type="text/javascript">
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-57212765-1', 'auto');
-    ga('send', 'pageview');
-  </script>
-
-
 </head>
 
 <body>
@@ -87,7 +74,7 @@
 
 
 
-<time datetime="2016-02-22T22:10:43-08:00" >Feb 22, 2016</time>
+<time datetime="2016-02-23T00:10:43-06:00" >Feb 22, 2016</time>
     </p>
   
 </header>
@@ -106,10 +93,10 @@ With Rust&rsquo;s improved cross-compilation support, it&rsquo;s now possible!</
 <p>We&rsquo;ll be running our tests on Xcode&rsquo;s iOS simulator,
 which means that these tests have to run on Travis&rsquo;s OSX image.
 We&rsquo;ll start with these Travis configurations for iOS builds:</p>
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">language</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">rust</span>
-<span class="l-Scalar-Plain">rust</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">nightly</span>
-<span class="l-Scalar-Plain">os</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">osx</span>
-<span class="l-Scalar-Plain">osx_image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">xcode7.2</span>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span></span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rust</span>
+<span class="nt">rust</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nightly</span>
+<span class="nt">os</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">osx</span>
+<span class="nt">osx_image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xcode7.2</span>
 </code></pre></div>
 <p>If you&rsquo;ll be testing your library on OSX and iOS, I&rsquo;ve found it convenient
 to use an <code>IOS_ARCHS</code> environment variable; this variable lists all the
@@ -120,9 +107,9 @@ To build for all currently supported iOS architectures,
 <p>By using an <code>IOS_ARCHS</code> environment variable, we can take advantage of
 <a href="https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-.travis.yml">Travis&rsquo;s build matrix functionality</a>
 to have separate iOS and OSX builds:</p>
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">env</span><span class="p-Indicator">:</span>
-  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">IOS_ARCHS=&quot;&quot;</span>
-  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">IOS_ARCHS=&quot;i386 x86_64 armv7 armv7s aarch64&quot;</span>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span></span><span class="nt">env</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IOS_ARCHS=&quot;&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IOS_ARCHS=&quot;i386 x86_64 armv7 armv7s aarch64&quot;</span>
 </code></pre></div>
 <p>This will trigger two separate builds in Travis&rsquo;s matrix: one for no iOS
 architectures (i.e. an OSX build) and one for all iOS architectures.</p>
@@ -136,11 +123,11 @@ a matter of downloading the iOS versions of the standard library.</p>
 <p>Following the <a href="https://github.com/japaric/rust-cross/blob/master/README.md">rust-cross guide</a>,
 we can add a <a href="https://docs.travis-ci.com/user/customizing-the-build/#Customizing-the-Installation-Step">Travis <code>install</code> step</a>
 to install all the architectures we&rsquo;ll be building for:</p>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="k">for</span> arch in <span class="nv">$IOS_ARCHS</span><span class="p">;</span> <span class="k">do</span>
-    <span class="nv">ios_stdlib</span><span class="o">=</span><span class="s2">&quot;rust-std-nightly-${arch}-apple-ios&quot;</span>
-    curl -O <span class="s2">&quot;http://static.rust-lang.org/dist/${ios_stdlib}.tar.gz&quot;</span>
-    tar xzf <span class="s2">&quot;${ios_stdlib}.tar.gz&quot;</span>
-    <span class="s2">&quot;./${ios_stdlib}/install.sh&quot;</span> --prefix<span class="o">=</span><span class="k">$(</span>rustc --print sysroot<span class="k">)</span>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span></span><span class="k">for</span><span class="w"> </span>arch<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$IOS_ARCHS</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="nv">ios_stdlib</span><span class="o">=</span><span class="s2">&quot;rust-std-nightly-</span><span class="si">${</span><span class="nv">arch</span><span class="si">}</span><span class="s2">-apple-ios&quot;</span>
+<span class="w">    </span>curl<span class="w"> </span>-O<span class="w"> </span><span class="s2">&quot;http://static.rust-lang.org/dist/</span><span class="si">${</span><span class="nv">ios_stdlib</span><span class="si">}</span><span class="s2">.tar.gz&quot;</span>
+<span class="w">    </span>tar<span class="w"> </span>xzf<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ios_stdlib</span><span class="si">}</span><span class="s2">.tar.gz&quot;</span>
+<span class="w">    </span><span class="s2">&quot;./</span><span class="si">${</span><span class="nv">ios_stdlib</span><span class="si">}</span><span class="s2">/install.sh&quot;</span><span class="w"> </span>--prefix<span class="o">=</span><span class="k">$(</span>rustc<span class="w"> </span>--print<span class="w"> </span>sysroot<span class="k">)</span>
 <span class="k">done</span>
 </code></pre></div>
 <h2>Building an iOS library</h2>
@@ -165,16 +152,16 @@ as support for dynamic libraries on iOS was only added recently and
 To compile to a static library, simply add the
 <a href="http://doc.crates.io/manifest.html#building-dynamic-or-static-libraries"><code>crate-type</code> key</a>
 to the <code>lib</code> section of the <code>Cargo.toml</code> for your test library:</p>
-<div class="highlight"><pre><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="n">lib</span><span class="p">]</span>
-<span class="n">crate-type</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;staticlib&quot;</span><span class="p">]</span>
+<div class="highlight"><pre><code class="language-toml" data-lang="toml"><span></span><span class="k">[lib]</span>
+<span class="n">crate-type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;staticlib&quot;</span><span class="p">]</span>
 </code></pre></div>
 <p>The test code that will be called from our iOS app must be properly exposed like
 <a href="https://doc.rust-lang.org/book/ffi.html#calling-rust-code-from-c">any Rust code called from C</a>:</p>
-<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span class="cp">#[no_mangle]</span>
-<span class="k">pub</span> <span class="k">extern</span> <span class="k">fn</span> <span class="n">rust_lib_test_functionality</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">c_int</span> <span class="p">{</span>
-    <span class="p">...</span>
-    <span class="c1">// Returns a non-zero code for test failure</span>
-    <span class="k">if</span> <span class="n">success</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="mi">1</span> <span class="p">}</span>
+<div class="highlight"><pre><code class="language-rust" data-lang="rust"><span></span><span class="cp">#[no_mangle]</span>
+<span class="k">pub</span><span class="w"> </span><span class="k">extern</span><span class="w"> </span><span class="k">fn</span> <span class="nf">rust_lib_test_functionality</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nc">c_int</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="o">..</span><span class="p">.</span>
+<span class="w">    </span><span class="c1">// Returns a non-zero code for test failure</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">success</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Great! Now we have a static lib exposing some test functionality that
@@ -183,10 +170,10 @@ we&rsquo;ll call on iOS.</p>
 <p>One last thing: iOS libraries support multiple architectures, so to test
 on multiple architectures we&rsquo;ll want to combine the different builds of
 our library using the <code>lipo</code> tool:</p>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="k">for</span> arch in <span class="nv">$IOS_ARCHS</span><span class="p">;</span> <span class="k">do</span>
-    cargo build --target <span class="s2">&quot;${arch}-apple-ios&quot;</span>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span></span><span class="k">for</span><span class="w"> </span>arch<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$IOS_ARCHS</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span>cargo<span class="w"> </span>build<span class="w"> </span>--target<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">arch</span><span class="si">}</span><span class="s2">-apple-ios&quot;</span>
 <span class="k">done</span>
-lipo -create -output <span class="s2">&quot;${LIB}&quot;</span> target/*-apple-ios/debug/<span class="s2">&quot;${LIB}&quot;</span>
+lipo<span class="w"> </span>-create<span class="w"> </span>-output<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LIB</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>target/*-apple-ios/debug/<span class="s2">&quot;</span><span class="si">${</span><span class="nv">LIB</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
 <h2>iOS test project</h2>
 
@@ -201,16 +188,16 @@ Libraries&rdquo; section of the &ldquo;Build Phases&rdquo; for your test target.
 
 <p>Now we&rsquo;re ready to write an <code>XCTestCase</code> verifying the functionality of
 the Rust library:</p>
-<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span class="kt">int</span> <span class="nf">rust_lib_test_functionality</span><span class="p">();</span>
+<div class="highlight"><pre><code class="language-objc" data-lang="objc"><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">rust_lib_test_functionality</span><span class="p">();</span>
 
 <span class="k">@interface</span> <span class="nc">RustLibTests</span> : <span class="nc">XCTestCase</span>
 <span class="k">@end</span>
 
 <span class="k">@implementation</span> <span class="nc">RustLibTests</span>
 
-<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">test</span> <span class="p">{</span>
-  <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">rust_lib_test_functionality</span><span class="p">();</span>
-  <span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot;Test failed with a non-zero code&quot;</span><span class="p">);</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">test</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rust_lib_test_functionality</span><span class="p">();</span>
+<span class="w">  </span><span class="n">XCTAssertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Test failed with a non-zero code&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="k">@end</span>
@@ -236,12 +223,12 @@ This can be done in Xcode from the
 but if your project and scheme were named <code>RustLibTests</code>,
 running your tests on an iPhone 5 and 5s simulator (32 and 64-bit,
 respectively) could be done with the following command:</p>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh">xcodebuild <span class="se">\</span>
-    -project RustLibTests.xcodeproj <span class="se">\</span>
-    -scheme RustLibTests <span class="se">\</span>
-    -destination <span class="s1">&#39;platform=iOS Simulator,name=iPhone 5&#39;</span> <span class="se">\</span>
-    -destination <span class="s1">&#39;platform=iOS Simulator,name=iPhone 5s&#39;</span> <span class="se">\</span>
-    <span class="nb">test</span>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span></span>xcodebuild<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-project<span class="w"> </span>RustLibTests.xcodeproj<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-scheme<span class="w"> </span>RustLibTests<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-destination<span class="w"> </span><span class="s1">&#39;platform=iOS Simulator,name=iPhone 5&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-destination<span class="w"> </span><span class="s1">&#39;platform=iOS Simulator,name=iPhone 5s&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">test</span>
 </code></pre></div>
 <p>And there we have it! Now, Travis will run our tests on an iOS simulator
 to verify that our crate is working.</p>
@@ -267,7 +254,7 @@ the ease of setting up Rust itself for cross-compilation.</p>
 
 
 
-<time datetime="2016-02-23T08:22:56-08:00" class="updated">Updated Feb 23, 2016</time>
+<time datetime="2016-02-23T10:22:56-06:00" class="updated">Updated Feb 23, 2016</time>
     
 
 
@@ -293,6 +280,10 @@ the ease of setting up Rust itself for cross-compilation.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2025/12/28/designing-keyboard-alpha-layout/">Designing my own keyboard alpha layout for comfy inrolls</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/05/07/how-i-broke-cargo-for-windows/">How I Broke Rust's Package Manager for All Windows Users</a>
       </li>
     
@@ -308,10 +299,6 @@ the ease of setting up Rust itself for cross-compilation.</p>
         <a href="/blog/2015/08/02/objective-c-from-rust-objc_msgsend/">Objective-C from Rust: objc_msgSend</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/11/28/interoperating-between-objective-c-and-rust/">Interoperating Between Objective-C and Rust</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -320,7 +307,7 @@ the ease of setting up Rust itself for cross-compilation.</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2017 - Steven Sheldon -
+  Copyright &copy; 2025 - Steven Sheldon -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 </footer>

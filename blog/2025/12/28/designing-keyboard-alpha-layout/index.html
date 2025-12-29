@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="iem7"><![endif]-->
+<!--[if lt IE 9]><html class="lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Designing my own keyboard alpha layout for comfy inrolls - sasheldon.com</title>
+  <meta name="author" content="Steven Sheldon">
+
+  
+  <meta name="description" content="Last year, the discomfort in my arms after using the computer got too bad to continue ignoring, and I ordered my first ergonomic keyboard, the MoEr...">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://sasheldon.com/blog/2025/12/28/designing-keyboard-alpha-layout/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/blog/atom.xml" rel="alternate" title="sasheldon.com" type="application/atom+xml">
+
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+  <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">sasheldon.com</a></h1>
+  
+</hgroup>
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/blog/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+
+
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="sasheldon.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+
+
+<ul class="main-navigation">
+  <li><a href="/">About</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+<header>
+  
+    <h1 class="entry-title">Designing my own keyboard alpha layout for comfy inrolls</h1>
+  
+  
+    <p class="meta">
+      
+
+
+
+
+
+
+
+
+
+<time datetime="2025-12-29T00:00:00-06:00"  class="updated" >Dec 28, 2025</time>
+    </p>
+  
+</header>
+
+
+  <div class="entry-content"><p>Last year, the discomfort in my arms after using the computer got too bad to
+continue ignoring, and I ordered my first ergonomic keyboard, the
+<a href="https://www.moergo.com/pages/glove80">MoErgo Glove80</a>. This was my first time
+using a columnar keyboard, and my first programmable keyboard.
+I expected to make some layout customizations; obviously the layout on this
+new keyboard couldn&rsquo;t match the keyboards I was used to.
+But I didn&rsquo;t expect how, when you&rsquo;re using a totally new form factor and
+can customize every part of the layout,
+there&rsquo;s really no reason not to customize deeply!</p>
+
+<!-- more -->
+
+<p>Ultimately this led me to designing my own alpha layout with inspiration from
+other alternative layouts.
+I switched to it at the start of the year and have been enjoying typing with it!
+I prioritized finger utilization I found comfortable and inward rolling:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>x c l d k  z y o u q
+r s t h f  p n e i a
+w v g m j  ↵ b &#39; . ,
+</code></pre></div>
+<h2>Background</h2>
+
+<p>I originally intended to keep using QWERTY on my new keyboard.
+Surely my existing muscle memory would be far more valuable than any minor
+improvements to be gained from a new alpha layout.
+Until I started using a columnar keyboard for the first time,
+with fingers strictly assigned to keys, and realized:
+my typing previously on QWERTY was nothing like this,
+and using QWERTY this way kind of sucked.</p>
+
+<p>Using QWERTY with strictly assigned fingers raised a lot of questions.
+Why did I so often have to type multiple letters in a row with the same finger?
+Why did I so frequently have to reach with my index fingers for <code>t</code>, <code>n</code>, and <code>h</code>?
+Why was I resting my right hand on these home keys if they are so rarely used?
+Why did I have to reach my right pinky to the top row for <code>p</code> when its home
+position was the rarely used <code>;</code>?</p>
+
+<p>I realized that I had been avoiding a lot of these issues by not strictly using
+fingers for certain keys. I learned that it&rsquo;s common among QWERTY typists to
+work around using the same finger repeatedly by using different fingers to hit
+a key, a technique called &ldquo;alt fingering&rdquo;.
+Even beyond this, my QWERTY typing had idiosyncrasies:
+I type <code>the</code> entirely with my left hand (middle-index-ring),
+I barely use my right ring finger and never use my right pinky, and
+I even hit the space bar with my right index finger.</p>
+
+<p>This meant that, for me, typing QWERTY on columnar was basically learning an
+entirely new layout. I was typing really slowly and would need a lot of practice,
+and I would be putting in all this effort to re-learn to type
+with a layout that didn&rsquo;t even perform well with strictly assigned fingers.</p>
+
+<h2>Learning</h2>
+
+<p>Before we get into this process of designing a keyboard layout,
+if you haven&rsquo;t learned to use an alternative layout before,
+you may be thinking that switching is prohibitively difficult.
+The process of learning a new layout wasn&rsquo;t as bad as I expected!</p>
+
+<p>When I got my first split columnar keyboard, I re-learned how to type three times
+over the following months. I started out using columnar QWERTY for ~1 month,
+then switched to an alternative layout designed to be similar to QWERTY for ~3 months,
+then finally switched to the custom layout described in this post.
+Learning for the third time seemed easier than the previous times.
+I started practicing during a lazy holiday week off work and then
+went back to work using it (clumsily). After a little over a month I started
+hitting 70 wpm in typing tests, and now after a year I&rsquo;ve hit 90 wpm in tests.</p>
+
+<p>To learn, I started out using <a href="https://www.keybr.com/">keybr</a>,
+which gradually adds additional letters for you to learn.
+Once I had unlocked all letters there, I switched to <a href="https://monkeytype.com/">Monkeytype</a>,
+which offers more options and has a fun collection of quotes to practice with.</p>
+
+<p>The process of learning a new layout is frustrating at times, like when
+I wanted to quickly type out an idea but was still too clumsy to do so.
+But I also found it fun, and, strangely, I kind of miss it.
+Typing practice was meditative for me, a good way to clear my head,
+and it reminded me of practicing a musical instrument.</p>
+
+<p>I&rsquo;ve only use alternative keyboard layouts on my split columnar keyboards;
+I continue to use QWERTY on my laptop and any other unibody row-staggered keyboards.
+I experienced a bit of confusion during the learning process,
+but that cleared up as my muscle memory solidified,
+so now I can easily switch between using the different kinds of keyboards.
+Having such different form factors between the two seems to help maintain
+separate muscle memory.</p>
+
+<p>I believe I still type faster on QWERTY than on my custom layout (~100 wpm),
+but I don&rsquo;t regularly take QWERTY typing tests to know for sure.
+This is a little demoralizing after so much practice,
+but it makes sense given the many years I&rsquo;ve been typing QWERTY.
+And I remind myself that the switch wasn&rsquo;t about speed;
+I may type faster on my laptop keyboard, but after using it for a while
+I can feel the familiar forearm and wrist aches returning.</p>
+
+<h2>Basics of layout design</h2>
+
+<p>When I started researching alternative keyboard layouts, I thought I&rsquo;d just
+find the best, most optimal one and pick that.
+Well, it turns out that&rsquo;s not so easy to define.
+There&rsquo;s a passionate community using metrics to rigorously analyze layouts, but
+there&rsquo;s no obvious way to define a metric for how &ldquo;good&rdquo; a keyboard layout is.
+Instead, we usually look for patterns that feel comfortable or uncomfortable,
+and then try to formally define them and measure how frequently they occur.
+Each layout optimizes for a different balance of these metrics.</p>
+
+<p><a href="https://docs.google.com/document/d/1W0jhfqJI2ueJ2FNseR4YAFpNfsUM-_FlREHbpNGmC2o">Ec0&rsquo;s Keyboard layouts doc</a> is the the best source for understanding how
+modern layouts are designed and the metrics used. One of the basic metrics is
+the frequency of <a href="https://docs.google.com/document/d/1W0jhfqJI2ueJ2FNseR4YAFpNfsUM-_FlREHbpNGmC2o/edit?tab=t.84dl8gsr8by7#heading=h.11zdpmpqdkga">&ldquo;same finger bigrams&rdquo; (SFBs)</a>
+which measures how often the same finger has to type two keys in a row.
+There are metrics to measure how often fingers have to stretch apart
+<a href="https://docs.google.com/document/d/1W0jhfqJI2ueJ2FNseR4YAFpNfsUM-_FlREHbpNGmC2o/edit?tab=t.3j7hpqkn3etl#heading=h.52yn1he03w10">vertically (scissors)</a> or
+<a href="https://docs.google.com/document/d/1W0jhfqJI2ueJ2FNseR4YAFpNfsUM-_FlREHbpNGmC2o/edit?tab=t.i8oe0bwffr95#heading=h.gmkonyyr2tww">horizontally (lateral stretch bigrams, LSBs)</a>.
+More advanced metrics look at <a href="https://docs.google.com/document/d/1W0jhfqJI2ueJ2FNseR4YAFpNfsUM-_FlREHbpNGmC2o/edit?tab=t.6r1v629nms0d#heading=h.mabm585mao3e">trigrams</a>, 3-key sequences,
+to evaluate how often typing switches between hands (alternation), or
+uses the same hand flowing in a consistent direction (rolling), or
+uses the same hand but with awkward changes in direction (redirects).
+Some analyzers assign effort values to key positions to quantify how difficult
+typing common words feels.</p>
+
+<p>All of these metrics make layout design a fascinating puzzle, where it&rsquo;s
+impossible to maximize every metric at once, and the layout designer must
+decide what trade-offs to make to maximize metrics for their preferred patterns.</p>
+
+<h2>My design goals</h2>
+
+<p>When I first started using my new keyboard, I quickly found that I was not
+accustomed to typing with all 10 fingers, and some felt strained from the adjustment.
+I found that I had used my middle fingers for many keys previously,
+but now they were down to only 3 letters. Maybe I have short pinkies or
+suboptimal hand positioning, but I found the top row pinky keys required
+a stretch that was not comfortable for me to perform frequently.</p>
+
+<p>These observations led to comfortable finger utilization being my primary goal.
+I wanted my middle fingers to have the most utilization, followed by index, ring,
+and pinky, and I wanted to only have low frequency keys for the top row pinky keys.</p>
+
+<p>In hindsight, I&rsquo;m not sure utilization was exactly the right metric. I now think
+that finger movement (moving between keys) is more impactful than utilization;
+I feel less strain on a finger that mostly presses a single key than a finger
+that regularly switches between multiple, even if the single key is frequently used.
+Fortunately, utilization does correlate somewhat with movement, so I ended up
+in roughly the right place. Over time I have found that my weaker fingers have
+grown more comfortable typing, so I think I could have adapted to a layout
+that used them more, but perhaps it was good to not push my luck.</p>
+
+<p>After finger utilization, I decided I wanted to prioritize inward rolling.
+When I first read about inward rolling (from pinky to index) vs
+outward rolling (from index to pinky), I was surprised to compare
+how much clumsier it felt to roll my fingers outwards.
+I&rsquo;m not sure how much this actually matters in typing,
+so I didn&rsquo;t zealously avoid all outward rolling,
+but it was at least a fun little challenge to optimize around.</p>
+
+<p>Although I wanted to prioritize inward rolling, I didn&rsquo;t want redirects to
+become too frequent. If some rolls came with too many redirects,
+I would prefer having alternation instead.</p>
+
+<p>Like all modern layouts, I wanted to minimize same finger bigrams, but
+I found I wasn&rsquo;t so sensitive to them that I&rsquo;d prioritize this over my other goals.
+I was hoping for SFBs a bit better than Colemak, but I knew I wouldn&rsquo;t beat the
+SFB rates of the newest layouts (especially ones with thumb alphas or magic keys).
+I didn&rsquo;t even consider same finger skipgrams;
+just avoiding SFBs already felt luxurious enough coming from QWERTY.</p>
+
+<p>In the end, my priority ranking came to:</p>
+
+<ol>
+<li>Finger utilization</li>
+<li>High in-rolls</li>
+<li>Low redirects</li>
+<li>Low same finger bigrams</li>
+</ol>
+
+<h2>Design process</h2>
+
+<p>With these goals established, how do we design a layout optimized for them?</p>
+
+<p>First, we should quantify the finger utilization targets. I chose:</p>
+
+<ul>
+<li>Index: 12-14%</li>
+<li>Middle: 16-18%</li>
+<li>Ring: 10-12%</li>
+<li>Pinky: 8-9%</li>
+</ul>
+
+<p>The foundation of a layout is <a href="https://docs.google.com/document/d/1W0jhfqJI2ueJ2FNseR4YAFpNfsUM-_FlREHbpNGmC2o/edit?tab=t.oldl5e1xa7v3#heading=h.fkc9oxga9jo9">its placement of the 9 most common letters</a>.
+Modern layouts place all vowels on the same hand (in order to reduce redirects),
+with <a href="https://docs.google.com/document/d/1W0jhfqJI2ueJ2FNseR4YAFpNfsUM-_FlREHbpNGmC2o/edit?tab=t.gm0ejchjpek#heading=h.fy0chzg26unh">the 4 most common vowels on three fingers</a>
+(in order to leave more room for placing the many consonants).
+Let&rsquo;s start <a href="https://docs.google.com/document/d/1W0jhfqJI2ueJ2FNseR4YAFpNfsUM-_FlREHbpNGmC2o/edit?tab=t.uv9x1j70u2nc#heading=h.8grvg0w34swn">designing the layout as recommended</a> with the vowel hand!</p>
+
+<h3>Vowels</h3>
+
+<p>Laying out the vowel hand starts with choosing the vowel block.</p>
+
+<p><a href="https://docs.google.com/document/d/1W0jhfqJI2ueJ2FNseR4YAFpNfsUM-_FlREHbpNGmC2o/edit?tab=t.2yb5bwiy1wa8#heading=h.qyel7qja61lm">The vowel block with highest inrolls</a> is <code>yi oe ua</code>.
+The <code>oe</code> stack would have utilization far past the target for ring,
+so this would require <code>ua</code> on index.
+This means we&rsquo;d have to push more consonants off the index finger to keep SFBs low,
+and ultimately this leads to violating the finger utilization goal,
+like adding more letters onto pinky;
+therefore, let&rsquo;s only consider vowel blocks that do not include index.</p>
+
+<p>The next best vowel block for inrolls is <code>yi oa ue</code>, and
+while <code>oa</code> has less utilization than <code>oe</code>, that&rsquo;s still a lot for ring,
+especially with a very common letter off the home row.
+<code>i ue oa</code> is next; this has the ring finger moving off home row far less often,
+so it could be viable, but it still already means over 14% utilization for ring,
+which is higher than the target.</p>
+
+<p>This leads us to <code>a ui oe</code>. Although it doesn&rsquo;t have the highest inrolls,
+its utilization is closer to what we&rsquo;re looking for. <code>oe</code> alone is over 19%
+utilization, but as long as we don&rsquo;t add anything else common to the column,
+it&rsquo;s not too far past the middle finger utilization target&rsquo;s 18% upper bound.</p>
+
+<p>With the vowel block chosen, we can begin laying out consonants on the vowel hand.
+High-inroll layouts (usually) have
+<a href="https://docs.google.com/document/d/1W0jhfqJI2ueJ2FNseR4YAFpNfsUM-_FlREHbpNGmC2o/edit?tab=t.2yb5bwiy1wa8#heading=h.b3afrbm4ggth">either <code>n</code> on the vowel hand index or <code>h</code> on the vowel hand pinky</a>,
+so <code>n</code> index it is!
+Let&rsquo;s not stack another common consonant <a href="https://docs.google.com/document/d/1W0jhfqJI2ueJ2FNseR4YAFpNfsUM-_FlREHbpNGmC2o/edit?tab=t.uv9x1j70u2nc#heading=h.cjrto5uint97">like <code>r</code></a> on the index,
+because that would exceed the utilization target and limit our options
+for the remaining 4 keys.</p>
+
+<p>I paired <code>y</code> with <code>n</code>, even though that leads to some moderate SFBs,
+because then we have a <code>you</code> three-roll,
+and that just feels so dang nice (even as an outroll).
+We&rsquo;ll fill out the rest of this index later when laying out the consonants.</p>
+
+<p>For a low-utilization key for top vowel pinky, I chose <code>q</code>.
+This does mean a redirect for <code>equ</code>, an SFB for <code>aqu</code>, and an SFS for <code>qua</code>, but
+the guaranteed <code>qu</code> inroll is nice, and <code>quo</code> feels great and <code>que</code> feels pretty good.</p>
+
+<p>At this point, we&rsquo;ve laid out most of the vowel hand:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>☐ ☐ ☐ ☐ ☐  ☐ y o u q
+☐ ☐ ☐ ☐ ☐  ☐ n e i a
+☐ ☐ ☐ ☐ ☐  ☐ ☐ ☐ ☐ ☐
+</code></pre></div>
+<h3>Consonants</h3>
+
+<p>With the vowel hand mostly established, and only 4 consonants remaining from
+the 9 most common letters, it&rsquo;s time to start on the consonant hand.
+By this point we can see that this layout will be a member of
+<a href="https://docs.google.com/document/d/1W0jhfqJI2ueJ2FNseR4YAFpNfsUM-_FlREHbpNGmC2o/edit?tab=t.2yb5bwiy1wa8#heading=h.e1vfsiwzv6vw">the &ldquo;N + vowels&rdquo; family of inward rotation layouts in Ec0&rsquo;s Keyboard layouts doc</a>.</p>
+
+<p>Let&rsquo;s use the remaining 4 most common consonants for the home row of the
+consonant hand; the arrangement with the highest inrolls is <code>rsth</code>.
+This is perfect, because it puts the most frequent consonant, <code>t</code>, on middle finger,
+which we&rsquo;ll need in order to have higher utilization on the middle finger,
+in just 3 keys, than the index finger, with its 6 keys.</p>
+
+<p>With this home row, <a href="https://docs.google.com/document/d/1W0jhfqJI2ueJ2FNseR4YAFpNfsUM-_FlREHbpNGmC2o/edit?tab=t.uv9x1j70u2nc#heading=h.26oc0mqwptjr"><code>c</code> must stack with <code>s</code> on ring finger</a> to
+minimize SFBs. Let&rsquo;s place <code>l</code>, the highest frequency consonant that we haven&rsquo;t
+already given a home row spot, on middle finger. <code>tl</code> does mean some SFBs, but
+this gives us more flexibility with what letters can be placed on the index.
+<code>d</code> then goes on the index, and by placing these in the top row we now have
+nice adjacent same-row inrolls for <code>ld</code> and <code>cl</code>.</p>
+
+<p>For the consonant pinky&rsquo;s rare top key, I placed <code>x</code> to have <code>xc</code> and <code>xt</code> inrolls,
+plus a fun three-roll for <code>xcl</code> in exclude.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>x c l d ☐  ☐ y o u q
+r s t h ☐  ☐ n e i a
+☐ ☐ ☐ ☐ ☐  ☐ ☐ ☐ ☐ ☐
+</code></pre></div>
+<p>From here we should decide how to finish the consonant pinky.
+<code>xr</code> is still well below the 8-9% utilization target.
+<code>w</code> or <code>v</code> are the natural choices to reduce SFBs.
+I chose <code>w</code> to get closer to the 8% utilization goal.
+Fortunately a <code>wc</code> pair almost never appears, so we avoid an uncomfortable scissor,
+and the <code>wl</code> and <code>wd</code> pairs are infrequent, so we don&rsquo;t have many row skips.
+I find the <code>sw</code>, <code>tw</code>, and <code>wh</code> pairs to be comfortable.</p>
+
+<p>There&rsquo;s another nice aspect of the <code>rw</code> pinky: I especially dislike redirects
+where the pinky is the finger upon which direction changes, and thankfully <code>r</code>
+and <code>w</code> don&rsquo;t often appear in the middle of consonant clusters.
+They appear at the beginning (<code>rst</code>, <code>rts</code>, <code>wds</code>) or at
+the end (<code>str</code>, <code>thr</code>, <code>sw</code>), but not in the middle (<code>srt</code>, <code>trs</code>, <code>dws</code>).</p>
+
+<p><code>g</code> shouldn&rsquo;t go with <code>n</code> or <code>h</code>, so it should go on ring or middle.
+Putting <code>g</code> on middle doesn&rsquo;t maximize middle finger utilization (<code>m</code> would),
+but it results in fewer SFBs than ring (<code>gl</code> vs <code>gs</code>),
+so let&rsquo;s settle for middle. The <code>ltg</code> column is a little below the middle finger
+utilization target, but it&rsquo;s close enough. We can then finish off ring as <code>csv</code>
+to keep its SFBs low, since it already has the <code>sc</code> pair to deal with.</p>
+
+<p>With <code>m</code> and <code>pb</code> remaining, we should put them on separate indexes.
+<code>by</code> has lower SFBs than <code>my</code> (plus <code>ph</code>), so <code>pb</code> goes to the vowel hand index
+and <code>m</code> to the consonant hand index. Of <code>p</code> and <code>b</code>,
+<code>p</code> pairs more frequently with <code>o</code>, while <code>b</code> mostly pairs with <code>e</code>, so let&rsquo;s
+place <code>p</code> in the inner column and <code>b</code> in the bottom row for fewer scissors
+(despite slightly more lateral stretches from <code>po</code>).</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>x c l d ☐  ☐ y o u q
+r s t h ☐  p n e i a
+w v g m ☐  ☐ b ☐ ☐ ☐
+</code></pre></div>
+<p>At this point, we have 5 spots left on the index fingers, 4 of which are the
+inner column top/bottom row corner positions that are more than 1u from the
+index finger&rsquo;s home position.
+Let&rsquo;s assign <code>f</code>, the last letter with &gt; 1% utilization, to the
+consonant hand index so that it need not be in one of these corner positions.
+<code>f</code> does not cause SFBs here, and although it could lead to higher inrolls on
+the vowel hand index, at least on the consonant hand it mostly contributes to
+alternation rather than outrolls.
+I placed <code>f</code> in the inner column and <code>m</code> in the bottom row since
+<code>f</code> has less utilization and this avoids <code>fl</code> scissors.</p>
+
+<p><code>k</code>, the last letter besides the rare ones, can be assigned to
+the consonant index to avoid <code>nk</code> SFBs.
+Putting it in the top row means less of a stretch for <code>ck</code> and <code>lk</code>.</p>
+
+<p>At this point we just have <code>j</code> and <code>z</code> to fill in the gaps.
+I put <code>j</code> on the consonant hand so that <code>j</code> down and <code>k</code> up vim commands
+in the terminal are in a convenient place.
+<code>z</code> gets a vowel hand index spot, and now we&rsquo;ve placed all the letters!</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>x c l d k  z y o u q
+r s t h f  p n e i a
+w v g m j  ☐ b ☐ ☐ ☐
+</code></pre></div>
+<h3>Punctuation</h3>
+
+<p>We still have some open spots on the vowel hand to place punctuation.
+The most frequent <code>.</code> and <code>,</code> deserve a spot on the base layer,
+but on middle finger <a href="https://docs.google.com/document/d/1W0jhfqJI2ueJ2FNseR4YAFpNfsUM-_FlREHbpNGmC2o/edit?tab=t.gm0ejchjpek#heading=h.fat0i9wavpm4">they would cause higher SFBs with <code>e</code></a>
+and raise utilization even higher, so let&rsquo;s place them on ring and pinky instead.</p>
+
+<p>I chose ring for <code>.</code> because, in contrast to <code>,</code>, it is tapped repeatedly for <code>...</code>,
+and is often interleaved with letters for programming, acronyms, and domains.
+Putting it on ring also gives us the freedom to put <code>/</code> on the pinky
+outer column without creating an SFB for <code>./</code> paths.
+This does swap the order of <code>,.</code> and the shifted <code>&lt;&gt;</code> from QWERTY,
+but I&rsquo;m not sure that matters when we&rsquo;re deviating so much from QWERTY
+and when angle brackets are often better positioned on a symbol layer.</p>
+
+<p><code>&#39;</code> could go on the pinky outer column without causing many SFBs, but I instead
+chose middle finger. This does raise middle finger utilization somewhat higher,
+but I prefer that to increased pinky lateral movement. This also means that
+<code>&#39;</code> is still available on the base layer of 3x5 keyboards.</p>
+
+<p>Placing <code>&#39;</code> on middle causes an <code>e&#39;</code> 1u SFB on contractions like <code>he&#39;s</code> or <code>we&#39;re</code>,
+and an <code>o_&#39;</code> 2u SFS on contractions like <code>don&#39;t</code> or <code>you&#39;re</code>,
+but I don&rsquo;t find these so unpleasant. Surprisingly, the layout analyzers say
+the overall SFBs are the same as <code>/</code> or <code>;</code> on middle and <code>&#39;</code> on pinky,
+and I&rsquo;d rather handle SFBs with the more dexterous middle finger.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>x c l d k  z y o u q
+r s t h f  p n e i a
+w v g m j  ☐ b &#39; . ,
+</code></pre></div>
+<h3>Enter?</h3>
+
+<p>You may notice this leaves one spot unaccounted for on the vowel hand index.
+Normally a layout would include one more punctuation key, usually either <code>;</code> or <code>/</code>,
+but I use these infrequently enough that they seem like a waste of a
+base layer key for the strong index finger. Yet this position isn&rsquo;t ideal for
+keys that would regularly be used in the middle of typing prose:
+it&rsquo;s more than 1u from the index home position, requires a lateral stretch,
+and can cause scissors given this layout&rsquo;s top row bias on right hand.
+Can we find a key that&rsquo;s used regularly, but not in the middle of typing prose?</p>
+
+<p>The whitespace/control keys seemed like they might be a nice fit.
+Placing one of them here could allow for lower pinky and thumb movement.</p>
+
+<ul>
+<li>Space would obviously be a bad choice, since it&rsquo;s used constantly when typing prose.</li>
+<li>Backspace is an option I thought might be good, but after trying it,
+I found that I use it too frequently in the middle of typing prose to
+quickly correct mistakes. (I put backspace on a thumb home key instead.)</li>
+<li>Delete and Escape could be fine options, but I don&rsquo;t use them that regularly.</li>
+<li>Enter and Tab seem like good options.</li>
+</ul>
+
+<p>I use Enter more regularly than Tab, so I chose it.</p>
+
+<p>With that, we&rsquo;ve reached the completed layout as shown at the start of this post!</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>x c l d k  z y o u q
+r s t h f  p n e i a
+w v g m j  ↵ b &#39; . ,
+</code></pre></div>
+<h2>Metrics</h2>
+
+<p>But enough of me justifying these choices; the best way to see if this layout
+succeeded at its goals is to turn to an analyzer and look at the metrics!</p>
+
+<p>My favorite analyzer for evaluating and experimenting with layouts is
+<a href="https://cyanophage.github.io/">Cyanophage&rsquo;s</a>, and you can see
+<a href="https://cyanophage.github.io/playground.html?layout=xcldkzyouq-rsthfpneia%2Fwvgmj%3Bb%27.%2C%5C%5E&amp;mode=ergo&amp;lan=english">its analysis of this layout here</a>.
+Some other great interactive playground analyzers are <a href="https://oxey.dev/playground/index.html">Oxey&rsquo;s</a> and
+<a href="https://layouts.wiki/playground/">Layouts Wiki&rsquo;s</a>, though these don&rsquo;t support direct linking to
+custom layouts.</p>
+
+<p>A caveat: these analyzers do not have data on usage of the Enter key, so
+for this analysis I have replaced it with <code>;</code>.
+This means the usage of the right index will be undercounted, but
+hopefully it does not have a large impact on bigram/trigram analysis.</p>
+
+<p>We can benchmark by comparing metrics against other layouts. I&rsquo;ll compare with:</p>
+
+<ul>
+<li><a href="https://colemakmods.github.io/mod-dh/">Colemak-DH</a>: a version of <a href="https://colemak.com/">Colemak</a>, slightly modified
+and generally considered better for columnar keyboards. Colemak is one of
+the most popular alternative layouts and is designed to be similar to QWERTY.</li>
+<li><a href="https://github.com/Apsu/APT">APTv3</a>: a well known inroll-focused layout from which I took inspiration.</li>
+<li><a href="https://github.com/GalileoBlues/Gallium">Gallium</a>: a well-rounded layout often recommended as an upgrade from Colemak.</li>
+<li><a href="https://en.wikipedia.org/wiki/QWERTY">QWERTY</a>: mostly just for laughs.</li>
+</ul>
+
+<h3>Finger utilization</h3>
+
+<p>The reported finger utilization is roughly in line with the targets:</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th style="text-align: center">Target</th>
+<th style="text-align: center">Left</th>
+<th style="text-align: center">Right</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Pinky</td>
+<td style="text-align: center">8-9%</td>
+<td style="text-align: center">8.01%</td>
+<td style="text-align: center">9.23%</td>
+</tr>
+<tr>
+<td>Ring</td>
+<td style="text-align: center">10-12%</td>
+<td style="text-align: center">10.58%</td>
+<td style="text-align: center">11.00%</td>
+</tr>
+<tr>
+<td>Middle</td>
+<td style="text-align: center">16-18%</td>
+<td style="text-align: center">15.12%</td>
+<td style="text-align: center">19.88%</td>
+</tr>
+<tr>
+<td>Index</td>
+<td style="text-align: center">12-14%</td>
+<td style="text-align: center">13.66%</td>
+<td style="text-align: center">12.52%</td>
+</tr>
+</tbody></table>
+
+<p>Left middle is a little under, right middle is over, and right index may
+actually be over when the true utilization of Enter is considered.</p>
+
+<p>Like mentioned earlier, finger movement is another useful measure of the work
+performed by each finger:</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th style="text-align: center">Left</th>
+<th style="text-align: center">Right</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Pinky</td>
+<td style="text-align: center">9.95</td>
+<td style="text-align: center">6.05</td>
+</tr>
+<tr>
+<td>Ring</td>
+<td style="text-align: center">21.07</td>
+<td style="text-align: center">18.87</td>
+</tr>
+<tr>
+<td>Middle</td>
+<td style="text-align: center">28.56</td>
+<td style="text-align: center">39.99</td>
+</tr>
+<tr>
+<td>Index</td>
+<td style="text-align: center">41.43</td>
+<td style="text-align: center">28.33</td>
+</tr>
+</tbody></table>
+
+<p>For the most part, the movement of the fingers look good, but it shows some
+interesting differences from finger utilization.
+Although left pinky has lower utilization than right pinky, it has more movement.
+And similarly, although left index has lower utilization than left middle,
+it has significantly higher movement.
+There may be more work required of these fingers than I hoped.</p>
+
+<h3>In-rolls</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th style="text-align: center">2roll in</th>
+<th style="text-align: center">2roll out</th>
+<th style="text-align: center">3roll in</th>
+<th style="text-align: center">3roll out</th>
+<th style="text-align: center">Alt</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>This layout</td>
+<td style="text-align: center">30.07%</td>
+<td style="text-align: center">14.62%</td>
+<td style="text-align: center">1.33%</td>
+<td style="text-align: center">1.07%</td>
+<td style="text-align: center">33.45%</td>
+</tr>
+<tr>
+<td>Gallium</td>
+<td style="text-align: center">21.35%</td>
+<td style="text-align: center">23.06%</td>
+<td style="text-align: center">0.45%</td>
+<td style="text-align: center">1.21%</td>
+<td style="text-align: center">37.55%</td>
+</tr>
+<tr>
+<td>APTv3</td>
+<td style="text-align: center">32.63%</td>
+<td style="text-align: center">14.12%</td>
+<td style="text-align: center">2.26%</td>
+<td style="text-align: center">0.54%</td>
+<td style="text-align: center">30.73%</td>
+</tr>
+<tr>
+<td>Colemak-DH</td>
+<td style="text-align: center">25.18%</td>
+<td style="text-align: center">21.54%</td>
+<td style="text-align: center">1.50%</td>
+<td style="text-align: center">0.98%</td>
+<td style="text-align: center">25.43%</td>
+</tr>
+<tr>
+<td>QWERTY</td>
+<td style="text-align: center">20.38%</td>
+<td style="text-align: center">21.38%</td>
+<td style="text-align: center">1.32%</td>
+<td style="text-align: center">1.48%</td>
+<td style="text-align: center">21.38%</td>
+</tr>
+</tbody></table>
+
+<p>The trigram metrics show we did a pretty good job of prioritizing inrolls!
+Bigram inrolls are nearly twice as common as bigram outrolls and are noticeably
+higher than Gallium and Colemak-DH. We get close to APTv3,
+but cannot match it because of our focus on finger utilization,
+falling behind especially on inward 3-rolls. We can see that alternation also
+falls between Gallium and APTv3, which makes sense due to
+<a href="https://docs.google.com/document/d/1W0jhfqJI2ueJ2FNseR4YAFpNfsUM-_FlREHbpNGmC2o/edit?tab=t.6r1v629nms0d#heading=h.r8uk3gldl10w">the inverse relationship between alternation and rolling</a>.</p>
+
+<h3>Redirects</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th style="text-align: center">Redirect</th>
+<th style="text-align: center">Weak Redirect</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>This layout</td>
+<td style="text-align: center">2.53%</td>
+<td style="text-align: center">0.30%</td>
+</tr>
+<tr>
+<td>Gallium</td>
+<td style="text-align: center">1.93%</td>
+<td style="text-align: center">0.26%</td>
+</tr>
+<tr>
+<td>APTv3</td>
+<td style="text-align: center">3.60%</td>
+<td style="text-align: center">0.42%</td>
+</tr>
+<tr>
+<td>Colemak-DH</td>
+<td style="text-align: center">5.33%</td>
+<td style="text-align: center">1.09%</td>
+</tr>
+<tr>
+<td>QWERTY</td>
+<td style="text-align: center">6.22%</td>
+<td style="text-align: center">0.44%</td>
+</tr>
+</tbody></table>
+
+<p>Similarly, redirects are situated between Gallium and APTv3, but significantly
+better than Colemak-DH. We won&rsquo;t be able to beat Gallium on redirects because
+we&rsquo;re prioritizing inrolls, and <a href="https://docs.google.com/document/d/1W0jhfqJI2ueJ2FNseR4YAFpNfsUM-_FlREHbpNGmC2o/edit?tab=t.6r1v629nms0d#heading=h.r8uk3gldl10w">rolling correlates with redirects</a>.</p>
+
+<p>Additionally, I&rsquo;m happy to see only +0.04% weak redirects over Gallium.
+Cyanophage classifies redirects that occur on the middle, ring, and pinky
+(i.e. without the index) as weak redirects, the redirects that feel clumsiest.</p>
+
+<h3>Same finger usage</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th style="text-align: center">SFBs</th>
+<th style="text-align: center">SFSs</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>This layout</td>
+<td style="text-align: center">0.84%</td>
+<td style="text-align: center">3.50%</td>
+</tr>
+<tr>
+<td>Gallium</td>
+<td style="text-align: center">0.64%</td>
+<td style="text-align: center">2.74%</td>
+</tr>
+<tr>
+<td>APTv3</td>
+<td style="text-align: center">0.81%</td>
+<td style="text-align: center">3.09%</td>
+</tr>
+<tr>
+<td>Colemak-DH</td>
+<td style="text-align: center">0.91%</td>
+<td style="text-align: center">4.24%</td>
+</tr>
+<tr>
+<td>QWERTY</td>
+<td style="text-align: center">4.38%</td>
+<td style="text-align: center">5.45%</td>
+</tr>
+</tbody></table>
+
+<p>Same finger bigrams look acceptable. As expected, we do not beat Gallium,
+though we get close to APTv3 and do beat Colemak-DH.
+Index/middle SFBs are 0.58%, so most are on capable fingers.</p>
+
+<p>Since same finger skipgrams were not a design priority,
+it&rsquo;s understandable that they lag behind Gallium and APTv3,
+though it&rsquo;s good to see that they do still beat Colemak-DH.
+A considerable portion of SFSs come from the <code>oe</code> stack.</p>
+
+<h3>Scissors and lateral stretches</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th style="text-align: center">Scissors</th>
+<th style="text-align: center">LSBs</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>This layout</td>
+<td style="text-align: center">0.31%</td>
+<td style="text-align: center">0.98%</td>
+</tr>
+<tr>
+<td>Gallium</td>
+<td style="text-align: center">0.95%</td>
+<td style="text-align: center">0.96%</td>
+</tr>
+<tr>
+<td>APTv3</td>
+<td style="text-align: center">0.11%</td>
+<td style="text-align: center">0.33%</td>
+</tr>
+<tr>
+<td>Colemak-DH</td>
+<td style="text-align: center">0.15%</td>
+<td style="text-align: center">1.27%</td>
+</tr>
+<tr>
+<td>QWERTY</td>
+<td style="text-align: center">1.46%</td>
+<td style="text-align: center">4.55%</td>
+</tr>
+</tbody></table>
+
+<p>Although scissors and lateral stretches weren&rsquo;t a focus, we did consider them
+during design, so it&rsquo;s worth checking on them.</p>
+
+<p>Fortunately, the numbers seem reasonable! Scissors are lower than Gallium,
+with most of the scissors coming from <code>bo</code> (like Gallium&rsquo;s <code>of</code>).
+Lateral stretch bigrams are comparable to Gallium and lower than Colemak-DH.</p>
+
+<h2>Thoughts from a year of usage</h2>
+
+<p>A layout can&rsquo;t be completely evaluated from its design justification or
+analyzer metrics; the real test is how it feels in real usage.
+I&rsquo;ve been using this layout for a year now, and I&rsquo;ve been happy with it!</p>
+
+<p>It has largely succeeded at my goal of comfort. I no longer feel the strain on
+my index fingers that I started to feel from using columnar QWERTY,
+though perhaps that would have faded in time regardless.
+The high middle finger utilization has not caused me any discomfort.</p>
+
+<p>Unfortunately, the layout did have one noticeable point of discomfort:
+the <code>wr</code> pinky. It seems that my left pinky has been messed up by a lifetime of
+using only left shift on QWERTY, including weird contortions like Shift+1 and
+long stretches like Shift+Y with my left index.
+I started experiencing discomfort in my left pinky on the new layout, though
+fortunately I was able to mitigate it by adjusting my navigation and
+symbol layers for less pinky usage. It has lessened over time and now I
+notice it only rarely if I&rsquo;ve been typing quickly for long periods of time.</p>
+
+<p>In hindsight, I wonder if finger movement would have been a better design goal
+than utilization. For a while I considered swapping to a <code>vr</code> pinky,
+which would reduce usage, but it comes with an increase in pinky SFBs and SFSs.
+I considered something like an <code>xrz</code> pinky, but
+I was worried it&rsquo;d lead to index discomfort, and
+I never found a solution I liked before the pinky discomfort started improving.
+I&rsquo;m not sure if the more common <code>bn</code> pinky would have fared better for me;
+I can only imagine how bad I would have felt with Dvorak&rsquo;s <code>ls</code> pinky.</p>
+
+<p>The relatively high SFBs of the left middle and right index haven&rsquo;t bothered me.
+I don&rsquo;t notice the <code>by</code> 2u SFB, which I had expected to be annoying.
+<code>ltg</code> is a bit busy, but nothing compared to QWERTY&rsquo;s <code>edc</code>;
+typing <code>digital</code> for the first time was a funny experience, though.
+The <code>ght</code> SFS occasionally trips me up during fast typing, so
+maybe <code>g</code> on ring could have helped with that.</p>
+
+<p>One pleasant realization I had: of the 5 most repeated letters, this layout puts
+4 (all but <code>s</code>) on the middle fingers, which I find to be the most comfortable
+finger to tap in quick succession. Nice!</p>
+
+<p>The inroll focus doesn&rsquo;t feel as notable as I first imagined.
+I&rsquo;m excited whenever I get to type <code>rst</code> or <code>ien</code>, but
+for the most part the inrolls fade into the background.
+I can see why most layouts these days aren&rsquo;t designed for directionality,
+especially with the wide variance of the English language fighting against you.</p>
+
+<p>I&rsquo;ve liked having Enter on an index finger. It feels nice for sending
+quick messages and has helped me balance the load on my thumbs.
+It doesn&rsquo;t feel great if you have do repeated patterns of single letter + Enter,
+like with yes/no CLI prompts&hellip; which are especially annoying because
+<code>y</code> and <code>n</code> are on the same finger, so I usually alt-finger this case.</p>
+
+<p>I don&rsquo;t think I&rsquo;ll be hopping to a new layout any time soon;
+any improvement it provides would have to be dramatic.
+I&rsquo;ve considered layouts with a thumb letter, but I&rsquo;m concerned about
+thumb strain if I have backspace and a letter on the same thumb.
+Maybe someday a magic key will lure me into learning a new layout, but not yet.</p>
+
+<h2>Why I wrote this</h2>
+
+<p>Designing this layout was a fun project and I wanted to share about the process!
+I don&rsquo;t think I&rsquo;ve designed the world&rsquo;s best layout, and I don&rsquo;t think that
+everyone should use it; rather, I hope more people explore alternate layouts,
+tweak existing ones to their preferences, and design their own.</p>
+
+<p>If you&rsquo;re switching to an ergonomic keyboard, it&rsquo;s a great time to try an alternative.
+Every layout is made with certain preferences, and if you can&rsquo;t find one that
+matches yours, it&rsquo;s not so hard to tweak an existing layout or design your own.</p>
+
+<h2>Resources and additional reading</h2>
+
+<p>If you want to learn more about alternative layouts:</p>
+
+<ul>
+<li><a href="https://getreuer.info/posts/keyboards/alt-layouts/index.html">Pascal Getreuer&rsquo;s guide to alt keyboard layouts</a> - a great
+introduction that overviews many alternative layouts</li>
+<li><a href="https://layouts.wiki/guides/start/intro/">Layouts Wiki&rsquo;s guides</a> - includes recommendations for
+the latest layouts with reasons you may (or may not) prefer them</li>
+<li><a href="https://docs.google.com/document/d/1W0jhfqJI2ueJ2FNseR4YAFpNfsUM-_FlREHbpNGmC2o">Ec0&rsquo;s Keyboard layouts doc</a> - already linked many times in this post,
+but worth repeating; an in-depth resource for understanding and creating layouts</li>
+</ul>
+
+<p>And, in addition to the layouts linked earlier for benchmarking, here are some
+layouts with neat ideas and writeups that I&rsquo;ve enjoyed reading:</p>
+
+<ul>
+<li><a href="https://docs.google.com/document/d/1HjylX4exH3wyBbxbwranSP4htHXn2qMqOKutpPDxN9c">Thraeg&rsquo;s Mumak</a> - prioritizes middle finger utilization and
+adjacent finger rolls</li>
+<li><a href="https://github.com/MightyAcas/vylet/blob/main/README.md">Acas&rsquo;s Vylet</a> - prioritizes inrolls with an added magic key</li>
+<li><a href="https://valorance.net/night/design">Valorance&rsquo;s Night</a> - achieves very low SFBs and SFSs with a thumb letter,
+plus its writeup includes a nice overview of other layouts with thumb letters</li>
+<li><a href="https://blog.simn.me/posts/2025/afterburner/">Simon Zeng&rsquo;s Afterburner</a> - a really neat idea for multiple
+magic keys to dramatically reduce same finger usage</li>
+</ul>
+</div>
+  
+<footer>
+  <p class="meta">
+    
+<span class="byline author vcard">Posted by <span class="fn">Steven Sheldon</span></span>
+
+    
+
+
+
+
+
+
+
+
+
+<time datetime="2025-12-29T00:00:00-06:00"  class="updated" >Dec 28, 2025</time>
+    
+
+
+  </p>
+  <p class="meta">
+    
+      <a class="basic-alignment left" href="/blog/2017/05/07/how-i-broke-cargo-for-windows/" title="Previous Post: How I Broke Rust's Package Manager for All Windows Users">&laquo; How I Broke Rust's Package Manager for All Windows Users</a>
+    
+    
+  </p>
+</footer>
+
+
+</article>
+</div>
+
+      
+      <aside class="sidebar">
+        <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2025/12/28/designing-keyboard-alpha-layout/">Designing my own keyboard alpha layout for comfy inrolls</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/05/07/how-i-broke-cargo-for-windows/">How I Broke Rust's Package Manager for All Windows Users</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/02/20/objective-c-from-rust-type-encodings/">Objective-C from Rust: Statically Verified Type Encodings without Allocation</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/02/22/testing-rust-on-ios-with-travis/">Testing Rust on iOS with Travis</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/02/objective-c-from-rust-objc_msgsend/">Objective-C from Rust: objc_msgSend</a>
+      </li>
+    
+  </ul>
+</section>
+
+      </aside>
+      
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2025 - Steven Sheldon -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+</footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+</body>
+</html>

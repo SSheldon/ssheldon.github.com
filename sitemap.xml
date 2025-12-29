@@ -2,43 +2,48 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
 
   <url>
+    <loc>http://sasheldon.com/blog/2025/12/28/designing-keyboard-alpha-layout/</loc>
+    <lastmod>2025-12-29T00:00:00-06:00</lastmod>
+  </url>
+
+  <url>
     <loc>http://sasheldon.com/blog/2017/05/07/how-i-broke-cargo-for-windows/</loc>
-    <lastmod>2017-05-07T10:07:40-07:00</lastmod>
+    <lastmod>2017-05-07T12:07:40-05:00</lastmod>
   </url>
 
   <url>
     <loc>http://sasheldon.com/blog/2017/02/20/objective-c-from-rust-type-encodings/</loc>
-    <lastmod>2017-02-20T23:39:39-08:00</lastmod>
+    <lastmod>2017-02-21T01:39:39-06:00</lastmod>
   </url>
 
   <url>
     <loc>http://sasheldon.com/blog/2016/02/22/testing-rust-on-ios-with-travis/</loc>
-    <lastmod>2016-02-23T08:22:56-08:00</lastmod>
+    <lastmod>2016-02-23T10:22:56-06:00</lastmod>
   </url>
 
   <url>
     <loc>http://sasheldon.com/blog/2015/08/02/objective-c-from-rust-objc_msgsend/</loc>
-    <lastmod>2015-08-04T19:22:16-07:00</lastmod>
+    <lastmod>2015-08-04T21:22:16-05:00</lastmod>
   </url>
 
   <url>
     <loc>http://sasheldon.com/blog/2014/11/28/interoperating-between-objective-c-and-rust/</loc>
-    <lastmod>2014-11-28T01:52:17-08:00</lastmod>
+    <lastmod>2014-11-28T03:52:17-06:00</lastmod>
   </url>
 
   <url>
     <loc>http://sasheldon.com/blog/2013/12/14/simplifying-json-response-mocks-with-jinja/</loc>
-    <lastmod>2013-12-14T13:43:01-08:00</lastmod>
+    <lastmod>2013-12-14T15:43:01-06:00</lastmod>
   </url>
 
   <url>
     <loc>http://sasheldon.com/blog/2013/07/07/waiting-for-octopress-2-successor/</loc>
-    <lastmod>2014-02-15T17:08:00-08:00</lastmod>
+    <lastmod>2014-02-15T17:08:00-06:00</lastmod>
   </url>
 
   <url>
     <loc>http://sasheldon.com/blog/2012/11/15/octopress/</loc>
-    <lastmod>2012-11-15T22:14:00-08:00</lastmod>
+    <lastmod>2012-11-15T22:14:00-06:00</lastmod>
   </url>
 
 
