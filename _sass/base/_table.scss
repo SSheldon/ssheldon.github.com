@@ -1,0 +1,15 @@
+* + table {
+  border: 1px solid $pre-border;
+  margin-bottom: 1.5em;
+
+  th, td {
+    border: 1px dashed $pre-border;
+    padding: .2em .4em;
+  }
+
+  th {
+    border-style: solid;
+    font-weight: bold;
+    background: $noise-bg $base02;
+  }
+}

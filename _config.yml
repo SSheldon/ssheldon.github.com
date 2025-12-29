@@ -25,6 +25,7 @@ redcarpet:
   extensions:
     - fenced_code_blocks
     - smart
+    - tables
 highlighter: pygments
 
 paginate: 10          # Posts per page on the blog index
